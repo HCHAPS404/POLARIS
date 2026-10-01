@@ -1,0 +1,11 @@
+scenario_id: landslide-co-slope-demo
+seed: 42
+hazard_id: landslide
+data_class: SIMULATED
+fixture: data/synthetic/landslide-co-slope-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: landslide.phi.slope-moisture-rain.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED slope/moisture/rain for Colombia INTEGRATION CASE hillslope.
+  Not field-validated. Not official.

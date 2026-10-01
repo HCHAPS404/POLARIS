@@ -20,7 +20,7 @@ def test_health_still_ok() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"
-    assert body["maturity"] == "P1-postgis-live-hydro"
+    assert body["maturity"] == "P2-landslide-cap-ev"
     assert body["storage_backend"] in ("memory", "postgis")
 
 
@@ -35,7 +35,8 @@ def test_assessments_chain_and_draft_only() -> None:
         assert unit["gci"]["formula_version"] == "gci.v0.1.0"
         assert unit["operational_risk"]["formula_version"].startswith("risk.operational.")
         assert unit["phi"]["inputs"]["exposure_used"] is False
-        assert unit["exposure"]["evidence"] == "PLACEHOLDER"
+        assert unit["exposure"]["evidence"] == "EXPERIMENTAL"
+        assert unit["operational_risk"]["formula_version"] == "risk.operational.phi-ev-site.v0.1.0"
         assert unit["alert"]["status"] == "DRAFT"
         assert unit["alert"]["official"] is False
         assert unit["alert"]["human_in_the_loop"] is True
@@ -75,6 +76,27 @@ def test_iot_ingest_endpoint() -> None:
     assert body["data_class"] == "SIMULATED"
     assert body["flood_slice"]["assessments"][0]["alert"]["status"] == "DRAFT"
     assert any(o["source_id"].startswith("iot/") for o in body["observations"])
+
+
+def test_landslide_fixture_via_api() -> None:
+    response = client.get(
+        "/v1/assessments",
+        params={"fixture_id": "landslide-co-slope-demo", "seed": 42},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["hazard_id"] == "landslide"
+    assert len(body["assessments"]) == 2
+
+
+def test_alerts_cap_format() -> None:
+    response = client.get("/v1/alerts", params={"format": "cap"})
+    assert response.status_code == 200
+    body = response.json()
+    cap0 = body["cap_alerts"][0]["cap"]
+    assert cap0["status"] == "DRAFT"
+    assert cap0["official"] is False
+    assert "disclaimer" in cap0
 
 
 def test_horizon_page_served() -> None:

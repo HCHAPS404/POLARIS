@@ -6,6 +6,9 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **P2 landslide baseline:** `landslide.phi.slope-moisture-rain.v0.1.0`, hazard registry dispatch, SIMULATED `landslide-co-slope-demo`, ADR-0010
+- **CAP DRAFT/SIMULATION:** `schemas/alerts/cap-draft.json`, `GET /v1/alerts?format=cap` (JSON + XML Test status)
+- **Site E/V v0.1:** configurable `exposure_vulnerability` in `configs/sites/*.yaml`, `risk.operational.phi-ev-site.v0.1.0` (EXPERIMENTAL)
 - **P1 PostGIS persistence:** observation + assessment snapshot repository (SQLAlchemy/Alembic), compose PostGIS init, in-memory fallback, API `run_id` reads
 - **LIVE_INTEGRATED Open-Meteo precipitation** for `co-bogota-demo` with stale-on-failure; `POST /v1/ingest/live/precipitation`; source catalog YAML
 - **Flood PHI rainfall + hydro** `flood.phi.rainfall-hydro.v0.2.0` (ADR-0009)

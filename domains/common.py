@@ -29,4 +29,5 @@ PHI_MODES = frozenset({"DETECTION", "NOWCAST", "FORECAST"})
 QUALITY_FLAGS = frozenset({"unknown", "raw", "qc_pass", "qc_fail"})
 
 HAZARD_FLOOD = "flood"
+HAZARD_LANDSLIDE = "landslide"
 ALERT_STATUS_DRAFT = "DRAFT"

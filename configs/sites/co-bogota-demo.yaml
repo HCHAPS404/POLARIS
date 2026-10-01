@@ -15,6 +15,20 @@ coordinates:
   # Illustrative only — not a surveyed install
   lon: -74.0721
   lat: 4.7110
+exposure_vulnerability:
+  version: site-ev.v0.1.0
+  evidence: EXPERIMENTAL
+  notes: Demo catchment weights — not census or building stock inventories.
+  units:
+    co-bogota-demo-north:
+      exposure: 0.40
+      vulnerability: 0.50
+    co-bogota-demo-center:
+      exposure: 0.70
+      vulnerability: 0.55
+    co-bogota-demo-south:
+      exposure: 0.55
+      vulnerability: 0.45
 notes: >
   Synthetic site used to exercise Country → Region → Site YAML.
   Not an installed sensor network.

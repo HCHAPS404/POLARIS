@@ -22,7 +22,6 @@ for path in (str(ROOT), str(PLATFORM)):
     if path not in sys.path:
         sys.path.insert(0, path)
 
-from application.flood_assessment import run_flood_slice  # noqa: E402
 from application.iot_ingest import ingest_iot_scenario  # noqa: E402
 from application.live_ingest import ingest_live_precipitation  # noqa: E402
 
@@ -32,6 +31,7 @@ from adapters.storage.simulated_json import (  # noqa: E402
     load_fixture,
 )
 from domains.common import ALLOWED_DATA_CLASSES, DATA_CLASS_LIVE, DISCLAIMER  # noqa: E402
+from domains.hazards.registry import run_hazard_slice  # noqa: E402
 
 app = FastAPI(
     title="POLARIS API",
@@ -73,7 +73,7 @@ def _slice(seed: int = 42, fixture_id: str = "flood-bogota-demo"):
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    return run_flood_slice(fixture, seed=seed)
+    return run_hazard_slice(fixture, seed=seed)
 
 
 def _refuse_live(data_class: str | None) -> None:
@@ -100,7 +100,7 @@ def health() -> dict[str, str]:
         "status": "ok",
         "service": "polaris",
         "evidence": "IMPLEMENTED",
-        "maturity": "P1-postgis-live-hydro",
+        "maturity": "P2-landslide-cap-ev",
         "storage_backend": storage,
         "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
@@ -196,17 +196,26 @@ def run_assessment(payload: AssessmentRunRequest | None = None) -> dict:
 def list_alerts(
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    format: str | None = Query(default=None, alias="format"),
 ) -> dict:
+    from domains.alerting.cap_draft import cap_bundle_for_alert
+
     result = _slice(seed=seed, fixture_id=fixture_id)
     alerts = [unit.alert.to_dict() for unit in result.units]
     if any(item["status"] != "DRAFT" for item in alerts):
         raise HTTPException(status_code=500, detail="non-DRAFT alert blocked")
-    return {
+    payload: dict = {
         "data_class": result.data_class,
         "run_id": result.run_id,
         "disclaimer": DISCLAIMER,
         "alerts": alerts,
     }
+    if format and format.lower() in ("cap", "json", "xml", "both"):
+        fmt = format.lower()
+        payload["cap_alerts"] = [
+            cap_bundle_for_alert(unit.alert, fmt=fmt) for unit in result.units
+        ]
+    return payload
 
 
 @app.get("/v1/map/geojson")

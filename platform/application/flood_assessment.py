@@ -8,13 +8,18 @@ from uuid import NAMESPACE_URL, uuid5
 
 from domains.alerting.draft import DraftAlert, build_draft_alert
 from domains.common import DISCLAIMER
-from domains.exposure.stub import ExposureStub, stub_exposure
+from domains.exposure.stub import ExposureStub
 from domains.observations.models import Observation
 from domains.observations.parse import parse_fixture
 from domains.provenance.index_record import IndexRecord
 from domains.quality.gci import compute_gci
 from domains.risk.operational import compute_operational_risk
-from domains.vulnerability.stub import VulnerabilityStub, stub_vulnerability
+from domains.sites.ev_config import (
+    ev_config_version_for_site,
+    resolve_exposure,
+    resolve_vulnerability,
+)
+from domains.vulnerability.stub import VulnerabilityStub
 from hazards.flood.phi import compute_phi_with_hydro
 
 
@@ -91,8 +96,8 @@ class FloodSliceResult:
             "evidence": {
                 "gci": "IMPLEMENTED",
                 "flood_phi": "IMPLEMENTED",
-                "exposure": "PLACEHOLDER",
-                "vulnerability": "PLACEHOLDER",
+                "exposure": "EXPERIMENTAL (site config when present)",
+                "vulnerability": "EXPERIMENTAL (site config when present)",
                 "operational_risk": "IMPLEMENTED",
                 "alert": "IMPLEMENTED (DRAFT only)",
                 "chi": "NOT_IMPLEMENTED",
@@ -145,13 +150,18 @@ def assess_observation(
         accumulation=accumulation,
         hydro_source_id=hydro_source_id,
     )
-    exposure = stub_exposure(observation.spatial_unit_id)
-    vulnerability = stub_vulnerability(observation.spatial_unit_id)
+    exposure = resolve_exposure(
+        site_id=observation.site_id, spatial_unit_id=observation.spatial_unit_id
+    )
+    vulnerability = resolve_vulnerability(
+        site_id=observation.site_id, spatial_unit_id=observation.spatial_unit_id
+    )
     risk = compute_operational_risk(
         phi=phi,
         exposure=exposure,
         vulnerability=vulnerability,
         computed_at=computed_at,
+        ev_config_version=ev_config_version_for_site(observation.site_id),
     )
     alert = build_draft_alert(risk=risk, phi=phi)
     return UnitAssessment(
