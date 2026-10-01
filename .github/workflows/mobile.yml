@@ -3,6 +3,11 @@ name: mobile
 on:
   workflow_call:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "apps/horizon-mobile/**"
+      - ".github/workflows/mobile.yml"
+      - ".github/workflows/ci.yml"
 
 jobs:
   mobile:
@@ -10,10 +15,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Skip until pubspec.yaml exists
+        id: check
         run: |
           if [ ! -f apps/horizon-mobile/pubspec.yaml ]; then
-            echo "horizon-mobile is README-only (P0 / ADR-0003). Skipping Flutter."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "horizon-mobile is README-only. Skipping Flutter."
             exit 0
           fi
-          echo "pubspec.yaml present — add a real Flutter job in a later PR."
-          exit 0
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+      - uses: subosito/flutter-action@v2
+        if: steps.check.outputs.skip != 'true'
+        with:
+          flutter-version: "3.24.5"
+          channel: stable
+          cache: true
+      - name: Flutter analyze
+        if: steps.check.outputs.skip != 'true'
+        working-directory: apps/horizon-mobile
+        run: flutter analyze
+      - name: Flutter test
+        if: steps.check.outputs.skip != 'true'
+        working-directory: apps/horizon-mobile
+        run: flutter test
+      - name: Flutter build APK (debug)
+        if: steps.check.outputs.skip != 'true'
+        working-directory: apps/horizon-mobile
+        run: flutter build apk --debug

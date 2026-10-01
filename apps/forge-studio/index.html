@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>POLARIS Forge — scenario studio (minimal)</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <strong>Decision-support only.</strong>
+      Scenarios run against <code>SIMULATED</code> fixtures unless marked
+      <code>HISTORICAL_REPLAY</code>. Not an official warning service.
+    </header>
+    <main class="layout">
+      <section class="panel">
+        <h1>Forge <span>studio</span></h1>
+        <p class="meta">
+          Shell estático para operadores e ingeniería: enlaces a simulaciones, replay y métricas.
+        </p>
+        <h2>Simulaciones (repo root)</h2>
+        <ul class="commands">
+          <li><code>make sim-flood</code> — escenario flood Bogotá (seed 42)</li>
+          <li><code>make sim-iot</code> — pipeline IoT SIMULATED → gateway → V1</li>
+          <li><code>make sim-replay</code> — Mocoa 2017 replay + backtest harness</li>
+        </ul>
+        <h2>Consolas web</h2>
+        <p class="links">
+          <a href="/horizon/">Horizon map</a>
+          ·
+          <a href="/vector/">Vector console</a>
+          ·
+          <a href="/health">API health</a>
+        </p>
+        <h2>Métricas y validación</h2>
+        <ul>
+          <li><code>domains/backtesting/metrics.py</code> — hit/miss replay</li>
+          <li><code>docs/validation/flood-mocoa-2017-replay.md</code> — evidencia EXPERIMENTAL</li>
+          <li><code>backtesting/reports/</code> — figuras SVG de replay</li>
+        </ul>
+        <h2>Demo IEEE (un comando)</h2>
+        <p><code>./harness/demo/run_demo.sh</code> — test → sim → API (TestClient) → log en <code>harness/demo/output/</code></p>
+      </section>
+    </main>
+  </body>
+</html>

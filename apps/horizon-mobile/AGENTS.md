@@ -1,8 +1,7 @@
 # Agents — horizon-mobile
 
-**Evidence:** IMPLEMENTED (nested agent notes)
+**Evidence:** IMPLEMENTED (minimal slice)
 
-- Flutter is the chosen stack (ADR-0003).
-- Do not generate a full app in P0. No `pubspec.yaml` until a real slice is requested.
-- CI must skip, not fail, while this folder is README-only.
-- Offline + HITL disclaimers are mandatory when UI appears.
+- Flutter stack (ADR-0003). `pubspec.yaml` + Android target; CI runs `flutter analyze`, `flutter test`, `flutter build apk --debug`.
+- Do not claim app-store readiness or full offline GIS.
+- Offline + HITL disclaimers are in the UI.

@@ -20,7 +20,7 @@ def test_health_still_ok() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"
-    assert body["maturity"] == "P2-chi-vector-minimal"
+    assert body["maturity"] == "P3-horizon-mobile-forge-minimal"
     assert body["storage_backend"] in ("memory", "postgis")
 
 
@@ -122,3 +122,10 @@ def test_vector_console_served() -> None:
     assert response.status_code == 200
     assert "Vector" in response.text
     assert "DRAFT" in response.text
+
+
+def test_forge_studio_served() -> None:
+    response = client.get("/forge/")
+    assert response.status_code == 200
+    assert "Forge" in response.text
+    assert "sim-flood" in response.text

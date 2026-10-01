@@ -1,7 +1,7 @@
 # forge-studio
 
-**Evidence:** PLACEHOLDER / DESIGNED
+**Evidence:** IMPLEMENTED (minimal static shell)
 
-Forge — model/scenario studio. README-only in P0.
+Forge — scenario studio links for operators: sim commands, replay, metrics docs. Served at **`/forge/`** from FastAPI (same pattern as `/horizon/` and `/vector/`).
 
-Do not claim the app is IMPLEMENTED until a real manifest and tests exist.
+Not a full modeling IDE; static HTML only.
