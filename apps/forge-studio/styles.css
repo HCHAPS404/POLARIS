@@ -1,0 +1,45 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #0b1f2a;
+  background: #f4f7fa;
+}
+
+.banner {
+  background: #3d2c02;
+  color: #fff8e6;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+.layout {
+  max-width: 52rem;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+}
+
+h1 span {
+  font-weight: 400;
+  color: #5a7080;
+}
+
+.meta {
+  color: #5a7080;
+}
+
+.commands code,
+p code {
+  background: #eef3f7;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.links a {
+  color: #0b5cad;
+}

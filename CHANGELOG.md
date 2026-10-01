@@ -6,6 +6,9 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **P3 Horizon Mobile (minimal):** Flutter `apps/horizon-mobile` — health + V1 assessments, map placeholder, offline cache stub; CI `flutter analyze` / `test` / `build apk --debug`
+- **Forge studio shell:** static `apps/forge-studio` at `/forge/` — links to sim/replay/metrics
+- **IEEE demo harness:** `harness/demo/run_demo.sh` + `run_demo.py` (test → sim-flood → API smoke log)
 - **P2 minimal CHI:** `compound.chi.flood-landslide-rain-coupling.v0.1.0`, `GET /v1/compound/chi`, compound site pair `co-bogota-demo`, ADR-0011
 - **Vector console (minimal):** static `apps/vector-console` at `/vector` — assessments, GCI/PHI/risk, CHI, DRAFT alerts, CAP link
 - **CI PostGIS:** optional workflow job `pytest -m postgis` with PostGIS service container

@@ -100,7 +100,7 @@ def health() -> dict[str, str]:
         "status": "ok",
         "service": "polaris",
         "evidence": "IMPLEMENTED",
-        "maturity": "P2-chi-vector-minimal",
+        "maturity": "P3-horizon-mobile-forge-minimal",
         "storage_backend": storage,
         "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
@@ -301,3 +301,7 @@ if (HORIZON / "index.html").is_file():
 VECTOR = ROOT / "apps" / "vector-console"
 if (VECTOR / "index.html").is_file():
     app.mount("/vector", StaticFiles(directory=str(VECTOR), html=True), name="vector")
+
+FORGE = ROOT / "apps" / "forge-studio"
+if (FORGE / "index.html").is_file():
+    app.mount("/forge", StaticFiles(directory=str(FORGE), html=True), name="forge")
