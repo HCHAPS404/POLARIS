@@ -1,3 +1,3 @@
 # tests/e2e
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED fixture → API JSON (`test_flood_pipeline.py`)

@@ -1,5 +1,5 @@
 # adapters/storage
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED SIMULATED fixture loader
 
-No live connectors in P0.
+No live connectors. Refuses files that are not `data_class=SIMULATED`.
