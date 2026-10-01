@@ -1,0 +1,11 @@
+---
+description: Tests and harnesses
+globs: tests/**,harness/**
+alwaysApply: false
+---
+
+# Testing
+
+- P0 must keep pytest collection green (health + generator).
+- Do not add tests that require Flutter/pnpm apps that do not exist.
+- Harness/dev must run something real, not docs-only.

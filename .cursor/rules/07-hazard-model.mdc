@@ -1,0 +1,11 @@
+---
+description: Per-hazard plugins and individual-first modelling
+globs: hazards/**,domains/hazards/**,domains/compound/**,configs/hazards/**
+alwaysApply: false
+---
+
+# Hazard models
+
+- Individual-first, compound-second. No CHI without documented interaction.
+- New hazards via `make scaffold-hazard`. Do not compute PHI in P0.
+- Version formulas when they exist (`FORMULA_VERSION`).

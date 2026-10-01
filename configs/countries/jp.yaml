@@ -1,0 +1,16 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: JP
+name: Japan
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Asia/Tokyo
+priority_hazards:
+  - earthquake
+  - tsunami
+  - cyclone
+  - volcano
+  - flood
+official_alert_authority: "JMA"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

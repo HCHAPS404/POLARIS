@@ -1,0 +1,14 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: BD
+name: Bangladesh
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Asia/Dhaka
+priority_hazards:
+  - flood
+  - cyclone
+  - flash_flood
+official_alert_authority: "BMD / SOD"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

@@ -1,0 +1,11 @@
+---
+description: PCB, CAD, RF, enclosure
+globs: hardware/**,configs/devices/**,configs/communications/**
+alwaysApply: false
+---
+
+# Hardware / RF
+
+- No fabricated or certified-radio claims in P0.
+- Do not vendor proprietary datasheets.
+- Antenna/RF work stays DESIGNED until device identity exists.

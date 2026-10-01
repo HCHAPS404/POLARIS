@@ -1,0 +1,14 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: ET
+name: Ethiopia
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Africa/Addis_Ababa
+priority_hazards:
+  - drought
+  - flood
+  - heat
+official_alert_authority: "NMA / EDRMC"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

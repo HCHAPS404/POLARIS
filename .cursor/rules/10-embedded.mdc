@@ -1,0 +1,11 @@
+---
+description: MCU firmware
+globs: firmware/**
+alwaysApply: false
+---
+
+# Embedded
+
+- Firmware is PLACEHOLDER (P6). No fake OTA/Zephyr claims.
+- Payload contracts belong in `schemas/` first.
+- Wokwi sketches must not replace the Digital Testbed.

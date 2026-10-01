@@ -1,0 +1,15 @@
+---
+description: POLARIS core contract — evidence, scope, HITL, canonical tree
+alwaysApply: true
+---
+
+# POLARIS core
+
+- Source of truth: `README_ARCHITECTURE.md`, `MASTER_CURSOR_PROMPT.md`, `AGENTS.md`.
+- Canonical tree is the modular monolith (`apps/`, `platform/`, `domains/`, `hazards/`, `simulation/`). Do not add `packages/` or a top-level `sim/` engine.
+- Evidence: DESIGNED is not IMPLEMENTED. Never fake features.
+- Decision-support only. Human-in-the-loop. Not an official evacuation authority.
+- No alerts without disclaimer + provenance.
+- No mass-generated business code. No PHI/CHI/GCI/HCI, maps, IoT, RF, Flutter UI, or Next apps unless the user explicitly leaves P0.
+- No secrets in git. Wokwi is not the Digital Testbed.
+- This product is not Shopify Polaris.

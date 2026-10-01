@@ -1,0 +1,15 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: ID
+name: Indonesia
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Asia/Jakarta
+priority_hazards:
+  - earthquake
+  - tsunami
+  - volcano
+  - flood
+official_alert_authority: "BMKG / BNPB"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

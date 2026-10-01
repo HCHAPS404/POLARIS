@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/configuration/country-profile.json",
+  "title": "CountryProfile",
+  "type": "object",
+  "required": ["iso_code", "name", "status", "evidence"],
+  "properties": {
+    "iso_code": { "type": "string", "minLength": 2, "maxLength": 2 },
+    "name": { "type": "string" },
+    "status": { "type": "string", "enum": ["INTEGRATION_STUB", "INTEGRATION_CASE", "PILOT"] },
+    "evidence": { "type": "string" },
+    "timezone": { "type": "string" },
+    "priority_hazards": { "type": "array", "items": { "type": "string" } },
+    "official_alert_authority": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

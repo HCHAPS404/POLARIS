@@ -1,0 +1,15 @@
+# Default reviewer for this three-person team.
+* @HCHAPS404
+
+# Architecture and platform
+/README_ARCHITECTURE.md @HCHAPS404
+/docs/adr/ @HCHAPS404
+/platform/ @HCHAPS404
+/schemas/ @HCHAPS404
+
+# Simulation kernel
+/simulation/ @HCHAPS404
+/README_SIMULATION_ENGINEERING.md @HCHAPS404
+
+# CI
+/.github/ @HCHAPS404

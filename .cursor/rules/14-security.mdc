@@ -1,0 +1,11 @@
+---
+description: Security, secrets, alerting ethics
+globs: SECURITY.md,LICENSE,.env.example,domains/alerting/**,adapters/alerts/**,schemas/alerts/**
+alwaysApply: false
+---
+
+# Security
+
+- Never commit `.env` or keys. Use `.env.example` dummies only.
+- Alert schemas require disclaimer + provenance.
+- Report vulns per SECURITY.md, not public issues with secrets.

@@ -1,0 +1,15 @@
+# RegionProfile — Colombia INTEGRATION CASE (not a field pilot)
+# Evidence: DESIGNED
+
+country_iso: CO
+region_id: co-cundinamarca
+name: Cundinamarca
+status: INTEGRATION_CASE
+evidence: DESIGNED
+timezone: America/Bogota
+priority_hazards:
+  - flood
+  - landslide
+notes: >
+  Example region under Colombia for config hierarchy tests.
+  Not an operational UNGRD partnership and not a deployed pilot.

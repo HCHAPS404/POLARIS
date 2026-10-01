@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    uses: ./.github/workflows/python.yml
+
+  cpp:
+    uses: ./.github/workflows/cpp.yml
+
+  security:
+    uses: ./.github/workflows/security.yml
+
+  web:
+    uses: ./.github/workflows/web.yml
+
+  mobile:
+    uses: ./.github/workflows/mobile.yml

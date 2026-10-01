@@ -1,0 +1,13 @@
+# Communications profile stub
+# Evidence: DESIGNED. MQTT device telemetry vs NATS internal bus (ADR-0002).
+
+mqtt:
+  role: device-telemetry
+  evidence: DESIGNED
+nats:
+  role: internal-event-bus
+  evidence: DESIGNED
+lora:
+  role: field-link
+  evidence: DESIGNED
+  notes: No homologation claim.

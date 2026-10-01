@@ -1,0 +1,6 @@
+# Hazard config stub — flood
+# Evidence: PLACEHOLDER. No PHI implementation.
+
+hazard_id: flood
+evidence: PLACEHOLDER
+formula_version: "0.0.0-not-implemented"

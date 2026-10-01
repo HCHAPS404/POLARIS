@@ -1,0 +1,26 @@
+name: web
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip until a web app manifest exists
+        run: |
+          set -euo pipefail
+          found=0
+          for app in apps/horizon-web apps/vector-console apps/forge-studio; do
+            if [ -f "$app/package.json" ]; then
+              found=1
+            fi
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "Web apps are README-only (P0). Skipping pnpm/Next jobs."
+            exit 0
+          fi
+          echo "package.json present — add a real web CI job in a later PR."
+          exit 0

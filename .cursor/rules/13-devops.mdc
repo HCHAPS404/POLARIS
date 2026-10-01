@@ -1,0 +1,12 @@
+---
+description: CI, compose, deployment skeletons
+globs: .github/workflows/**,infra/**,docker-compose.yml,Taskfile.yml,Makefile
+alwaysApply: false
+---
+
+# DevOps
+
+- `main` stays releasable at the current evidence bar.
+- Web/mobile workflows skip without manifests.
+- Compose is DESIGNED/dev skeleton — not production HA.
+- No credentials in workflows.

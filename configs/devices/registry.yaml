@@ -1,0 +1,5 @@
+# Device registry stub — P0
+# Evidence: PLACEHOLDER. No live devices.
+
+devices: []
+notes: Empty on purpose. Device identity required before IoT adapters.

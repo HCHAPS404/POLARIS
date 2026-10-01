@@ -1,0 +1,14 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: CA
+name: Canada
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: America/Toronto
+priority_hazards:
+  - wildfire
+  - flood
+  - heat
+official_alert_authority: "ECCC / PSC"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

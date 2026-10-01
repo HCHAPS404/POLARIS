@@ -1,0 +1,12 @@
+---
+description: Data adapters, catalog, lineage
+globs: adapters/data/**,data/**,domains/observations/**,domains/quality/**,domains/provenance/**
+alwaysApply: false
+---
+
+# Data engineering
+
+- No copyrighted dumps in git.
+- Every dataset needs license + provenance (`run_id`, checksum) before use.
+- Global vs national adapters stay separate.
+- Do not call stubs live connectors.

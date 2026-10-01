@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/hazard/hazard.json",
+  "title": "HazardDescriptor",
+  "description": "Hazard identity and evidence status. Models are PLACEHOLDER in P0.",
+  "type": "object",
+  "required": ["hazard_id", "evidence"],
+  "properties": {
+    "hazard_id": { "type": "string" },
+    "title": { "type": "string" },
+    "evidence": { "type": "string", "enum": ["IMPLEMENTED", "DESIGNED", "PLACEHOLDER", "NOT_IMPLEMENTED"] },
+    "formula_version": { "type": "string" },
+    "priority_countries": { "type": "array", "items": { "type": "string" } }
+  }
+}

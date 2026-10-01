@@ -1,0 +1,15 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: NZ
+name: New Zealand
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Pacific/Auckland
+priority_hazards:
+  - earthquake
+  - tsunami
+  - volcano
+  - flood
+official_alert_authority: "MetService / NEMA"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

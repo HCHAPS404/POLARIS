@@ -1,0 +1,3 @@
+# generators/sensor
+
+**Evidence:** PLACEHOLDER

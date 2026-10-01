@@ -1,0 +1,3 @@
+# generators/communication
+
+**Evidence:** PLACEHOLDER

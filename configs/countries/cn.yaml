@@ -1,0 +1,14 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: CN
+name: China
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Asia/Shanghai
+priority_hazards:
+  - flood
+  - earthquake
+  - typhoon
+official_alert_authority: "CMA / MEM"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.
