@@ -1,0 +1,8 @@
+{
+  "hazard_id": "wildfire",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "wildfire.phi.fire-weather-pm.v0.1.0",
+  "model_version": "wildfire.baseline.v0.1.0",
+  "data_class": "SIMULATED",
+  "notes": "Demo fire-weather + optional PM2.5 stub. Not calibrated to national fire danger ratings."
+}

@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-**Evidence:** IMPLEMENTED (0000–0011)
+**Evidence:** IMPLEMENTED (0000–0012)
 
 Index:
 
@@ -16,3 +16,4 @@ Index:
 - [0009](0009-flood-phi-rainfall-hydro.md) Flood PHI rainfall + water-level merge (v0.2.0)
 - [0010](0010-landslide-phi-baseline.md) Landslide PHI slope-moisture-rain baseline (P2)
 - [0011](0011-compound-chi-flood-landslide.md) Minimal CHI flood + landslide rain coupling (P2)
+- [0012](0012-wildfire-phi-baseline.md) Wildfire PHI fire-weather-pm baseline (P4)

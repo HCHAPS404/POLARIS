@@ -1,6 +1,6 @@
 """Hazard Model Registry — maps hazard_id to config and slice runners.
 
-Evidence: IMPLEMENTED for flood and landslide baselines; other hazards NOT IMPLEMENTED.
+Evidence: IMPLEMENTED for flood, landslide, and wildfire baselines; other hazards NOT IMPLEMENTED.
 """
 
 from __future__ import annotations
@@ -41,6 +41,14 @@ _REGISTRY: dict[str, HazardRegistryEntry] = {
         model_version="landslide.baseline.v0.1.0",
         notes="Transparent slope + soil moisture susceptibility with rainfall trigger (max merge).",
     ),
+    "wildfire": HazardRegistryEntry(
+        hazard_id="wildfire",
+        evidence="IMPLEMENTED",
+        config_path=ROOT / "configs" / "hazards" / "wildfire.yaml",
+        formula_version="wildfire.phi.fire-weather-pm.v0.1.0",
+        model_version="wildfire.baseline.v0.1.0",
+        notes="Fire-weather susceptibility with optional PM2.5 detection (max merge).",
+    ),
 }
 
 
@@ -70,4 +78,8 @@ def run_hazard_slice(fixture: dict[str, Any], *, seed: int = 42) -> Any:
         from application.landslide_assessment import run_landslide_slice
 
         return run_landslide_slice(fixture, seed=seed)
+    if hazard_id == "wildfire":
+        from application.wildfire_assessment import run_wildfire_slice
+
+        return run_wildfire_slice(fixture, seed=seed)
     raise ValueError(f"no slice runner for hazard_id={hazard_id!r}")

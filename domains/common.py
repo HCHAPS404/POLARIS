@@ -30,4 +30,5 @@ QUALITY_FLAGS = frozenset({"unknown", "raw", "qc_pass", "qc_fail"})
 
 HAZARD_FLOOD = "flood"
 HAZARD_LANDSLIDE = "landslide"
+HAZARD_WILDFIRE = "wildfire"
 ALERT_STATUS_DRAFT = "DRAFT"
