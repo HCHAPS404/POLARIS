@@ -48,8 +48,12 @@ make lint            # ruff
 make sim-flood       # deterministic SIMULATED PHI/GCI JSON (seed 42)
 make sim-replay      # Mocoa 2017 HISTORICAL_REPLAY + hit/miss JSON (EXPERIMENTAL)
 make api             # uvicorn :8000 — then open http://127.0.0.1:8000/horizon/
+python -m simulation.python.iot_run --seed 42   # SIMULATED IoT → gateway → flood slice
+python -m simulation.python.iot_run --scenario simulation/scenarios/iot-bogota-fault-packet-loss.yaml --seed 42
 make scaffold-hazard NAME=demo_hazard
 ```
+
+Release freeze **2026-10-08:** demo steps in [docs/manuals/demo-script.md](docs/manuals/demo-script.md) and [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md). Third hazard baseline: **wildfire** (`wildfire-co-bogota-demo`, ADR-0012). `GET /health` maturity reports `P4-wildfire-fault-release-prep-2026-10-08`.
 
 V1 map: `GET /v1/map/geojson` (SIMULATED FeatureCollection) rendered by `apps/horizon-web` (static MapLibre, no `package.json`).
 

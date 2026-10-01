@@ -127,19 +127,32 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
     elif observed_property == "soil_moisture":
         if unit not in ("1", "dimensionless"):
             raise ObservationParseError("soil_moisture requires unit='1' or 'dimensionless'")
+    elif observed_property == "temperature_c":
+        if unit not in ("C", "degC"):
+            raise ObservationParseError("temperature_c requires unit='C' or 'degC'")
+    elif observed_property == "relative_humidity":
+        if unit not in ("1", "dimensionless"):
+            raise ObservationParseError("relative_humidity requires unit='1' or 'dimensionless'")
+    elif observed_property == "wind_speed_ms":
+        if unit != "m/s":
+            raise ObservationParseError("wind_speed_ms requires unit='m/s'")
+    elif observed_property == "pm25_ugm3":
+        if unit not in ("ug/m3", "µg/m3"):
+            raise ObservationParseError("pm25_ugm3 requires unit='ug/m3' or 'µg/m3'")
     else:
         raise ObservationParseError(
             "observed_property must be rainfall_mm, water_level_m (IoT), "
-            "slope_deg, or soil_moisture"
+            "slope_deg, soil_moisture, temperature_c, relative_humidity, "
+            "wind_speed_ms, or pm25_ugm3"
         )
 
     try:
         value = float(raw["value"])
     except (TypeError, ValueError) as exc:
         raise ObservationParseError("observation value must be numeric") from exc
-    if observed_property == "soil_moisture":
+    if observed_property in ("soil_moisture", "relative_humidity"):
         if not 0 <= value <= 1:
-            raise ObservationParseError("soil_moisture must be in [0, 1]")
+            raise ObservationParseError(f"{observed_property} must be in [0, 1]")
     elif value < 0:
         raise ObservationParseError(f"{observed_property} must be >= 0")
 

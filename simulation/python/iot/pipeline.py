@@ -27,6 +27,28 @@ from application.persistence import persist_flood_slice  # noqa: E402
 
 from domains.common import DATA_CLASS_SIMULATED, DISCLAIMER  # noqa: E402
 
+ALLOWED_FAULT_INJECTIONS = frozenset({"packet_loss", "gateway_down"})
+
+
+def apply_fault_injection(scenario: dict[str, Any]) -> dict[str, Any]:
+    """Apply SIMULATED fault flags (mutates scenario copy semantics via returned dict)."""
+    fault = scenario.get("fault_injection")
+    if fault is None:
+        return scenario
+    if fault not in ALLOWED_FAULT_INJECTIONS:
+        raise ValueError(
+            f"fault_injection must be one of {sorted(ALLOWED_FAULT_INJECTIONS)}; got {fault!r}"
+        )
+    updated = dict(scenario)
+    if fault == "gateway_down":
+        updated["backhaul_down"] = True
+    elif fault == "packet_loss":
+        comm = dict(updated.get("communication") or {})
+        comm["packet_loss"] = float(comm.get("packet_loss") or 0.5)
+        updated["communication"] = comm
+    updated["fault_injection"] = fault
+    return updated
+
 
 def load_scenario(path: Path) -> dict[str, Any]:
     payload = yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -34,7 +56,7 @@ def load_scenario(path: Path) -> dict[str, Any]:
         raise ValueError("scenario must be a mapping")
     if payload.get("data_class") != DATA_CLASS_SIMULATED:
         raise ValueError("IoT scenario must be data_class=SIMULATED")
-    return payload
+    return apply_fault_injection(payload)
 
 
 def _observation_id(seed: int, node_id: str, prop: str) -> str:
@@ -155,6 +177,8 @@ def run_iot_scenario(scenario: dict[str, Any], *, seed: int = 42) -> dict[str, A
 
     backhaul_down = bool(scenario.get("backhaul_down"))
     gateway_meta: dict[str, Any] = {"backhaul_down": backhaul_down}
+    if scenario.get("fault_injection"):
+        gateway_meta["fault_injection"] = str(scenario["fault_injection"])
     if backhaul_down:
         held = gw.hold_due_to_backhaul()
         gateway_meta["held_packets"] = held

@@ -1,0 +1,40 @@
+scenario_id: iot-bogota-fault-packet-loss
+data_class: SIMULATED
+hazard_id: flood
+site_id: co-bogota-demo
+country_iso: CO
+as_of: "2026-10-01T12:00:00Z"
+spatial_unit_id: co-bogota-demo-center
+phi_mode: DETECTION
+fault_injection: packet_loss
+
+device_catalog:
+  weather: configs/devices/weather-node.yaml
+  hydro: configs/devices/hydro-node.yaml
+  gateway: configs/devices/gateway-pi5.yaml
+
+geometry:
+  type: Polygon
+  coordinates:
+    [
+      [
+        [-74.10, 4.68],
+        [-74.04, 4.68],
+        [-74.04, 4.73],
+        [-74.10, 4.73],
+        [-74.10, 4.68],
+      ],
+    ]
+
+truth:
+  rainfall_mm: 22.0
+  water_level_m: 0.95
+
+communication:
+  profile: lora_subghz_v0
+  distance_m: 1200
+  frequency_mhz: 868.0
+  tx_power_dbm: 14
+  rx_sensitivity_dbm: -137
+  latency_ms: 180
+  packet_loss: 0.0

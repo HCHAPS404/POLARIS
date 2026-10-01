@@ -1,0 +1,19 @@
+# Hazard config — wildfire
+# Evidence: IMPLEMENTED fire-weather-pm baseline (ADR-0012)
+# Not NFDRS/FWI. No field validation claim.
+
+hazard_id: wildfire
+evidence: IMPLEMENTED
+formula_version: "wildfire.phi.fire-weather-pm.v0.1.0"
+model_version: "wildfire.baseline.v0.1.0"
+phi_mode_policy: declared_on_observation
+thresholds:
+  temperature_c: { t0: 22.0, t1: 38.0 }
+  relative_humidity: { rh0: 0.55, rh1: 0.20 }
+  wind_speed_ms: { w0: 2.0, w1: 14.0 }
+  pm25_ugm3: { pm0: 25.0, pm1: 150.0 }
+limitations:
+  - no_fuel_moisture
+  - no_terrain_aspect
+  - pm_optional
+  - not_field_validated

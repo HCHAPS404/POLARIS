@@ -6,6 +6,12 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **P4 wildfire baseline:** `wildfire.phi.fire-weather-pm.v0.1.0`, registry dispatch, SIMULATED `wildfire-co-bogota-demo`, ADR-0012
+- **IoT fault injection:** scenario flags `fault_injection: packet_loss | gateway_down` for `simulation.python.iot_run`
+- **Release manuals:** `docs/manuals/demo-script.md`, `docs/manuals/reproducibility-checklist-2026-10-08.md`
+
+### Added
+
 - **P3 Horizon Mobile (minimal):** Flutter `apps/horizon-mobile` — health + V1 assessments, map placeholder, offline cache stub; CI `flutter analyze` / `test` / `build apk --debug`
 - **Forge studio shell:** static `apps/forge-studio` at `/forge/` — links to sim/replay/metrics
 - **IEEE demo harness:** `harness/demo/run_demo.sh` + `run_demo.py` (test → sim-flood → API smoke log)
@@ -37,7 +43,11 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Changed
 
-- `GET /health` maturity is now `V1-flood-vertical-slice`
+- `GET /health` maturity is now `P4-wildfire-fault-release-prep-2026-10-08`
+
+### Changed (historical)
+
+- `GET /health` maturity was `V1-flood-vertical-slice`
 - Flood plugin evidence: PLACEHOLDER → IMPLEMENTED (rainfall-threshold PHI only)
 
 ### Security

@@ -1,0 +1,104 @@
+{
+  "fixture_id": "wildfire-co-bogota-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "wildfire",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T14:00:00Z",
+  "disclaimer": "Synthetic fire-weather and PM2.5 for co-bogota-demo-center. SIMULATED only. Not field validation.",
+  "observations": [
+    {
+      "observation_id": "880e8400-e29b-41d4-a716-446655440001",
+      "observed_at": "2026-10-01T14:00:00Z",
+      "observed_property": "temperature_c",
+      "value": 31.5,
+      "unit": "C",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-weather-wildfire-001",
+      "source": "polaris.synthetic.wildfire-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "fixture_id": "wildfire-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P4 wildfire baseline"
+      }
+    },
+    {
+      "observation_id": "880e8400-e29b-41d4-a716-446655440002",
+      "observed_at": "2026-10-01T14:00:00Z",
+      "observed_property": "relative_humidity",
+      "value": 0.32,
+      "unit": "1",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-weather-wildfire-001",
+      "source": "polaris.synthetic.wildfire-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "fixture_id": "wildfire-co-bogota-demo",
+        "data_class": "SIMULATED"
+      }
+    },
+    {
+      "observation_id": "880e8400-e29b-41d4-a716-446655440003",
+      "observed_at": "2026-10-01T14:00:00Z",
+      "observed_property": "wind_speed_ms",
+      "value": 8.5,
+      "unit": "m/s",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-weather-wildfire-001",
+      "source": "polaris.synthetic.wildfire-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "fixture_id": "wildfire-co-bogota-demo",
+        "data_class": "SIMULATED"
+      }
+    },
+    {
+      "observation_id": "880e8400-e29b-41d4-a716-446655440004",
+      "observed_at": "2026-10-01T14:00:00Z",
+      "observed_property": "pm25_ugm3",
+      "value": 88.0,
+      "unit": "ug/m3",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-airquality-wildfire-001",
+      "source": "polaris.synthetic.wildfire-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "fixture_id": "wildfire-co-bogota-demo",
+        "data_class": "SIMULATED"
+      }
+    }
+  ]
+}
