@@ -1,0 +1,77 @@
+# Draft release workflow — tag v1.0.0-response-quest only after checklist + Helmut approval.
+# Do NOT create the tag until reproducibility-checklist-2026-10-08.md is green locally and in CI.
+name: release-response-quest
+
+on:
+  push:
+    tags:
+      - "v1.0.0-response-quest"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Validate checklist steps without creating a GitHub Release"
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: write
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard — required artefacts
+        run: |
+          test -f LICENSE
+          test -f CHANGELOG.md
+          test -f docs/manuals/reproducibility-checklist-2026-10-08.md
+          test -f docs/manuals/technical-overview.md
+          test -f harness/demo/run_demo.sh
+          test -x harness/demo/run_demo.sh
+
+      - name: Guard — disclaimer
+        run: |
+          echo "POLARIS is decision-support only. No OFFICIAL CAP from this workflow."
+          echo "Do not tag v1.0.0-response-quest until Helmut approves the RC checklist."
+
+  python-rc:
+    needs: preflight
+    uses: ./.github/workflows/python.yml
+
+  release:
+    needs: [preflight, python-rc]
+    if: github.event_name == 'push' && github.ref == 'refs/tags/v1.0.0-response-quest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install and smoke test
+        run: |
+          pip install -e ".[dev]"
+          make lint
+          make test
+          make health
+
+      - name: Create GitHub Release (draft)
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          generate_release_notes: true
+          name: POLARIS v1.0.0-response-quest (RC)
+          body: |
+            IEEE Response Quest 2026 release candidate.
+
+            **Evidence:** SIMULATED / EXPERIMENTAL only — not an official warning product.
+
+            Before publishing: complete [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md)
+            and obtain Helmut sign-off. Do not mark competition submission complete without approval.

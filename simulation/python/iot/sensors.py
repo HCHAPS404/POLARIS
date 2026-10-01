@@ -8,7 +8,6 @@ Not unseeded randomness — all draws use a seeded RNG passed from the runner.
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
 from random import Random
 
@@ -94,11 +93,17 @@ def simulate_water_level_m(
 
 
 def fspl_db(*, distance_m: float, frequency_mhz: float) -> float:
-    """Simplified free-space path loss (dB) — link budget stub, not EM simulation."""
-    if distance_m <= 0:
-        return 0.0
-    return 20.0 * math.log10(distance_m) + 20.0 * math.log10(frequency_mhz) - 27.55
+    """Re-export FSPL from `simulation.python.rf` for IoT comm models."""
+    from simulation.python.rf.link_budget import free_space_path_loss_db
+
+    return free_space_path_loss_db(distance_m=distance_m, frequency_mhz=frequency_mhz)
 
 
 def link_rssi_dbm(*, tx_power_dbm: float, distance_m: float, frequency_mhz: float) -> float:
-    return tx_power_dbm - fspl_db(distance_m=distance_m, frequency_mhz=frequency_mhz)
+    from simulation.python.rf.link_budget import received_power_dbm
+
+    return received_power_dbm(
+        tx_power_dbm=tx_power_dbm,
+        distance_m=distance_m,
+        frequency_mhz=frequency_mhz,
+    )

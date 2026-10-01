@@ -6,6 +6,10 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **P5 release candidate prep:** `docs/manuals/technical-overview.md`, RF link budget `simulation/python/rf/` (FSPL **SIMULATED**), heat hazard registry stub, `make demo` / README reproducibility for `harness/demo/run_demo.sh`, draft workflow `release-response-quest.yml` for tag `v1.0.0-response-quest` (no tag until checklist + Helmut approval)
+
+### Added (P0–P4 summary on main)
+
 - **P4 wildfire baseline:** `wildfire.phi.fire-weather-pm.v0.1.0`, registry dispatch, SIMULATED `wildfire-co-bogota-demo`, ADR-0012
 - **IoT fault injection:** scenario flags `fault_injection: packet_loss | gateway_down` for `simulation.python.iot_run`
 - **Release manuals:** `docs/manuals/demo-script.md`, `docs/manuals/reproducibility-checklist-2026-10-08.md`
@@ -43,7 +47,7 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Changed
 
-- `GET /health` maturity is now `P4-wildfire-fault-release-prep-2026-10-08`
+- `GET /health` maturity is now `P5-release-candidate-prep-2026-10-08`
 
 ### Changed (historical)
 

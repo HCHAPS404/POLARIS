@@ -1,6 +1,6 @@
 """Hazard Model Registry — maps hazard_id to config and slice runners.
 
-Evidence: IMPLEMENTED for flood, landslide, and wildfire baselines; other hazards NOT IMPLEMENTED.
+Evidence: IMPLEMENTED for flood, landslide, and wildfire baselines; heat is PLACEHOLDER stub.
 """
 
 from __future__ import annotations
@@ -49,6 +49,14 @@ _REGISTRY: dict[str, HazardRegistryEntry] = {
         model_version="wildfire.baseline.v0.1.0",
         notes="Fire-weather susceptibility with optional PM2.5 detection (max merge).",
     ),
+    "heat": HazardRegistryEntry(
+        hazard_id="heat",
+        evidence="PLACEHOLDER",
+        config_path=ROOT / "configs" / "hazards" / "heat.yaml",
+        formula_version="heat.phi.not-implemented",
+        model_version="heat.baseline.v0.0.0-placeholder",
+        notes="Registry + interface stub only; no PHI runner or API slice.",
+    ),
 }
 
 
@@ -60,6 +68,12 @@ def get_registry_entry(hazard_id: str) -> HazardRegistryEntry:
 
 
 def list_registered_hazards() -> tuple[str, ...]:
+    """Hazard IDs with an IMPLEMENTED slice runner."""
+    return tuple(sorted(h for h, e in _REGISTRY.items() if e.evidence == "IMPLEMENTED"))
+
+
+def list_registry_hazard_ids() -> tuple[str, ...]:
+    """All hazard IDs known to the registry (IMPLEMENTED + PLACEHOLDER)."""
     return tuple(sorted(_REGISTRY))
 
 
