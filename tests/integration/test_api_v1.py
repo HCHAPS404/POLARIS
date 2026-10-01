@@ -20,7 +20,8 @@ def test_health_still_ok() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"
-    assert body["maturity"] == "V1-iot-sim"
+    assert body["maturity"] == "P1-postgis-live-hydro"
+    assert body["storage_backend"] in ("memory", "postgis")
 
 
 def test_assessments_chain_and_draft_only() -> None:

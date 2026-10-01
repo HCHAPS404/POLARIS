@@ -1,5 +1,5 @@
 # adapters/data/global
 
-**Evidence:** PLACEHOLDER
+**Evidence:** PLACEHOLDER (directory name only — not importable as Python `global`).
 
-No live connectors in P0.
+Live global feed adapters live in `adapters/data/global_feeds/`.

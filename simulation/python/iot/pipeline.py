@@ -23,6 +23,7 @@ for path in (str(ROOT), str(PLATFORM)):
         sys.path.insert(0, path)
 
 from application.flood_assessment import run_flood_slice, run_id_for  # noqa: E402
+from application.persistence import persist_flood_slice  # noqa: E402
 
 from domains.common import DATA_CLASS_SIMULATED, DISCLAIMER  # noqa: E402
 
@@ -178,6 +179,12 @@ def run_iot_scenario(scenario: dict[str, Any], *, seed: int = 42) -> dict[str, A
 
     slice_result = run_flood_slice(fixture, seed=seed)
     run_id = run_id_for(fixture_id, seed)
+    storage = persist_flood_slice(
+        run_id=run_id,
+        fixture_id=fixture_id,
+        observations=observations,
+        snapshot=slice_result.to_dict(),
+    )
 
     return {
         "scenario_id": fixture_id,
@@ -206,6 +213,7 @@ def run_iot_scenario(scenario: dict[str, Any], *, seed: int = 42) -> dict[str, A
         ],
         "observations": observations,
         "flood_slice": slice_result.to_dict(),
+        "storage": storage,
     }
 
 

@@ -24,7 +24,9 @@ for path in (str(ROOT), str(PLATFORM)):
 
 from application.flood_assessment import run_flood_slice  # noqa: E402
 from application.iot_ingest import ingest_iot_scenario  # noqa: E402
+from application.live_ingest import ingest_live_precipitation  # noqa: E402
 
+from adapters.storage.repository_factory import get_observation_repository  # noqa: E402
 from adapters.storage.simulated_json import (  # noqa: E402
     FixtureNotFoundError,
     load_fixture,
@@ -59,6 +61,11 @@ class IoTIngestRequest(BaseModel):
     scenario_id: str = Field(default="iot-bogota-demo")
 
 
+class LivePrecipIngestRequest(BaseModel):
+    site_id: str = Field(default="co-bogota-demo")
+    seed: int = Field(default=42)
+
+
 def _slice(seed: int = 42, fixture_id: str = "flood-bogota-demo"):
     try:
         fixture = load_fixture(fixture_id)
@@ -81,11 +88,20 @@ def _refuse_live(data_class: str | None) -> None:
 
 @app.get("/health")
 def health() -> dict[str, str]:
+    repo = get_observation_repository()
+    from adapters.storage.postgis_repository import PostgisObservationRepository
+
+    storage = (
+        "postgis"
+        if isinstance(repo, PostgisObservationRepository) and repo.is_available()
+        else "memory"
+    )
     return {
         "status": "ok",
         "service": "polaris",
         "evidence": "IMPLEMENTED",
-        "maturity": "V1-iot-sim",
+        "maturity": "P1-postgis-live-hydro",
+        "storage_backend": storage,
         "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
@@ -94,7 +110,25 @@ def health() -> dict[str, str]:
 def list_observations(
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    run_id: str | None = Query(default=None),
 ) -> dict:
+    if run_id:
+        repo = get_observation_repository()
+        stored = repo.list_observations(run_id=run_id)
+        if stored:
+            snap = repo.get_assessment_snapshot(run_id)
+            data_class = (
+                str(snap.get("data_class")) if snap else stored[0].get("data_class", "SIMULATED")
+            )
+            return {
+                "data_class": data_class,
+                "run_id": run_id,
+                "disclaimer": DISCLAIMER,
+                "storage_backend": "postgis"
+                if repo.__class__.__name__ == "PostgisObservationRepository"
+                else "memory",
+                "observations": stored,
+            }
     result = _slice(seed=seed, fixture_id=fixture_id)
     return {
         "data_class": result.data_class,
@@ -122,7 +156,13 @@ def get_observation(
 def list_assessments(
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    run_id: str | None = Query(default=None),
 ) -> dict:
+    if run_id:
+        repo = get_observation_repository()
+        snap = repo.get_assessment_snapshot(run_id)
+        if snap:
+            return snap
     return _slice(seed=seed, fixture_id=fixture_id).to_dict()
 
 
@@ -175,6 +215,12 @@ def map_geojson(
     fixture_id: str = Query(default="flood-bogota-demo"),
 ) -> dict:
     return _slice(seed=seed, fixture_id=fixture_id).to_geojson()
+
+
+@app.post("/v1/ingest/live/precipitation")
+def ingest_live_precip(payload: LivePrecipIngestRequest | None = None) -> dict:
+    body = payload or LivePrecipIngestRequest()
+    return ingest_live_precipitation(site_id=body.site_id, seed=body.seed)
 
 
 @app.post("/v1/ingest/iot")

@@ -14,6 +14,9 @@ dependencies = [
   "fastapi>=0.115",
   "uvicorn[standard]>=0.32",
   "pyyaml>=6.0",
+  "sqlalchemy>=2.0",
+  "psycopg[binary]>=3.2",
+  "alembic>=1.14",
 ]
 
 [project.optional-dependencies]
@@ -32,10 +35,16 @@ polaris-replay = "harness.backtesting.replay:main"
 [tool.setuptools.packages.find]
 include = ["domains*", "hazards*", "adapters*", "simulation*", "harness*"]
 
+[tool.setuptools.package-data]
+"adapters.storage" = ["alembic.ini", "alembic/**/*"]
+
 [tool.pytest.ini_options]
 pythonpath = ["platform/api", "platform", "generators", "."]
 testpaths = ["tests"]
 addopts = "-q"
+markers = [
+  "postgis: integration tests requiring docker PostGIS (POLARIS_DATABASE_URL)",
+]
 
 [tool.ruff]
 line-length = 100

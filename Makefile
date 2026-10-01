@@ -1,4 +1,4 @@
-.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api
+.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api db-up db-migrate
 
 PYTHON ?= python3
 
@@ -35,3 +35,10 @@ sim-iot:
 
 api:
 	$(PYTHON) -m uvicorn main:app --app-dir platform/api --reload --port 8000
+
+db-up:
+	docker compose up -d postgres
+
+db-migrate:
+	@test -n "$$POLARIS_DATABASE_URL" || (echo "Set POLARIS_DATABASE_URL (see .env.example)"; exit 1)
+	$(PYTHON) -m alembic -c adapters/storage/alembic.ini upgrade head

@@ -1,0 +1,12 @@
+# Source catalog — Open-Meteo precipitation (LIVE_INTEGRATED)
+source_id: live/open-meteo/precipitation
+adapter_id: adapters.data.global_feeds.open_meteo_precip
+data_class: LIVE_INTEGRATED
+license_note: >
+  Open-Meteo API — non-commercial use per https://open-meteo.com/en/license
+  (verify terms before production; POLARIS does not redistribute raw grids).
+endpoint: https://api.open-meteo.com/v1/forecast
+variables:
+  - precipitation
+default_site_id: co-bogota-demo
+integration_case: Colombia INTEGRATION CASE (co-bogota-demo)
