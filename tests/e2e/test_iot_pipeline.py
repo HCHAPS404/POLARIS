@@ -9,7 +9,7 @@ from simulation.python.iot.pipeline import golden_digest, run_iot_scenario_path
 ROOT = Path(__file__).resolve().parents[2]
 
 # Captured from seed=42, iot-bogota-demo.yaml — update only when models change intentionally.
-GOLDEN_IOT_DIGEST = "9fd1694bbba55889884a0495ddf1e161"
+GOLDEN_IOT_DIGEST = "13402a8e6a3258bab993d6d5f31efafa"
 
 
 def test_iot_pipeline_deterministic_golden() -> None:
@@ -39,4 +39,5 @@ def test_flood_slice_draft_only_from_iot() -> None:
     assessments = payload["flood_slice"]["assessments"]
     assert len(assessments) == 1
     assert assessments[0]["alert"]["status"] == "DRAFT"
-    assert assessments[0]["phi"]["formula_version"].startswith("flood.phi.")
+    assert assessments[0]["phi"]["formula_version"] == "flood.phi.rainfall-hydro.v0.2.0"
+    assert "water_level_m" in assessments[0]["phi"]["inputs"]

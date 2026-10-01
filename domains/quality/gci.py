@@ -17,6 +17,7 @@ from __future__ import annotations
 
 from domains.common import (
     DATA_CLASS_HISTORICAL_REPLAY,
+    DATA_CLASS_LIVE_INTEGRATED,
     DATA_CLASS_SIMULATED,
     EVIDENCE_IMPLEMENTED,
 )
@@ -37,6 +38,7 @@ DATA_CLASS_TRUST: dict[str, float] = {
     DATA_CLASS_SIMULATED: 0.65,
     # Reconstructed from public citations or reanalysis — not a live QC'd gauge feed.
     DATA_CLASS_HISTORICAL_REPLAY: 0.70,
+    DATA_CLASS_LIVE_INTEGRATED: 0.80,
 }
 
 REQUIRED_INPUTS = ("rainfall_mm", "observed_at", "source_id", "data_class")

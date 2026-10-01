@@ -6,6 +6,9 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **P1 PostGIS persistence:** observation + assessment snapshot repository (SQLAlchemy/Alembic), compose PostGIS init, in-memory fallback, API `run_id` reads
+- **LIVE_INTEGRATED Open-Meteo precipitation** for `co-bogota-demo` with stale-on-failure; `POST /v1/ingest/live/precipitation`; source catalog YAML
+- **Flood PHI rainfall + hydro** `flood.phi.rainfall-hydro.v0.2.0` (ADR-0009)
 - **SIMULATED IoT vertical slice:** weather + hydro virtual nodes → LoRa-ish comm → Pi 5 gateway (store-and-forward) → same V1 flood pipeline; `configs/devices/`, `python -m simulation.python.iot_run`, `POST /v1/ingest/iot`, ADR-0008, firmware stubs (PLACEHOLDER)
 - **HISTORICAL_REPLAY** of the 31 Mar–1 Apr 2017 Mocoa event through the same V1 PHI/GCI/risk formulas, with hit/miss backtest (evidence **EXPERIMENTAL**, not HISTORICALLY_VALIDATED)
 - `data_class=HISTORICAL_REPLAY` beside SIMULATED; LIVE still refused

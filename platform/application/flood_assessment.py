@@ -15,7 +15,7 @@ from domains.provenance.index_record import IndexRecord
 from domains.quality.gci import compute_gci
 from domains.risk.operational import compute_operational_risk
 from domains.vulnerability.stub import VulnerabilityStub, stub_vulnerability
-from hazards.flood.phi import compute_phi
+from hazards.flood.phi import compute_phi_with_hydro
 
 
 @dataclass(frozen=True)
@@ -52,6 +52,7 @@ class UnitAssessment:
                 "data_class": self.observation.data_class,
                 "phi_mode": self.observation.phi_mode,
                 "rainfall_mm": self.observation.value,
+                "water_level_m": self.phi.inputs.get("water_level_m"),
                 "accumulation": self.observation.provenance.get("accumulation", "1h"),
                 "observed_at": self.observation.observed_at,
                 "phi": self.phi.value,
@@ -121,12 +122,18 @@ def run_id_for(fixture_id: str, seed: int) -> str:
 
 
 def assess_observation(
-    *, observation: Observation, run_id: str, computed_at: str
+    *,
+    observation: Observation,
+    run_id: str,
+    computed_at: str,
+    water_level_m: float | None = None,
+    hydro_source_id: str | None = None,
 ) -> UnitAssessment:
     gci = compute_gci(observation=observation, run_id=run_id, computed_at=computed_at)
     accumulation = str(observation.provenance.get("accumulation") or "1h")
-    phi = compute_phi(
+    phi = compute_phi_with_hydro(
         rainfall_mm=observation.value,
+        water_level_m=water_level_m,
         phi_mode=observation.phi_mode,
         spatial_unit_id=observation.spatial_unit_id,
         source_id=observation.source_id,
@@ -136,6 +143,7 @@ def assess_observation(
         data_class=observation.data_class,
         run_id=run_id,
         accumulation=accumulation,
+        hydro_source_id=hydro_source_id,
     )
     exposure = stub_exposure(observation.spatial_unit_id)
     vulnerability = stub_vulnerability(observation.spatial_unit_id)
@@ -164,10 +172,24 @@ def run_flood_slice(fixture: dict[str, Any], *, seed: int = 42) -> FloodSliceRes
     rainfall_obs = [obs for obs in observations if obs.observed_property == "rainfall_mm"]
     if not rainfall_obs:
         raise ValueError("flood slice requires at least one rainfall_mm observation")
-    units = tuple(
-        assess_observation(observation=obs, run_id=run_id, computed_at=as_of)
-        for obs in rainfall_obs
-    )
+    hydro_by_unit: dict[str, Observation] = {
+        obs.spatial_unit_id: obs
+        for obs in observations
+        if obs.observed_property == "water_level_m"
+    }
+    units_list: list[UnitAssessment] = []
+    for obs in rainfall_obs:
+        hydro = hydro_by_unit.get(obs.spatial_unit_id)
+        units_list.append(
+            assess_observation(
+                observation=obs,
+                run_id=run_id,
+                computed_at=as_of,
+                water_level_m=hydro.value if hydro else None,
+                hydro_source_id=hydro.source_id if hydro else None,
+            )
+        )
+    units = tuple(units_list)
     data_class = observations[0].data_class if observations else fixture.get("data_class")
     return FloodSliceResult(
         fixture_id=fixture_id,
