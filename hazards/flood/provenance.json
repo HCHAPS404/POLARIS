@@ -2,6 +2,8 @@
   "generator": "generators/hazard/scaffold.py",
   "hazard_id": "flood",
   "utc": "2026-10-01T14:23:01Z",
-  "evidence": "PLACEHOLDER",
-  "formula_version": "0.0.0-not-implemented"
+  "evidence": "IMPLEMENTED",
+  "formula_version": "flood.phi.rainfall-threshold.v0.1.0",
+  "model_version": "flood.baseline.v0.1.0",
+  "notes": "V1 rainfall-threshold baseline. Not hydrodynamic. SIMULATED data only."
 }

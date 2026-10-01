@@ -1,7 +1,5 @@
 # domains/provenance
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED index envelope
 
-Bounded context `provenance`. No formula implementations in P0.
-
-**Status:** DESIGNED in architecture; not IMPLEMENTED.
+Every GCI/PHI/operational-risk record carries formula_version, model_version, inputs, source IDs, timestamps, quality flags, uncertainty, data_class, run_id.

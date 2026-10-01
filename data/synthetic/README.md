@@ -1,5 +1,5 @@
 # data/synthetic
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED `flood-bogota-demo.simulated.json`
 
-No bulk datasets committed.
+SIMULATED rainfall only. Never labelled LIVE. Bogotá INTEGRATION CASE, not a pilot.
