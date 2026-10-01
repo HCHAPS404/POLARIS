@@ -1,3 +1,3 @@
 # schemas/risk
 
-**Evidence:** IMPLEMENTED contract files (no live data)
+**Evidence:** IMPLEMENTED index envelope (PHI/GCI/operational_risk)

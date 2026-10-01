@@ -1,6 +1,13 @@
-# Hazard config stub — flood
-# Evidence: PLACEHOLDER. No PHI implementation.
+# Hazard config — flood
+# Evidence: IMPLEMENTED rainfall-threshold PHI baseline (ADR-0006)
+# Not a calibrated basin model.
 
 hazard_id: flood
-evidence: PLACEHOLDER
-formula_version: "0.0.0-not-implemented"
+evidence: IMPLEMENTED
+formula_version: "flood.phi.rainfall-threshold.v0.1.0"
+model_version: "flood.baseline.v0.1.0"
+phi_mode_policy: declared_on_observation
+thresholds:
+  accumulation: 1h
+  t0_mm: 10.0
+  t1_mm: 80.0

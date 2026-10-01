@@ -10,9 +10,13 @@ tasks:
     cmds:
       - python3 -m ruff check .
   health:
-    desc: Runnable P0 health check
+    desc: Runnable health check
     cmds:
       - python3 harness/dev/healthcheck.py
+  sim:flood:
+    desc: Deterministic SIMULATED flood slice (seed 42)
+    cmds:
+      - python3 -m simulation.python.run --scenario simulation/scenarios/flood-bogota-demo.yaml --seed 42
   scaffold:hazard:
     desc: Scaffold a hazard plugin
     cmds:

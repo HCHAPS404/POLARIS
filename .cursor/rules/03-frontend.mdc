@@ -6,6 +6,6 @@ alwaysApply: false
 
 # Frontend
 
-- Apps are DESIGNED in P0 (README-only). Do not invent `package.json` unless implementing a real slice.
-- CI web jobs must skip when manifests are absent.
-- Decision-support copy: no official-warning language.
+- Horizon V1 is a static MapLibre page in `apps/horizon-web` (no `package.json`; CI web job still skips pnpm).
+- Do not invent a full Next.js app unless implementing that product slice.
+- Decision-support copy: no official-warning language. Data on the map is SIMULATED; alerts are DRAFT.

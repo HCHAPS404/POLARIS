@@ -33,4 +33,4 @@ Extract a service only when a context has its own scale or failure domain. Agent
 
 ## Validation
 
-Canonical paths exist and are described in `README_ARCHITECTURE.md`. `GET /health` is the only API behaviour marked IMPLEMENTED.
+Canonical paths exist and are described in `README_ARCHITECTURE.md`. `GET /health` plus V1 flood routes are marked IMPLEMENTED.

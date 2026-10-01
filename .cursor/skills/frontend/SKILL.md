@@ -14,7 +14,7 @@ Product surface name, user, HITL copy.
 
 ## Workflow
 
-1. Check if package.json exists. 2. If not, stop (P0 README-only). 3. If implementing later, consume API contracts only.
+1. Check if a real UI exists (`index.html` or `package.json`). 2. Consume API contracts only. 3. Horizon V1 is the static MapLibre page.
 
 ## Outputs
 

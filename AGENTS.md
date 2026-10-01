@@ -15,7 +15,7 @@ Instructions for Cursor agents and humans pairing with them. Nested `AGENTS.md` 
 
 ## Never
 
-- Implement PHI/CHI/GCI/HCI, maps, IoT, RF, energy, Flutter UI, Next.js pages, live adapters, or CAP in a P0-scoped task.
+- Implement CHI, live adapters, RF, energy, Flutter UI, or CAP in a P0-scoped task. The V1 flood slice (SIMULATED PHI/GCI/DRAFT) is in-tree; do not expand it into those areas unasked.
 - Paste entire README files into Cursor rules.
 - Claim DESIGNED as IMPLEMENTED.
 - Add `packages/` or replace `simulation/` with a Wokwi-first story.
@@ -24,7 +24,7 @@ Instructions for Cursor agents and humans pairing with them. Nested `AGENTS.md` 
 
 ## Tooling
 
-- Python ≥ 3.12: `make test`, `make lint`, `make health`
+- Python ≥ 3.12: `make test`, `make lint`, `make health`, `make sim-flood`, `make api`
 - C++20: `make test-cpp` (placeholder)
 - Scaffold: `make scaffold-hazard NAME=flood`
 - Compose: design-only skeleton in `docker-compose.yml` and `infra/compose/`

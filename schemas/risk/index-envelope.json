@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/risk/index-envelope.json",
+  "title": "IndexEnvelope",
+  "description": "Versioned index record for GCI, PHI, or operational risk. Not a probability slogan.",
+  "type": "object",
+  "required": [
+    "index_family",
+    "spatial_unit_id",
+    "value",
+    "unit",
+    "evidence",
+    "formula_version",
+    "model_version",
+    "inputs",
+    "source_ids",
+    "observed_at",
+    "computed_at",
+    "quality_flags",
+    "uncertainty",
+    "data_class",
+    "disclaimer",
+    "provenance"
+  ],
+  "properties": {
+    "index_family": {
+      "type": "string",
+      "enum": ["PHI", "CHI", "GCI", "HCI", "operational_risk"]
+    },
+    "hazard_id": { "type": ["string", "null"] },
+    "spatial_unit_id": { "type": "string" },
+    "value": { "type": "number" },
+    "unit": { "type": "string", "const": "dimensionless" },
+    "evidence": {
+      "type": "string",
+      "enum": ["IMPLEMENTED", "DESIGNED", "PLACEHOLDER", "NOT_IMPLEMENTED"]
+    },
+    "formula_version": { "type": "string", "minLength": 1 },
+    "model_version": { "type": "string", "minLength": 1 },
+    "inputs": { "type": "object" },
+    "source_ids": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "observed_at": { "type": "string" },
+    "computed_at": { "type": "string" },
+    "quality_flags": { "type": "array", "items": { "type": "string" } },
+    "uncertainty": { "type": "number", "minimum": 0 },
+    "data_class": { "type": "string", "const": "SIMULATED" },
+    "disclaimer": { "type": "string", "minLength": 16 },
+    "notes": { "type": "string" },
+    "provenance": { "type": "object" }
+  }
+}

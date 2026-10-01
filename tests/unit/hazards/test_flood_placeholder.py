@@ -1,16 +1,12 @@
-"""Placeholder tests for hazard `flood`."""
+"""Flood plugin metadata after V1 baseline."""
 
-import sys
-from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT / "hazards" / "flood"))
-
-from placeholder import EVIDENCE, HAZARD_ID, describe  # noqa: E402
+from hazards.flood.phi import EVIDENCE, FORMULA_VERSION, HAZARD_ID
+from hazards.flood.placeholder import describe
 
 
-def test_placeholder_metadata() -> None:
+def test_flood_plugin_is_implemented_baseline() -> None:
     meta = describe()
     assert meta["hazard_id"] == HAZARD_ID == "flood"
-    assert meta["evidence"] == EVIDENCE == "PLACEHOLDER"
-    assert meta["formula_version"].endswith("not-implemented")
+    assert meta["evidence"] == EVIDENCE == "IMPLEMENTED"
+    assert meta["formula_version"] == FORMULA_VERSION
+    assert "not-implemented" not in meta["formula_version"]

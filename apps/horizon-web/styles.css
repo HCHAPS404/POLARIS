@@ -1,0 +1,110 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #12202b;
+}
+
+#map {
+  position: absolute;
+  inset: 0;
+}
+
+.banner {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  background: #3b120f;
+  color: #fff8f6;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.banner code {
+  color: #ffd7a8;
+}
+
+.legend {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  bottom: 12px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 14px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+.legend h1 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.legend h1 span {
+  font-weight: 400;
+  color: #5b6b75;
+  font-size: 13px;
+}
+
+.legend dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.legend dt {
+  font-weight: 700;
+}
+
+.scale {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.scale li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 4px 0;
+}
+
+.swatch {
+  width: 16px;
+  height: 12px;
+  border: 1px solid #333;
+}
+
+.s0 {
+  background: #c7e9c0;
+}
+.s1 {
+  background: #74c476;
+}
+.s2 {
+  background: #fd8d3c;
+}
+.s3 {
+  background: #e31a1c;
+}
+
+.hint,
+#status {
+  font-size: 12px;
+  color: #334;
+}
+
+.maplibregl-popup-content {
+  font-size: 12px;
+  max-width: 280px;
+}

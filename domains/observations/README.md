@@ -1,7 +1,5 @@
 # domains/observations
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED V1 parser (SIMULATED rainfall only)
 
-Bounded context `observations`. No formula implementations in P0.
-
-**Status:** DESIGNED in architecture; not IMPLEMENTED.
+Refuses `data_class=LIVE` and undeclared `phi_mode`. Full sensor catalog DESIGNED.

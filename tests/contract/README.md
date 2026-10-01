@@ -1,3 +1,3 @@
 # tests/contract
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED JSON Schema checks on V1 payloads

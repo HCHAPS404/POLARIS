@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>POLARIS Horizon — flood slice (SIMULATED)</title>
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <strong>Decision-support only.</strong>
+      This map is <code>SIMULATED</code> rainfall for the Bogotá INTEGRATION CASE.
+      Alerts are <code>DRAFT</code> and require a human in the loop.
+      POLARIS is not an official warning service. Layers show dimensionless
+      operational risk (<code>PHI × E_stub × V_stub</code>), not a flood probability.
+    </header>
+    <aside class="legend">
+      <h1>Horizon <span>V1 flood</span></h1>
+      <p id="status">Loading GeoJSON from API…</p>
+      <dl>
+        <dt>PHI</dt>
+        <dd>rainfall-threshold baseline</dd>
+        <dt>GCI</dt>
+        <dd>qc × completeness × SIMULATED trust</dd>
+        <dt>Risk</dt>
+        <dd>PHI × stub exposure × stub vulnerability</dd>
+      </dl>
+      <ol class="scale">
+        <li><span class="swatch s0"></span> 0.00–0.05</li>
+        <li><span class="swatch s1"></span> 0.05–0.10</li>
+        <li><span class="swatch s2"></span> 0.10–0.20</li>
+        <li><span class="swatch s3"></span> ≥ 0.20</li>
+      </ol>
+      <p class="hint">Click a catchment for formula versions, mode, and DRAFT level.</p>
+    </aside>
+    <div id="map"></div>
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="./map.js"></script>
+  </body>
+</html>

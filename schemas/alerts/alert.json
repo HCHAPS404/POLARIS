@@ -2,20 +2,34 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://polaris.local/schemas/alerts/alert.json",
   "title": "DecisionSupportAlert",
-  "description": "Alert-shaped payload. HITL required. Not official CAP fan-out. Logic NOT IMPLEMENTED in P0.",
+  "description": "DRAFT-only decision-support alert. HITL required. CAP/OFFICIAL are not emitted in V1.",
   "type": "object",
-  "required": ["alert_id", "disclaimer", "provenance", "human_in_the_loop"],
+  "required": [
+    "alert_id",
+    "status",
+    "level",
+    "disclaimer",
+    "provenance",
+    "human_in_the_loop"
+  ],
   "properties": {
     "alert_id": { "type": "string", "format": "uuid" },
+    "status": { "type": "string", "const": "DRAFT" },
     "level": { "type": "string", "enum": ["info", "watch", "warning", "proposed"] },
-    "hazard_id": { "type": "string" },
+    "hazard_id": { "type": ["string", "null"] },
+    "spatial_unit_id": { "type": "string" },
     "human_in_the_loop": { "type": "boolean", "const": true },
+    "formula_version": { "type": "string" },
+    "model_version": { "type": "string" },
+    "evidence": { "type": "string" },
     "disclaimer": {
       "type": "string",
       "minLength": 16,
       "description": "Must state decision-support / not official evacuation authority."
     },
+    "operational_risk_value": { "type": "number" },
     "provenance": { "type": "object" },
-    "cap": { "type": "object", "description": "CAP mapping DESIGNED, not implemented" }
+    "cap": { "type": ["object", "null"], "description": "CAP mapping NOT IMPLEMENTED" },
+    "official": { "type": "boolean", "const": false }
   }
 }

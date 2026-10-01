@@ -1,5 +1,5 @@
 # simulation/scenarios
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED `flood-bogota-demo.yaml`
 
-Digital Testbed layer `scenarios`. See README_SIMULATION_ENGINEERING.md. Wokwi is not primary.
+Digital Testbed scenarios. Wokwi is not primary.

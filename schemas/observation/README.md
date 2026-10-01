@@ -1,3 +1,3 @@
 # schemas/observation
 
-**Evidence:** IMPLEMENTED contract files (no live data)
+**Evidence:** IMPLEMENTED V1 SIMULATED rainfall contract

@@ -1,6 +1,6 @@
 # POLARIS
 
-**Evidence:** DESIGNED (product + architecture) · **P0 foundation IMPLEMENTED** (contract, canonical tree, CI guardrails, `GET /health`). Hazard models, maps, IoT, RF, energy, Flutter/Next apps, live adapters, and CAP alerting are **NOT IMPLEMENTED**.
+**Evidence:** DESIGNED (product + architecture) · **P0 foundation IMPLEMENTED** · **V1 flood vertical slice IMPLEMENTED** (SIMULATED fixture → GCI → PHI → operational risk → DRAFT alert → API → Horizon map). CHI, live adapters, IoT, RF, energy, Flutter APK, CAP/OFFICIAL alerting, and remaining hazards are **NOT IMPLEMENTED**.
 
 **POLARIS** (adaptive multi-hazard intelligence architecture) is a **decision-support** system. It is **not** an official evacuation authority. Humans remain in the loop. Alerts without provenance and disclaimer are forbidden.
 
@@ -16,16 +16,16 @@
 
 | Product | Surface | Role | P0 status |
 |---------|---------|------|-----------|
-| **Horizon** | `apps/horizon-web` | Institutional / operations dashboard (web) | README + directory only |
+| **Horizon** | `apps/horizon-web` | Institutional / operations dashboard (web) | Minimal MapLibre flood layer IMPLEMENTED; full dashboard DESIGNED |
 | **Vector** | `apps/vector-console` | Operator console and field coordination | README + directory only |
 | **Forge** | `apps/forge-studio` | Model, scenario, and configuration studio | README + directory only |
 | Horizon Mobile | `apps/horizon-mobile` | Flutter field app ([ADR-0003](docs/adr/0003-flutter-mobile.md)) | README + directory only |
 
 ## What this repository is today
 
-P0 establishes the **engineering contract in git**: architecture, workflow, simulation rules, agent instructions, ADRs, schemas, country config stubs, a FastAPI health endpoint, and CI that can go green on `main`.
+P0 established the **engineering contract in git**. V1 adds the first **executable** chain for **one** hazard (flood) on **SIMULATED** rainfall — never labelled LIVE, never OFFICIAL.
 
-It does **not** compute PHI / CHI / GCI / HCI, ingest live data, drive maps, or emit operational alerts.
+It does **not** implement CHI, a full HCI engine, live ingestion, IoT/RF, Flutter, or CAP fan-out.
 
 ## Engineering contract (read in this order)
 
@@ -42,11 +42,15 @@ Requires Python **≥ 3.12**.
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-make health          # GET /health via FastAPI TestClient / uvicorn check
-make test            # pytest (health + scaffold collection)
+make health          # GET /health
+make test            # unit + integration + contract + e2e flood slice
 make lint            # ruff
+make sim-flood       # deterministic SIMULATED PHI/GCI JSON (seed 42)
+make api             # uvicorn :8000 — then open http://127.0.0.1:8000/horizon/
 make scaffold-hazard NAME=demo_hazard
 ```
+
+V1 map: `GET /v1/map/geojson` (SIMULATED FeatureCollection) rendered by `apps/horizon-web` (static MapLibre, no `package.json`).
 
 Dev compose (Postgres/PostGIS, Mosquitto, NATS) is a **DESIGNED skeleton**, not production:
 
@@ -63,7 +67,7 @@ docker compose -f docker-compose.yml -f infra/compose/compose.yml config
 | **PLACEHOLDER** | Directory, README, empty module, or stub interface only |
 | **NOT IMPLEMENTED** | Explicitly out of the current phase |
 
-**Current maturity:** DESIGNED product · **foundation IMPLEMENTED** (tree + contract + health + CI).
+**Current maturity:** DESIGNED product · foundation IMPLEMENTED · **V1 flood slice IMPLEMENTED** (SIMULATED / DRAFT only).
 
 ## Legal / operational disclaimer
 

@@ -7,5 +7,5 @@ alwaysApply: false
 # Hazard models
 
 - Individual-first, compound-second. No CHI without documented interaction.
-- New hazards via `make scaffold-hazard`. Do not compute PHI in P0.
-- Version formulas when they exist (`FORMULA_VERSION`).
+- Flood PHI rainfall-threshold baseline is IMPLEMENTED (`hazards/flood/phi.py`, ADR-0006). New hazards still go through `make scaffold-hazard`.
+- Version formulas (`FORMULA_VERSION`). Do not mix exposure into PHI.

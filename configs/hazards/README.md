@@ -1,5 +1,3 @@
 # configs/hazards
 
-**Evidence:** DESIGNED stubs
-
-YAML configuration only. Not operational deployments.
+**Evidence:** flood YAML IMPLEMENTED (thresholds); other hazards PLACEHOLDER

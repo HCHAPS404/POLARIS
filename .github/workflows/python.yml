@@ -18,5 +18,7 @@ jobs:
         run: python -m ruff check .
       - name: Pytest
         run: python -m pytest
+      - name: Deterministic flood sim
+        run: python -m simulation.python.run --scenario simulation/scenarios/flood-bogota-demo.yaml --seed 42
       - name: Health harness
         run: python harness/dev/healthcheck.py
