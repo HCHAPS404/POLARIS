@@ -18,6 +18,10 @@ FIXTURES: dict[str, Path] = {
     / "data"
     / "synthetic"
     / "landslide-co-slope-demo.simulated.json",
+    "landslide-co-bogota-demo": ROOT
+    / "data"
+    / "synthetic"
+    / "landslide-co-bogota-demo.simulated.json",
 }
 
 

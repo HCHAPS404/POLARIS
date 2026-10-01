@@ -1,7 +1,9 @@
 # vector-console
 
-**Evidence:** PLACEHOLDER / DESIGNED
+**Evidence:** IMPLEMENTED (minimal static operator shell)
 
-Vector — operator console. README-only in P0.
+Static page served at `/vector` when the API mounts `apps/vector-console/`.
 
-Do not claim the app is IMPLEMENTED until a real manifest and tests exist.
+Lists SIMULATED assessments (flood + landslide fixtures), compound CHI for registered sites, and DRAFT alerts with a link to `GET /v1/alerts?format=cap`.
+
+Not a full dashboard. Decision-support copy only — not an official warning UI.

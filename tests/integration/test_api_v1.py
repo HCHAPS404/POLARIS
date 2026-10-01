@@ -20,7 +20,7 @@ def test_health_still_ok() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"
-    assert body["maturity"] == "P2-landslide-cap-ev"
+    assert body["maturity"] == "P2-chi-vector-minimal"
     assert body["storage_backend"] in ("memory", "postgis")
 
 
@@ -105,3 +105,20 @@ def test_horizon_page_served() -> None:
     assert "SIMULATED" in response.text
     assert "DRAFT" in response.text
     assert "HISTORICAL_REPLAY" in response.text
+
+
+def test_compound_chi_endpoint() -> None:
+    response = client.get("/v1/compound/chi", params={"site_id": "co-bogota-demo"})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["summary"]["formula_version"].startswith("compound.chi.")
+    assert body["summary"]["units_active"] >= 1
+    north = next(u for u in body["units"] if u["spatial_unit_id"] == "co-bogota-demo-north")
+    assert north["chi"]["index_family"] == "CHI"
+
+
+def test_vector_console_served() -> None:
+    response = client.get("/vector/")
+    assert response.status_code == 200
+    assert "Vector" in response.text
+    assert "DRAFT" in response.text

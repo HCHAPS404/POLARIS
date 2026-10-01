@@ -1,0 +1,8 @@
+# Compound site pair — Colombia INTEGRATION CASE (not field-validated)
+site_id: co-bogota-demo
+flood_fixture_id: flood-bogota-demo
+landslide_fixture_id: landslide-co-bogota-demo
+evidence: IMPLEMENTED
+notes: >
+  Same spatial_unit_id across flood rainfall and landslide slope/moisture/rain
+  observations for minimal rain-coupled CHI (ADR-0011).

@@ -1,0 +1,94 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+  line-height: 1.45;
+}
+
+body {
+  margin: 0;
+  background: #0f1419;
+  color: #e7ecf1;
+}
+
+.banner {
+  background: #3d2e00;
+  color: #ffe8a3;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #665500;
+}
+
+.layout {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+}
+
+.panel {
+  background: #1a222c;
+  border: 1px solid #2a3544;
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+}
+
+.panel.wide {
+  grid-column: 1 / -1;
+}
+
+h1,
+h2 {
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+h1 span,
+h2 span {
+  color: #7eb8ff;
+  font-weight: 500;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+select {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.35rem;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: #9fb0c3;
+}
+
+.links a {
+  color: #7eb8ff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+th,
+td {
+  border-bottom: 1px solid #2a3544;
+  padding: 0.4rem 0.35rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: #9fb0c3;
+  font-weight: 500;
+}
+
+.chi-active {
+  color: #ffb86b;
+}

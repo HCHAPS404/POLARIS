@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>POLARIS Vector — operator shell (minimal)</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <strong>Decision-support only.</strong>
+      Lists are <code>SIMULATED</code> fixtures. Alerts remain <code>DRAFT</code> with human-in-the-loop.
+      POLARIS is not an official warning service. CHI is a documented rain-coupling index (ADR-0011), not a probability.
+    </header>
+    <main class="layout">
+      <section class="panel">
+        <h1>Vector <span>console</span></h1>
+        <p class="meta" id="status">Loading API…</p>
+        <label>
+          Flood fixture
+          <select id="flood-fixture">
+            <option value="flood-bogota-demo">flood-bogota-demo</option>
+            <option value="flood-mocoa-2017-replay">flood-mocoa-2017-replay</option>
+          </select>
+        </label>
+        <label>
+          Landslide fixture
+          <select id="landslide-fixture">
+            <option value="landslide-co-slope-demo">landslide-co-slope-demo</option>
+            <option value="landslide-co-bogota-demo">landslide-co-bogota-demo</option>
+          </select>
+        </label>
+        <label>
+          Compound site (CHI)
+          <select id="compound-site">
+            <option value="co-bogota-demo">co-bogota-demo</option>
+          </select>
+        </label>
+        <p class="links">
+          <a id="cap-link" href="#" target="_blank" rel="noopener">CAP draft (format=cap)</a>
+          ·
+          <a href="/horizon/" target="_blank" rel="noopener">Horizon map</a>
+        </p>
+      </section>
+      <section class="panel wide">
+        <h2>Assessments</h2>
+        <div id="assessments" class="table-wrap"></div>
+      </section>
+      <section class="panel wide">
+        <h2>Compound CHI</h2>
+        <div id="chi" class="table-wrap"></div>
+      </section>
+      <section class="panel wide">
+        <h2>DRAFT alerts</h2>
+        <div id="alerts" class="table-wrap"></div>
+      </section>
+    </main>
+    <script src="./console.js"></script>
+  </body>
+</html>

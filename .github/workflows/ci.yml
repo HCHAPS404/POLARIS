@@ -24,3 +24,6 @@ jobs:
 
   mobile:
     uses: ./.github/workflows/mobile.yml
+
+  postgis:
+    uses: ./.github/workflows/postgis.yml

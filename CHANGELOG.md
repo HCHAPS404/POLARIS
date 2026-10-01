@@ -6,6 +6,9 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **P2 minimal CHI:** `compound.chi.flood-landslide-rain-coupling.v0.1.0`, `GET /v1/compound/chi`, compound site pair `co-bogota-demo`, ADR-0011
+- **Vector console (minimal):** static `apps/vector-console` at `/vector` — assessments, GCI/PHI/risk, CHI, DRAFT alerts, CAP link
+- **CI PostGIS:** optional workflow job `pytest -m postgis` with PostGIS service container
 - **P2 landslide baseline:** `landslide.phi.slope-moisture-rain.v0.1.0`, hazard registry dispatch, SIMULATED `landslide-co-slope-demo`, ADR-0010
 - **CAP DRAFT/SIMULATION:** `schemas/alerts/cap-draft.json`, `GET /v1/alerts?format=cap` (JSON + XML Test status)
 - **Site E/V v0.1:** configurable `exposure_vulnerability` in `configs/sites/*.yaml`, `risk.operational.phi-ev-site.v0.1.0` (EXPERIMENTAL)
