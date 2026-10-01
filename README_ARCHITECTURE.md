@@ -1,6 +1,6 @@
 # POLARIS architecture
 
-**Evidence:** DESIGNED (system) · **P0 foundation IMPLEMENTED** · **V1 flood slice IMPLEMENTED** (GCI, flood PHI baseline, operational risk, DRAFT alerts, assessment API, Horizon GeoJSON map). CHI / HCI engine / live adapters remain NOT IMPLEMENTED.
+**Evidence:** DESIGNED (system) · **P0 foundation IMPLEMENTED** · **V1 flood slice IMPLEMENTED** (GCI, flood PHI baseline, operational risk, DRAFT alerts, assessment API, Horizon GeoJSON map). **Minimal CHI** (flood+landslide rain coupling, ADR-0011) IMPLEMENTED on registered compound sites; full compound catalog / HCI engine / live adapters remain NOT IMPLEMENTED or partial.
 
 This file is the **canonical scaffold**. Ignore inferred `packages/` + `sim/` trees from older gap notes.
 
@@ -23,7 +23,7 @@ See [ADR-0001](docs/adr/0001-modular-monolith.md).
 | Observations | `domains/observations` | Typed sensor and source observations |
 | Quality | `domains/quality` | Data quality and GCI (`gci.v0.1.0` IMPLEMENTED, minimal) |
 | Hazards | `domains/hazards` + `hazards/*` | Per-phenomenon models (flood PHI baseline IMPLEMENTED; others PLACEHOLDER) |
-| Compound | `domains/compound` | CHI interactions when evidence exists (NOT IMPLEMENTED) |
+| Compound | `domains/compound` | Minimal flood+landslide CHI when gated (IMPLEMENTED); broader interactions NOT IMPLEMENTED |
 | Exposure | `domains/exposure` | People, assets, environment at risk (PLACEHOLDER stubs in V1) |
 | Vulnerability | `domains/vulnerability` | Fragility and capacity (PLACEHOLDER stubs in V1) |
 | Risk | `domains/risk` | Operational risk = PHI × E_stub × V_stub (IMPLEMENTED); CHI not mixed in |
@@ -35,7 +35,7 @@ See [ADR-0001](docs/adr/0001-modular-monolith.md).
 | Index | Meaning | V1 evidence |
 |-------|---------|-------------|
 | **PHI** | Per-hazard individual index | IMPLEMENTED for flood rainfall-threshold baseline ([ADR-0006](docs/adr/0006-flood-phi-rainfall-baseline.md)) |
-| **CHI** | Compound interaction index (only with evidence) | NOT IMPLEMENTED |
+| **CHI** | Compound interaction index (only with evidence) | IMPLEMENTED (minimal rain-coupled flood+landslide only) |
 | **GCI** | Confidence / evidence quality | IMPLEMENTED (`gci.v0.1.0` minimal) |
 | **HCI** | Operational output (alert level) — **never auto-evacuate** | DRAFT alert mapper IMPLEMENTED; HCI engine NOT IMPLEMENTED |
 

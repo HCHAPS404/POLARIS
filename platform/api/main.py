@@ -100,7 +100,7 @@ def health() -> dict[str, str]:
         "status": "ok",
         "service": "polaris",
         "evidence": "IMPLEMENTED",
-        "maturity": "P2-landslide-cap-ev",
+        "maturity": "P2-chi-vector-minimal",
         "storage_backend": storage,
         "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
@@ -243,6 +243,41 @@ def ingest_iot(payload: IoTIngestRequest | None = None) -> dict:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
+@app.get("/v1/compound/sites")
+def list_compound_sites() -> dict:
+    from domains.compound.site_pairs import list_compound_sites
+
+    sites = list_compound_sites()
+    return {
+        "disclaimer": DISCLAIMER,
+        "sites": [
+            {
+                "site_id": s.site_id,
+                "flood_fixture_id": s.flood_fixture_id,
+                "landslide_fixture_id": s.landslide_fixture_id,
+                "evidence": s.evidence,
+                "notes": s.notes,
+            }
+            for s in sites
+        ],
+    }
+
+
+@app.get("/v1/compound/chi")
+def get_compound_chi(
+    site_id: str = Query(default="co-bogota-demo"),
+    seed: int = Query(default=42),
+) -> dict:
+    from application.compound_assessment import run_compound_chi
+
+    try:
+        return run_compound_chi(site_id=site_id, seed=seed).to_dict()
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
 @app.get("/v1/backtests/{scenario_id}")
 def get_backtest(
     scenario_id: str,
@@ -262,3 +297,7 @@ def get_backtest(
 HORIZON = ROOT / "apps" / "horizon-web"
 if (HORIZON / "index.html").is_file():
     app.mount("/horizon", StaticFiles(directory=str(HORIZON), html=True), name="horizon")
+
+VECTOR = ROOT / "apps" / "vector-console"
+if (VECTOR / "index.html").is_file():
+    app.mount("/vector", StaticFiles(directory=str(VECTOR), html=True), name="vector")

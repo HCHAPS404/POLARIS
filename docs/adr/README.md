@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-**Evidence:** IMPLEMENTED (0000–0010)
+**Evidence:** IMPLEMENTED (0000–0011)
 
 Index:
 
@@ -15,3 +15,4 @@ Index:
 - [0008](0008-edge-hardware-reference.md) Edge hardware reference (N657X0-Q + Pi 5, SIMULATED)
 - [0009](0009-flood-phi-rainfall-hydro.md) Flood PHI rainfall + water-level merge (v0.2.0)
 - [0010](0010-landslide-phi-baseline.md) Landslide PHI slope-moisture-rain baseline (P2)
+- [0011](0011-compound-chi-flood-landslide.md) Minimal CHI flood + landslide rain coupling (P2)

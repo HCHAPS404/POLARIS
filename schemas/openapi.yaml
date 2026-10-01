@@ -5,8 +5,9 @@ info:
   description: |
     Decision-support API. Not an official warning service.
     IMPLEMENTED: GET /health and flood slice routes over SIMULATED and
-    HISTORICAL_REPLAY fixtures. LIVE adapters, CHI, HCI engine, and
-    OFFICIAL/CAP alerting are NOT IMPLEMENTED.
+    HISTORICAL_REPLAY fixtures.     Minimal compound CHI (flood+landslide) and CAP DRAFT via format=cap are
+    IMPLEMENTED on SIMULATED fixtures. LIVE adapters, HCI engine, and OFFICIAL
+    alerting are NOT IMPLEMENTED.
 paths:
   /health:
     get:
@@ -124,6 +125,26 @@ paths:
       operationId: mapGeojson
       responses:
         "200": { description: FeatureCollection labelled SIMULATED or HISTORICAL_REPLAY }
+  /v1/compound/sites:
+    get:
+      summary: Registered compound site pairs (flood + landslide fixtures)
+      operationId: listCompoundSites
+      responses:
+        "200": { description: Site registry for CHI }
+  /v1/compound/chi:
+    get:
+      summary: Rain-coupled CHI for a registered compound site
+      operationId: getCompoundChi
+      parameters:
+        - in: query
+          name: site_id
+          schema: { type: string, default: co-bogota-demo }
+        - in: query
+          name: seed
+          schema: { type: integer, default: 42 }
+      responses:
+        "200": { description: CHI envelopes per spatial unit; DRAFT/HITL unchanged }
+        "404": { description: Unknown compound site }
   /v1/backtests/{scenario_id}:
     get:
       summary: HISTORICAL_REPLAY hit/miss report

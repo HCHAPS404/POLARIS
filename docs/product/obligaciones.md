@@ -1,8 +1,8 @@
 # POLARIS — Obligaciones y estado
 
-**Corte:** 2026-10-01 (post P1 merge + Stage E–G P2)  
+**Corte:** 2026-10-01 (post P2 merge PR #6 + CHI/Vector PR #7 draft)  
 **Release objetivo:** 2026-10-08  
-**Fuente de verdad de código:** `main` @ **`bac103d`** (merge [PR #5](https://github.com/HCHAPS404/POLARIS/pull/5)) + draft P2 landslide/CAP/E/V
+**Fuente de verdad de código:** `main` @ **`c629531`** (merge [PR #6](https://github.com/HCHAPS404/POLARIS/pull/6)) + draft PR #7 CHI/Vector
 
 Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo**
 
@@ -13,7 +13,8 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo**
 | Obligación | Estado | Evidencia |
 |------------|--------|-----------|
 | Merge PR #5 PostGIS/LIVE/hydro | **Hecho** | SHA **`bac103d`** |
-| P2 landslide + CAP draft + site E/V | **Parcial / PR abierto** | `feature/p2-landslide-baseline` |
+| Merge PR #6 landslide + CAP + site E/V | **Hecho** | SHA **`c629531`** |
+| P2 CHI minimal + Vector shell | **Parcial / PR abierto** | `feature/p2-chi-minimal-vector` → PR #7 |
 
 ---
 
@@ -26,19 +27,20 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo**
 | PostGIS dev + API `run_id` | **Hecho IMPLEMENTED** (limitaciones en adapters doc) |
 | LIVE_INTEGRATED Open-Meteo | **Parcial IMPLEMENTED** |
 | PHI lluvia + nivel (max merge) | **Hecho IMPLEMENTED** (ADR-0009) |
-| Landslide PHI slope/moisture/rain | **Parcial IMPLEMENTED** (ADR-0010, PR P2; sin validación de campo) |
-| CAP OFFICIAL | **Falta** — solo DRAFT/SIMULATION en PR P2 |
-| Site E/V configurable | **Parcial EXPERIMENTAL** (PR P2) |
-| CHI / PCB / Flutter APK | **Falta** |
+| Landslide PHI slope/moisture/rain | **Hecho IMPLEMENTED** (ADR-0010; sin validación de campo) |
+| CAP OFFICIAL | **Falta** — DRAFT/SIMULATION (`format=cap`) |
+| Site E/V configurable | **Parcial EXPERIMENTAL** |
+| CHI flood+landslide (minimal) | **Parcial IMPLEMENTED** (ADR-0011, PR #7) |
+| Vector console minimal | **Parcial IMPLEMENTED** (PR #7) |
+| PCB / Flutter APK | **Falta** |
 
 ---
 
 ## Siguiente ejecutable
 
-1. Merge PR P2 cuando CI verde.  
-2. OpenAPI bump para `format=cap` y fixture landslide.  
-3. CI PostGIS service (opcional).  
-4. Tercer hazard o compound documentado — fuera de este PR.  
-5. No reclamar HISTORICALLY_VALIDATED / alertas OFFICIAL.
+1. Merge PR #7 cuando CI verde.  
+2. OpenAPI bump para compound CHI y Vector.  
+3. Ampliar compound sites solo con ADR + fixtures emparejados.  
+4. No reclamar HISTORICALLY_VALIDATED / alertas OFFICIAL.
 
 Copia en store: `/cursor/stores/bc-c1aa1eb2-6730-427d-9ae9-6d6926cea46f/docs/obligaciones.md`.

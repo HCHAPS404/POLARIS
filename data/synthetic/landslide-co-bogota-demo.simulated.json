@@ -1,0 +1,231 @@
+{
+  "fixture_id": "landslide-co-bogota-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "landslide",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T12:00:00Z",
+  "disclaimer": "Synthetic slope, soil moisture, and 1h rainfall aligned to co-bogota-demo spatial units. Rain-coupled CHI integration case only. Not field validation.",
+  "notes": "Three units mirror flood-bogota-demo catchments for compound CHI (ADR-0011).",
+  "observations": [
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440001",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "slope_deg",
+      "value": 26.0,
+      "unit": "deg",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-inclinometer-north-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-north",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.73], [-74.04, 4.73], [-74.04, 4.78], [-74.10, 4.78], [-74.10, 4.73]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440002",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "soil_moisture",
+      "value": 0.55,
+      "unit": "1",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-soil-north-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-north",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.73], [-74.04, 4.73], [-74.04, 4.78], [-74.10, 4.78], [-74.10, 4.73]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440003",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 68.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-rain-north-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-north",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.73], [-74.04, 4.73], [-74.04, 4.78], [-74.10, 4.78], [-74.10, 4.73]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "accumulation": "1h",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440004",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "slope_deg",
+      "value": 18.0,
+      "unit": "deg",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-inclinometer-center-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440005",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "soil_moisture",
+      "value": 0.42,
+      "unit": "1",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-soil-center-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440006",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 44.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-rain-center-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "accumulation": "1h",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440007",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "slope_deg",
+      "value": 10.0,
+      "unit": "deg",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-inclinometer-south-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-south",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "FORECAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.63], [-74.04, 4.63], [-74.04, 4.68], [-74.10, 4.68], [-74.10, 4.63]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440008",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "soil_moisture",
+      "value": 0.35,
+      "unit": "1",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-soil-south-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-south",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "FORECAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.63], [-74.04, 4.63], [-74.04, 4.68], [-74.10, 4.68], [-74.10, 4.63]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    },
+    {
+      "observation_id": "770e8400-e29b-41d4-a716-446655440009",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 11.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-rain-south-001",
+      "source": "polaris.synthetic.landslide-co-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-south",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "FORECAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.63], [-74.04, 4.63], [-74.04, 4.68], [-74.10, 4.68], [-74.10, 4.63]]]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-bogota-demo",
+        "data_class": "SIMULATED",
+        "accumulation": "1h",
+        "generator": "hand-authored P2 compound CHI pair"
+      }
+    }
+  ]
+}
