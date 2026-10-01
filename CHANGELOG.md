@@ -6,6 +6,15 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **HISTORICAL_REPLAY** of the 31 Mar–1 Apr 2017 Mocoa event through the same V1 PHI/GCI/risk formulas, with hit/miss backtest (evidence **EXPERIMENTAL**, not HISTORICALLY_VALIDATED)
+- `data_class=HISTORICAL_REPLAY` beside SIMULATED; LIVE still refused
+- Runner `python -m harness.backtesting.replay --seed 42` and `GET /v1/backtests/flood-mocoa-2017-replay`
+- Horizon `?fixture_id=flood-mocoa-2017-replay`
+- ADR-0007
+- `docs/product/obligaciones.md` (adapted project obligations snapshot)
+
+### Added (V1, already on main)
+
 - **V1 flood vertical slice** (SIMULATED Bogotá INTEGRATION CASE): observation → GCI → flood PHI baseline → operational risk (PHI × stub E/V) → DRAFT alert → API → Horizon MapLibre layer
 - Versioned formulas: `gci.v0.1.0`, `flood.phi.rainfall-threshold.v0.1.0`, `risk.operational.phi-ev-stub.v0.1.0`, `alert.draft.v0.1.0`
 - FastAPI routes: `/v1/observations`, `/v1/assessments`, `/v1/alerts`, `/v1/map/geojson` (plus `POST /v1/assessments/run`)

@@ -18,7 +18,7 @@
   ],
   "properties": {
     "spatial_unit_id": { "type": "string" },
-    "data_class": { "type": "string", "const": "SIMULATED" },
+    "data_class": { "type": "string", "enum": ["SIMULATED", "HISTORICAL_REPLAY"] },
     "disclaimer": { "type": "string" },
     "observation": { "type": "object" },
     "gci": { "type": "object" },

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://polaris.local/schemas/simulation/scenario.json",
   "title": "SimulationScenario",
-  "description": "Digital Testbed scenario. V1 flood-bogota-demo runner is IMPLEMENTED for SIMULATED data.",
+  "description": "Digital Testbed scenario. SIMULATED flood-bogota-demo and HISTORICAL_REPLAY flood-mocoa-2017-replay are IMPLEMENTED.",
   "type": "object",
   "required": ["scenario_id", "seed", "evidence", "data_class"],
   "properties": {
@@ -10,7 +10,7 @@
     "seed": { "type": "integer" },
     "hazard_id": { "type": "string" },
     "fixtures": { "type": "array", "items": { "type": "string" } },
-    "data_class": { "type": "string", "const": "SIMULATED" },
+    "data_class": { "type": "string", "enum": ["SIMULATED", "HISTORICAL_REPLAY"] },
     "evidence": { "type": "string" },
     "formula_version": { "type": "string" }
   }

@@ -1,0 +1,159 @@
+{
+  "fixture_id": "flood-mocoa-2017-replay",
+  "data_class": "HISTORICAL_REPLAY",
+  "hazard_id": "flood",
+  "site_id": "co-mocoa-2017",
+  "country_iso": "CO",
+  "as_of": "2017-04-01T12:00:00Z",
+  "disclaimer": "HISTORICAL_REPLAY of cited public figures and ERA5 reanalysis for the 31 Mar–1 Apr 2017 Mocoa event. Not live gauges. Not an official warning. Evidence is EXPERIMENTAL.",
+  "notes": "Transcribed public figures plus one fetched Open-Meteo ERA5 hour. 1-hour PHI thresholds are applied even when the cited accumulation is 3h or 24h. LIVE is never labelled.",
+  "time_window": {
+    "start": "2017-03-31T12:00:00Z",
+    "end": "2017-04-01T12:00:00Z",
+    "timezone": "America/Bogota",
+    "notes": "IDEAM pluviometric day 31 March 2017 (07:00 COT 31 Mar – 07:00 COT 1 Apr)."
+  },
+  "provenance": {
+    "data_class": "HISTORICAL_REPLAY",
+    "reconstruction": "cited-public-figures + open-meteo-era5",
+    "license_notes": "Colombian official decree (public law); UNGRD institutional repository; Open-Meteo CC BY; ERA5 Copernicus C3S CC BY 4.0."
+  },
+  "observations": [
+    {
+      "observation_id": "3d5e8c1a-7b2f-4a91-9e4c-1f6a2b8c9d01",
+      "observed_at": "2017-04-01T06:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 106.0,
+      "unit": "mm",
+      "quality_flag": "raw",
+      "source_id": "ideam-mocoa-acueducto-3h-cited",
+      "source": "ideam-via-decreto-599-2017",
+      "data_class": "HISTORICAL_REPLAY",
+      "spatial_unit_id": "co-mocoa-2017-acueducto-3h",
+      "site_id": "co-mocoa-2017",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-76.67, 1.14],
+            [-76.63, 1.14],
+            [-76.63, 1.17],
+            [-76.67, 1.17],
+            [-76.67, 1.14]
+          ]
+        ]
+      },
+      "provenance": {
+        "event_time": "2017-04-01T06:00:00Z",
+        "accumulation": "3h",
+        "window_local": "2017-03-31T22:00/2017-04-01T01:00 America/Bogota",
+        "transcribed_from": "Decreto 599 de 2017 citing IDEAM: 106 mm in 3 hours (83% of the 129 mm pluviometric-day total).",
+        "citations": [
+          {
+            "title": "Decreto 599 de 2017 (Colombia)",
+            "url": "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_0599_2017.htm",
+            "date": "2017-04-05",
+            "license": "Colombian official public law"
+          },
+          {
+            "title": "UNGRD / El Espectador — En Mocoa, en la noche de la tragedia, llovió lo que en 10 días",
+            "url": "http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/30115",
+            "date": "2017-04-03",
+            "license": "UNGRD institutional public repository"
+          }
+        ]
+      }
+    },
+    {
+      "observation_id": "3d5e8c1a-7b2f-4a91-9e4c-1f6a2b8c9d02",
+      "observed_at": "2017-04-01T12:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 129.3,
+      "unit": "mm",
+      "quality_flag": "raw",
+      "source_id": "ideam-mocoa-acueducto-24h-cited",
+      "source": "ideam-via-ungrd-repositorio",
+      "data_class": "HISTORICAL_REPLAY",
+      "spatial_unit_id": "co-mocoa-2017-acueducto-24h",
+      "site_id": "co-mocoa-2017",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-76.67, 1.17],
+            [-76.63, 1.17],
+            [-76.63, 1.20],
+            [-76.67, 1.20],
+            [-76.67, 1.17]
+          ]
+        ]
+      },
+      "provenance": {
+        "event_time": "2017-04-01T12:00:00Z",
+        "accumulation": "24h",
+        "window_local": "2017-03-31T07:00/2017-04-01T07:00 America/Bogota",
+        "transcribed_from": "IDEAM Mocoa Acueducto 129.3 mm on pluviometric day 31 March 2017 (UNGRD). Decreto 599 rounds the same day to 129 mm.",
+        "citations": [
+          {
+            "title": "UNGRD / El Espectador — 129.3 mm cited for the night of the tragedy",
+            "url": "http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/30115",
+            "date": "2017-04-03",
+            "license": "UNGRD institutional public repository"
+          },
+          {
+            "title": "Decreto 599 de 2017 (Colombia) — 129 mm in the pluviometric day",
+            "url": "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_0599_2017.htm",
+            "date": "2017-04-05",
+            "license": "Colombian official public law"
+          }
+        ]
+      }
+    },
+    {
+      "observation_id": "3d5e8c1a-7b2f-4a91-9e4c-1f6a2b8c9d03",
+      "observed_at": "2017-04-01T06:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 1.3,
+      "unit": "mm",
+      "quality_flag": "raw",
+      "source_id": "open-meteo-era5-mocoa-2017-04-01t01-cot",
+      "source": "open-meteo-era5",
+      "data_class": "HISTORICAL_REPLAY",
+      "spatial_unit_id": "co-mocoa-2017-era5-1h",
+      "site_id": "co-mocoa-2017",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-76.67, 1.11],
+            [-76.63, 1.11],
+            [-76.63, 1.14],
+            [-76.67, 1.14],
+            [-76.67, 1.11]
+          ]
+        ]
+      },
+      "provenance": {
+        "event_time": "2017-04-01T06:00:00Z",
+        "accumulation": "1h",
+        "window_local": "2017-04-01T01:00 America/Bogota (ERA5 hour inside the cited 22:00–01:00 burst)",
+        "fetched_at_utc": "2026-10-01",
+        "transcribed_from": "Open-Meteo Archive API hourly precipitation at lat=1.152, lon=-76.651. ERA5 1.3 mm at 01:00 COT; this reanalysis hour does not reproduce the convective burst cited by IDEAM.",
+        "citations": [
+          {
+            "title": "Open-Meteo Historical Weather API (ERA5)",
+            "url": "https://archive-api.open-meteo.com/v1/archive?latitude=1.152&longitude=-76.651&start_date=2017-03-31&end_date=2017-04-01&hourly=precipitation&timezone=America%2FBogota",
+            "date": "2017-04-01",
+            "license": "Open-Meteo CC BY; ERA5 Copernicus C3S CC BY 4.0"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,13 +1,15 @@
-/* Horizon V1: MapLibre layer over SIMULATED flood assessments. */
+/* Horizon: MapLibre layer over SIMULATED or HISTORICAL_REPLAY flood assessments. */
 (() => {
+  const params = new URLSearchParams(window.location.search);
   const apiBase = (() => {
-    const param = new URLSearchParams(window.location.search).get("api");
+    const param = params.get("api");
     if (param) return param.replace(/\/$/, "");
     if (window.location.port === "8000" || window.location.pathname.startsWith("/horizon")) {
       return "";
     }
     return "http://127.0.0.1:8000";
   })();
+  const fixtureId = params.get("fixture_id") || "flood-bogota-demo";
 
   const status = document.getElementById("status");
   const map = new maplibregl.Map({
@@ -39,32 +41,48 @@
       <strong>${props.spatial_unit_id}</strong>
       <div>data_class: ${props.data_class}</div>
       <div>phi_mode (declared): ${props.phi_mode}</div>
-      <div>rainfall: ${props.rainfall_mm} mm / 1h</div>
+      <div>event_time: ${props.observed_at || "n/a"}</div>
+      <div>rainfall: ${props.rainfall_mm} mm / ${props.accumulation || "1h"}</div>
       <div>PHI: ${Number(props.phi).toFixed(4)} <small>${props.formula_version_phi}</small></div>
       <div>GCI: ${Number(props.gci).toFixed(4)} <small>${props.formula_version_gci}</small></div>
       <div>operational risk: ${Number(props.operational_risk).toFixed(4)} <small>${props.formula_version_risk}</small></div>
       <div>alert: ${props.alert_status} / ${props.alert_level}</div>
       <div>PHI uncertainty: ${props.uncertainty_phi}</div>
       <div>quality: ${props.quality_flag}</div>
-      <p><em>Not a flood probability. DRAFT only.</em></p>
+      <p><em>Not a flood probability. DRAFT only. HISTORICAL_REPLAY is EXPERIMENTAL.</em></p>
     `;
   }
 
   map.on("load", async () => {
     try {
-      const response = await fetch(`${apiBase}/v1/map/geojson`);
+      const response = await fetch(
+        `${apiBase}/v1/map/geojson?fixture_id=${encodeURIComponent(fixtureId)}`
+      );
       if (!response.ok) {
         throw new Error(`API ${response.status}`);
       }
       const geojson = await response.json();
-      if (geojson.data_class !== "SIMULATED") {
-        throw new Error("refusing map layer that is not SIMULATED");
+      const allowed = new Set(["SIMULATED", "HISTORICAL_REPLAY"]);
+      if (!allowed.has(geojson.data_class)) {
+        throw new Error("refusing map layer that is not SIMULATED or HISTORICAL_REPLAY");
       }
-      status.textContent = `Loaded ${geojson.features.length} SIMULATED units · run ${geojson.run_id}`;
+      status.textContent =
+        `Loaded ${geojson.features.length} ${geojson.data_class} units · ${fixtureId} · run ${geojson.run_id}`;
 
       geojson.features.forEach((feature) => {
         feature.properties.color = riskColor(feature.properties.operational_risk);
       });
+
+      const first = geojson.features[0];
+      if (first && first.geometry && first.geometry.type === "Polygon") {
+        const ring = first.geometry.coordinates[0];
+        const lon = ring.reduce((s, p) => s + p[0], 0) / ring.length;
+        const lat = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+        map.setCenter([lon, lat]);
+        if (geojson.data_class === "HISTORICAL_REPLAY") {
+          map.setZoom(12);
+        }
+      }
 
       map.addSource("flood-slice", { type: "geojson", data: geojson });
       map.addLayer({

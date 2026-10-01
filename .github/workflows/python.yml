@@ -20,5 +20,7 @@ jobs:
         run: python -m pytest
       - name: Deterministic flood sim
         run: python -m simulation.python.run --scenario simulation/scenarios/flood-bogota-demo.yaml --seed 42
+      - name: Historical replay backtest
+        run: python -m harness.backtesting.replay --scenario simulation/scenarios/flood-mocoa-2017-replay.yaml --seed 42
       - name: Health harness
         run: python harness/dev/healthcheck.py

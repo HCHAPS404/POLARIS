@@ -1,5 +1,5 @@
 # domains/observations
 
-**Evidence:** IMPLEMENTED V1 parser (SIMULATED rainfall only)
+**Evidence:** IMPLEMENTED parser (SIMULATED and HISTORICAL_REPLAY rainfall)
 
-Refuses `data_class=LIVE` and undeclared `phi_mode`. Full sensor catalog DESIGNED.
+Refuses `data_class=LIVE` and undeclared `phi_mode`. Historical replay requires `event_time == observed_at`. Full sensor catalog DESIGNED.

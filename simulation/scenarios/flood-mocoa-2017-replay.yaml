@@ -1,0 +1,21 @@
+scenario_id: flood-mocoa-2017-replay
+version: "0.1.0"
+seed: 42
+hazard_id: flood
+data_class: HISTORICAL_REPLAY
+fixture: data/historical/flood-mocoa-2017.replay.json
+evidence: EXPERIMENTAL
+formula_version: flood.phi.rainfall-threshold.v0.1.0
+phi_mode_policy: declared_on_observation
+country_iso: CO
+site_id: co-mocoa-2017
+time_window:
+  start: "2017-03-31T12:00:00Z"
+  end: "2017-04-01T12:00:00Z"
+  timezone: America/Bogota
+ground_truth: backtesting/events/flood-mocoa-2017.json
+notes: >
+  HISTORICAL_REPLAY of the 31 Mar–1 Apr 2017 Mocoa rainfall/debris-flow event.
+  Same V1 PHI/GCI/risk formulas. event_time is the documented instant, never ingest time.
+  Evidence EXPERIMENTAL: 1h thresholds on mixed accumulations; E/V stubs; binary GT from reports,
+  not a mapped inundation field. Not HISTORICALLY_VALIDATED. Not LIVE.

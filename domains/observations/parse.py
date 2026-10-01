@@ -4,7 +4,13 @@ from __future__ import annotations
 
 from typing import Any
 
-from domains.common import ALLOWED_DATA_CLASSES_V1, PHI_MODES, QUALITY_FLAGS
+from domains.common import (
+    ALLOWED_DATA_CLASSES,
+    DATA_CLASS_HISTORICAL_REPLAY,
+    DATA_CLASS_LIVE,
+    PHI_MODES,
+    QUALITY_FLAGS,
+)
 from domains.observations.models import Observation
 
 REQUIRED_OBSERVATION_FIELDS = (
@@ -25,7 +31,34 @@ REQUIRED_OBSERVATION_FIELDS = (
 
 
 class ObservationParseError(ValueError):
-    """Fixture or payload cannot be used as a V1 observation."""
+    """Fixture or payload cannot be used as an observation."""
+
+
+def _require_historical_provenance(raw: dict[str, Any], provenance: dict[str, Any]) -> None:
+    observed_at = str(raw["observed_at"])
+    event_time = provenance.get("event_time")
+    if not event_time:
+        raise ObservationParseError(
+            "HISTORICAL_REPLAY requires provenance.event_time (the documented event instant)"
+        )
+    if str(event_time) != observed_at:
+        raise ObservationParseError(
+            "event_time must equal observed_at; ingest time must not replace event time"
+        )
+    ingested_at = provenance.get("ingested_at")
+    if ingested_at is not None and str(ingested_at) == observed_at:
+        raise ObservationParseError(
+            "ingested_at must not be copied onto observed_at / event_time"
+        )
+    citations = provenance.get("citations")
+    if not isinstance(citations, list) or not citations:
+        raise ObservationParseError("HISTORICAL_REPLAY requires non-empty provenance.citations")
+    for citation in citations:
+        if not isinstance(citation, dict) or not citation.get("url"):
+            raise ObservationParseError("each citation must be an object with a url")
+    accumulation = provenance.get("accumulation")
+    if not accumulation:
+        raise ObservationParseError("HISTORICAL_REPLAY requires provenance.accumulation")
 
 
 def parse_observation(raw: dict[str, Any]) -> Observation:
@@ -33,10 +66,14 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
         raise ObservationParseError("observation must be an object")
 
     data_class = raw.get("data_class")
-    if data_class not in ALLOWED_DATA_CLASSES_V1:
+    if data_class == DATA_CLASS_LIVE:
         raise ObservationParseError(
-            "V1 flood slice only accepts data_class=SIMULATED; "
-            f"refusing {data_class!r} (LIVE/HISTORICAL are not faked)"
+            "refusing data_class=LIVE (LIVE is not faked; adapters are NOT IMPLEMENTED)"
+        )
+    if data_class not in ALLOWED_DATA_CLASSES:
+        raise ObservationParseError(
+            "only data_class=SIMULATED or HISTORICAL_REPLAY are accepted; "
+            f"refusing {data_class!r}"
         )
 
     missing = [name for name in REQUIRED_OBSERVATION_FIELDS if name not in raw]
@@ -75,6 +112,8 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
     provenance = raw.get("provenance") or {}
     if not isinstance(provenance, dict):
         raise ObservationParseError("provenance must be an object")
+    if data_class == DATA_CLASS_HISTORICAL_REPLAY:
+        _require_historical_provenance(raw, provenance)
 
     return Observation(
         observation_id=str(raw["observation_id"]),
@@ -98,9 +137,12 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
 def parse_fixture(raw: dict[str, Any]) -> tuple[str, str, list[Observation]]:
     if not isinstance(raw, dict):
         raise ObservationParseError("fixture must be an object")
-    if raw.get("data_class") not in ALLOWED_DATA_CLASSES_V1:
+    data_class = raw.get("data_class")
+    if data_class == DATA_CLASS_LIVE:
+        raise ObservationParseError("fixture data_class=LIVE is refused (not faked)")
+    if data_class not in ALLOWED_DATA_CLASSES:
         raise ObservationParseError(
-            "fixture data_class must be SIMULATED; refusing live-labelled data"
+            "fixture data_class must be SIMULATED or HISTORICAL_REPLAY"
         )
     fixture_id = str(raw.get("fixture_id") or "")
     if not fixture_id:
@@ -112,4 +154,7 @@ def parse_fixture(raw: dict[str, Any]) -> tuple[str, str, list[Observation]]:
     if not isinstance(observations_raw, list) or not observations_raw:
         raise ObservationParseError("fixture must contain a non-empty observations list")
     observations = [parse_observation(item) for item in observations_raw]
+    for obs in observations:
+        if obs.data_class != data_class:
+            raise ObservationParseError("observation data_class must match fixture data_class")
     return fixture_id, as_of, observations

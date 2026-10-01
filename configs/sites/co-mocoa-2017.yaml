@@ -1,0 +1,18 @@
+# SiteProfile — Mocoa 2017 HISTORICAL_REPLAY geography
+# Evidence: DESIGNED (config). Replay math is EXPERIMENTAL.
+
+country_iso: CO
+site_id: co-mocoa-2017
+name: Mocoa (Putumayo) 2017 historical replay
+status: HISTORICAL_REPLAY
+evidence: DESIGNED
+timezone: America/Bogota
+priority_hazards:
+  - flood
+  - landslide
+coordinates:
+  lon: -76.651
+  lat: 1.152
+notes: >
+  Geography for the 31 Mar–1 Apr 2017 documented rainfall / debris-flow event.
+  Not an installed sensor network. Not a field pilot.

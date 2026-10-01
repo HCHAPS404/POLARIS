@@ -1,8 +1,8 @@
-"""POLARIS FastAPI delivery — health + V1 flood vertical slice.
+"""POLARIS FastAPI delivery — health + flood slice + historical replay.
 
-Evidence: GET /health IMPLEMENTED. V1 observation/assessment/alert/map
-routes IMPLEMENTED against SIMULATED fixtures. No LIVE adapters. No
-OFFICIAL alerts.
+Evidence: GET /health IMPLEMENTED. Observation/assessment/alert/map
+routes IMPLEMENTED against SIMULATED and HISTORICAL_REPLAY fixtures.
+No LIVE adapters. No OFFICIAL alerts.
 """
 
 from __future__ import annotations
@@ -26,16 +26,16 @@ from application.flood_assessment import run_flood_slice  # noqa: E402
 
 from adapters.storage.simulated_json import (  # noqa: E402
     FixtureNotFoundError,
-    load_simulated_fixture,
+    load_fixture,
 )
-from domains.common import DISCLAIMER  # noqa: E402
+from domains.common import ALLOWED_DATA_CLASSES, DATA_CLASS_LIVE, DISCLAIMER  # noqa: E402
 
 app = FastAPI(
     title="POLARIS API",
     version="0.1.0",
     description=(
-        "Decision-support API. V1 flood slice reads SIMULATED fixtures only. "
-        "Not an official warning service."
+        "Decision-support API. Flood slice reads SIMULATED or HISTORICAL_REPLAY "
+        "fixtures. Not an official warning service."
     ),
 )
 
@@ -55,12 +55,22 @@ class AssessmentRunRequest(BaseModel):
 
 def _slice(seed: int = 42, fixture_id: str = "flood-bogota-demo"):
     try:
-        fixture = load_simulated_fixture(fixture_id)
+        fixture = load_fixture(fixture_id)
     except FixtureNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     return run_flood_slice(fixture, seed=seed)
+
+
+def _refuse_live(data_class: str | None) -> None:
+    if data_class == DATA_CLASS_LIVE:
+        raise HTTPException(status_code=400, detail="LIVE is refused (not faked)")
+    if data_class not in (None, *ALLOWED_DATA_CLASSES):
+        raise HTTPException(
+            status_code=400,
+            detail="data_class must be SIMULATED or HISTORICAL_REPLAY",
+        )
 
 
 @app.get("/health")
@@ -69,7 +79,7 @@ def health() -> dict[str, str]:
         "status": "ok",
         "service": "polaris",
         "evidence": "IMPLEMENTED",
-        "maturity": "V1-flood-vertical-slice",
+        "maturity": "V1-historical-replay",
         "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
@@ -126,12 +136,14 @@ def get_assessment(
 @app.post("/v1/assessments/run")
 def run_assessment(payload: AssessmentRunRequest | None = None) -> dict:
     body = payload or AssessmentRunRequest()
-    if body.data_class not in (None, "SIMULATED"):
+    _refuse_live(body.data_class)
+    result = _slice(seed=body.seed, fixture_id=body.fixture_id)
+    if body.data_class is not None and body.data_class != result.data_class:
         raise HTTPException(
             status_code=400,
-            detail="V1 refuses data_class other than SIMULATED",
+            detail="requested data_class does not match fixture",
         )
-    return _slice(seed=body.seed, fixture_id=body.fixture_id).to_dict()
+    return result.to_dict()
 
 
 @app.get("/v1/alerts")
@@ -157,6 +169,22 @@ def map_geojson(
     fixture_id: str = Query(default="flood-bogota-demo"),
 ) -> dict:
     return _slice(seed=seed, fixture_id=fixture_id).to_geojson()
+
+
+@app.get("/v1/backtests/{scenario_id}")
+def get_backtest(
+    scenario_id: str,
+    seed: int = Query(default=42),
+) -> dict:
+    from harness.backtesting.replay import run_backtest
+
+    scenario = ROOT / "simulation" / "scenarios" / f"{scenario_id}.yaml"
+    if not scenario.is_file():
+        raise HTTPException(status_code=404, detail="scenario not found")
+    try:
+        return run_backtest(scenario, seed)
+    except SystemExit as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 HORIZON = ROOT / "apps" / "horizon-web"

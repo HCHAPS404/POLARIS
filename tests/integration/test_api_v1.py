@@ -20,7 +20,7 @@ def test_health_still_ok() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"
-    assert body["maturity"] == "V1-flood-vertical-slice"
+    assert body["maturity"] == "V1-historical-replay"
 
 
 def test_assessments_chain_and_draft_only() -> None:
@@ -72,3 +72,4 @@ def test_horizon_page_served() -> None:
     assert response.status_code == 200
     assert "SIMULATED" in response.text
     assert "DRAFT" in response.text
+    assert "HISTORICAL_REPLAY" in response.text

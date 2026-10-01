@@ -77,7 +77,7 @@ configs/{countries,regions,sites,hazards,communications,devices}
 simulation/{python,cpp,bindings,scenarios,fixtures,experiments,reports}
 hardware/{requirements,reference-designs,schematics,pcb,bom,cad,enclosure,antenna,manufacturing}
 firmware/{common,node,gateway,models}
-data/{catalog,sample,synthetic}
+data/{catalog,sample,synthetic,historical}
 backtesting/{datasets,events,baselines,experiments,reports}
 schemas/{observation,hazard,risk,alerts,simulation,configuration}
 harness/{dev,integration,simulation,backtesting,fault-injection,e2e,demo,benchmark}

@@ -66,6 +66,16 @@ def test_gci_refuses_live_trust_weight() -> None:
         )
 
 
+def test_gci_historical_replay_raw_complete() -> None:
+    # 0.70 * 1.00 * 0.70
+    value = gci_value(
+        quality_flag="raw",
+        data_class="HISTORICAL_REPLAY",
+        present=("rainfall_mm", "observed_at", "source_id", "data_class"),
+    )
+    assert value == pytest.approx(0.49)
+
+
 def test_gci_formula_version_is_explicit() -> None:
     assert FORMULA_VERSION == "gci.v0.1.0"
     assert QC_SCORE["qc_pass"] == 1.0
