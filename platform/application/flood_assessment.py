@@ -161,9 +161,12 @@ def assess_observation(
 def run_flood_slice(fixture: dict[str, Any], *, seed: int = 42) -> FloodSliceResult:
     fixture_id, as_of, observations = parse_fixture(fixture)
     run_id = run_id_for(fixture_id, seed)
+    rainfall_obs = [obs for obs in observations if obs.observed_property == "rainfall_mm"]
+    if not rainfall_obs:
+        raise ValueError("flood slice requires at least one rainfall_mm observation")
     units = tuple(
         assess_observation(observation=obs, run_id=run_id, computed_at=as_of)
-        for obs in observations
+        for obs in rainfall_obs
     )
     data_class = observations[0].data_class if observations else fixture.get("data_class")
     return FloodSliceResult(

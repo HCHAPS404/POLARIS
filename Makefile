@@ -1,4 +1,4 @@
-.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay api
+.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api
 
 PYTHON ?= python3
 
@@ -29,6 +29,9 @@ sim-flood:
 sim-replay:
 	$(PYTHON) -m simulation.python.run --scenario simulation/scenarios/flood-mocoa-2017-replay.yaml --seed 42
 	$(PYTHON) -m harness.backtesting.replay --scenario simulation/scenarios/flood-mocoa-2017-replay.yaml --seed 42
+
+sim-iot:
+	$(PYTHON) -m simulation.python.iot_run --scenario simulation/scenarios/iot-bogota-demo.yaml --seed 42
 
 api:
 	$(PYTHON) -m uvicorn main:app --app-dir platform/api --reload --port 8000

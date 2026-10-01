@@ -91,12 +91,25 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
     if quality_flag not in QUALITY_FLAGS:
         raise ObservationParseError(f"invalid quality_flag {quality_flag!r}")
 
-    if raw["observed_property"] != "rainfall_mm":
+    observed_property = str(raw["observed_property"])
+    unit = str(raw["unit"])
+    source_id = str(raw.get("source_id") or "")
+
+    if observed_property == "rainfall_mm":
+        if unit != "mm":
+            raise ObservationParseError("rainfall observations require unit='mm'")
+    elif observed_property == "water_level_m":
+        if not source_id.startswith("iot/"):
+            raise ObservationParseError(
+                "water_level_m is accepted only for SIMULATED IoT sources (iot/*)"
+            )
+        if unit != "m":
+            raise ObservationParseError("water_level observations require unit='m'")
+    else:
         raise ObservationParseError(
-            "V1 flood baseline requires observed_property='rainfall_mm'"
+            "V1 flood baseline accepts observed_property rainfall_mm "
+            "or IoT water_level_m"
         )
-    if raw["unit"] != "mm":
-        raise ObservationParseError("V1 flood baseline requires unit='mm'")
 
     try:
         value = float(raw["value"])
@@ -118,9 +131,9 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
     return Observation(
         observation_id=str(raw["observation_id"]),
         observed_at=str(raw["observed_at"]),
-        observed_property="rainfall_mm",
+        observed_property=observed_property,
         value=value,
-        unit="mm",
+        unit=unit,
         quality_flag=str(quality_flag),
         source_id=str(raw["source_id"]),
         source=str(raw["source"]),

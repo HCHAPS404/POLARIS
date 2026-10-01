@@ -1,0 +1,31 @@
+# Logical device type: hydro-node (field MCU — STM32 NUCLEO N657X0-Q target)
+device_type: hydro-node
+schema_version: "devices.v0.1.0"
+mcu_target: "STM32 NUCLEO N657X0-Q"
+description: >-
+  SIMULATED hydro node — ultrasonic water level. Not a production PCB.
+
+sample_interval_s: 600
+calibration_version: "cal.hydro.v0.1.0"
+
+buses:
+  i2c:
+    - id: level_driver
+      address: "0x52"
+  uart:
+    - id: debug
+      baud: 115200
+
+sensors:
+  - id: water_level
+    observed_property: water_level_m
+    unit: m
+    interface: ultrasonic
+    range_m: [0.0, 5.0]
+
+communication_profile:
+  radio: lora_subghz
+  role: end_device
+  max_payload_bytes: 51
+  duty_cycle_note: >-
+    Sub-GHz LoRa; SF7/BW125 placeholder in scenario comm block.

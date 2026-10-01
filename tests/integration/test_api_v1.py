@@ -20,7 +20,7 @@ def test_health_still_ok() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"
-    assert body["maturity"] == "V1-historical-replay"
+    assert body["maturity"] == "V1-iot-sim"
 
 
 def test_assessments_chain_and_draft_only() -> None:
@@ -65,6 +65,15 @@ def test_geojson_for_horizon() -> None:
     assert body["type"] == "FeatureCollection"
     assert body["data_class"] == "SIMULATED"
     assert len(body["features"]) == 3
+
+
+def test_iot_ingest_endpoint() -> None:
+    response = client.post("/v1/ingest/iot", json={"seed": 42, "scenario_id": "iot-bogota-demo"})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["data_class"] == "SIMULATED"
+    assert body["flood_slice"]["assessments"][0]["alert"]["status"] == "DRAFT"
+    assert any(o["source_id"].startswith("iot/") for o in body["observations"])
 
 
 def test_horizon_page_served() -> None:
