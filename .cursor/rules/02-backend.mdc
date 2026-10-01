@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Backend
 
-- FastAPI app in `platform/api`. P0: `GET /health` only.
+- FastAPI app in `platform/api`. IMPLEMENTED: `GET /health` and V1 flood observation/assessment/alert/map routes (SIMULATED fixtures).
 - Do not add PHI/alert routes without schemas, provenance, and tests.
 - Do not name a Python package `platform` at repo root (`platform/__init__.py` is forbidden — stdlib clash).
 - Python ≥ 3.12. Ruff + pytest must stay green.

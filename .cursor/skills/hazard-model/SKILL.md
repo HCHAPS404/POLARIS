@@ -14,7 +14,7 @@ Hazard id, evidence papers (optional).
 
 ## Workflow
 
-1. Run scaffold generator. 2. Fill interface only. 3. No PHI math in P0.
+1. Run scaffold generator. 2. Fill interface. 3. Flood PHI baseline already exists in V1; other hazards stay PLACEHOLDER until formulas + tests exist.
 
 ## Outputs
 

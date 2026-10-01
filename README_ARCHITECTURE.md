@@ -1,6 +1,6 @@
 # POLARIS architecture
 
-**Evidence:** DESIGNED (system) · **P0 foundation IMPLEMENTED** (this document, canonical directories, typed schemas, health API). Domain engines are PLACEHOLDER.
+**Evidence:** DESIGNED (system) · **P0 foundation IMPLEMENTED** · **V1 flood slice IMPLEMENTED** (GCI, flood PHI baseline, operational risk, DRAFT alerts, assessment API, Horizon GeoJSON map). CHI / HCI engine / live adapters remain NOT IMPLEMENTED.
 
 This file is the **canonical scaffold**. Ignore inferred `packages/` + `sim/` trees from older gap notes.
 
@@ -21,25 +21,25 @@ See [ADR-0001](docs/adr/0001-modular-monolith.md).
 |---------|---------|----------------|
 | Territory | `domains/territory` | Country / Region / Site graphs and admin units |
 | Observations | `domains/observations` | Typed sensor and source observations |
-| Quality | `domains/quality` | Data quality and GCI inputs (DESIGNED) |
-| Hazards | `domains/hazards` + `hazards/*` | Per-phenomenon models (individual-first) |
-| Compound | `domains/compound` | CHI interactions when evidence exists |
-| Exposure | `domains/exposure` | People, assets, environment at risk |
-| Vulnerability | `domains/vulnerability` | Fragility and capacity |
-| Risk | `domains/risk` | PHI / combined risk scores (DESIGNED) |
-| Alerting | `domains/alerting` | Decision-support messages; HITL required |
-| Provenance | `domains/provenance` | `run_id`, checksums, formula versions |
+| Quality | `domains/quality` | Data quality and GCI (`gci.v0.1.0` IMPLEMENTED, minimal) |
+| Hazards | `domains/hazards` + `hazards/*` | Per-phenomenon models (flood PHI baseline IMPLEMENTED; others PLACEHOLDER) |
+| Compound | `domains/compound` | CHI interactions when evidence exists (NOT IMPLEMENTED) |
+| Exposure | `domains/exposure` | People, assets, environment at risk (PLACEHOLDER stubs in V1) |
+| Vulnerability | `domains/vulnerability` | Fragility and capacity (PLACEHOLDER stubs in V1) |
+| Risk | `domains/risk` | Operational risk = PHI × E_stub × V_stub (IMPLEMENTED); CHI not mixed in |
+| Alerting | `domains/alerting` | DRAFT decision-support messages; HITL required (IMPLEMENTED mapper) |
+| Provenance | `domains/provenance` | `run_id`, formula versions, inputs, source IDs |
 
-## Indices (DESIGNED — not computed in P0)
+## Indices
 
-| Index | Meaning |
-|-------|---------|
-| **PHI** | Per-hazard individual index |
-| **CHI** | Compound interaction index (only with evidence) |
-| **GCI** | Confidence / evidence quality |
-| **HCI** | Operational output (alert level) — **never auto-evacuate** |
+| Index | Meaning | V1 evidence |
+|-------|---------|-------------|
+| **PHI** | Per-hazard individual index | IMPLEMENTED for flood rainfall-threshold baseline ([ADR-0006](docs/adr/0006-flood-phi-rainfall-baseline.md)) |
+| **CHI** | Compound interaction index (only with evidence) | NOT IMPLEMENTED |
+| **GCI** | Confidence / evidence quality | IMPLEMENTED (`gci.v0.1.0` minimal) |
+| **HCI** | Operational output (alert level) — **never auto-evacuate** | DRAFT alert mapper IMPLEMENTED; HCI engine NOT IMPLEMENTED |
 
-Principle: **individual-first, compound-second**. Do not mix phenomena without a documented interaction.
+Principle: **individual-first, compound-second**. Do not mix phenomena without a documented interaction. Do not mix exposure into PHI.
 
 ## Territorial model
 
@@ -55,11 +55,11 @@ Fifteen **integration countries** have YAML stubs. They are **not pilots**. Colo
 
 | Layer | Choice | P0 |
 |-------|--------|----|
-| API | FastAPI | **IMPLEMENTED:** `GET /health` only |
+| API | FastAPI | **IMPLEMENTED:** `GET /health` + V1 flood observation/assessment/alert/map |
 | Geo DB | PostgreSQL + PostGIS | compose skeleton |
 | Events | NATS ([ADR-0002](docs/adr/0002-nats-event-bus.md)) | compose skeleton |
 | IoT telemetry | MQTT (Mosquitto) | compose skeleton |
-| Web | Next.js / MapLibre (Horizon, Vector, Forge) | README-only |
+| Web | Next.js / MapLibre (Horizon, Vector, Forge) | Horizon static MapLibre layer IMPLEMENTED; full Next apps DESIGNED |
 | Mobile | Flutter ([ADR-0003](docs/adr/0003-flutter-mobile.md)) | README-only |
 | Simulation | Python + C++20 + pybind11 + CMake ([ADR-0004](docs/adr/0004-python-cpp-simulator.md)) | placeholder lib + test |
 
@@ -113,7 +113,7 @@ Agents and humans must implement in this order. Skipping a layer to “just add 
 
 - Every alert-shaped payload must carry provenance and a decision-support disclaimer.
 - Human-in-the-loop is mandatory for HCI presentation.
-- P0 does **not** implement CAP, SMS, or radio fan-out.
+- V1 emits **DRAFT** alerts only. CAP, SMS, and radio fan-out are **NOT IMPLEMENTED**.
 
 ## Physical / edge (DESIGNED)
 
