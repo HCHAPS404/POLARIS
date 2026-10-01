@@ -1,0 +1,29 @@
+# SiteProfile — small hillslope Colombia INTEGRATION CASE (not a field pilot)
+# Evidence: DESIGNED site; EXPERIMENTAL E/V factors for demo ranking only
+
+country_iso: CO
+region_id: co-antioquia
+site_id: co-slope-demo
+name: Demo hillslope transect (synthetic)
+status: INTEGRATION_CASE
+evidence: DESIGNED
+timezone: America/Bogota
+priority_hazards:
+  - landslide
+coordinates:
+  lon: -75.57
+  lat: 6.18
+exposure_vulnerability:
+  version: site-ev.v0.1.0
+  evidence: EXPERIMENTAL
+  notes: Illustrative occupancy/fragility weights — not census or geotechnical survey.
+  units:
+    co-slope-demo-upper:
+      exposure: 0.72
+      vulnerability: 0.68
+    co-slope-demo-lower:
+      exposure: 0.38
+      vulnerability: 0.42
+notes: >
+  Synthetic two-unit slope used to exercise landslide PHI baseline and site E/V config.
+  Not field-validated.

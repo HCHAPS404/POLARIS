@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/alerts/cap-draft.json",
+  "title": "PolarisCapDraft",
+  "description": "DRAFT/SIMULATION CAP-shaped JSON. Not an official CAP distribution. HITL required.",
+  "type": "object",
+  "required": [
+    "cap_schema",
+    "formula_version",
+    "status",
+    "msgType",
+    "headline",
+    "description",
+    "disclaimer",
+    "official",
+    "human_in_the_loop",
+    "identifier"
+  ],
+  "properties": {
+    "cap_schema": { "type": "string", "const": "polaris-cap-draft-json.v0.1.0" },
+    "formula_version": { "type": "string" },
+    "status": { "type": "string", "const": "DRAFT" },
+    "msgType": { "type": "string" },
+    "scope": { "type": "string" },
+    "category": { "type": "string" },
+    "urgency": { "type": "string" },
+    "severity": { "type": "string" },
+    "event": { "type": ["string", "null"] },
+    "headline": { "type": "string", "minLength": 8 },
+    "description": { "type": "string", "minLength": 16 },
+    "instruction": { "type": "string" },
+    "identifier": { "type": "string" },
+    "sender": { "type": "string" },
+    "sent": { "type": ["string", "null"] },
+    "source": { "type": "string" },
+    "info": { "type": "object" },
+    "official": { "type": "boolean", "const": false },
+    "human_in_the_loop": { "type": "boolean", "const": true },
+    "disclaimer": { "type": "string", "minLength": 16 }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "fixture_id": "landslide-co-slope-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "landslide",
+  "site_id": "co-slope-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T14:00:00Z",
+  "disclaimer": "Synthetic slope, soil moisture, and 1h rainfall for a small Colombia INTEGRATION CASE hillslope. Not field validation. Not an official warning.",
+  "notes": "Two spatial units on a steep demo transect. PHI mode declared on slope observation.",
+  "observations": [
+    {
+      "observation_id": "660e8400-e29b-41d4-a716-446655440001",
+      "observed_at": "2026-10-01T13:00:00Z",
+      "observed_property": "slope_deg",
+      "value": 32.0,
+      "unit": "deg",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-inclinometer-upper-001",
+      "source": "polaris.synthetic.landslide-co-slope-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-slope-demo-upper",
+      "site_id": "co-slope-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.58, 6.18],
+            [-75.56, 6.18],
+            [-75.56, 6.20],
+            [-75.58, 6.20],
+            [-75.58, 6.18]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-slope-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 landslide integration case"
+      }
+    },
+    {
+      "observation_id": "660e8400-e29b-41d4-a716-446655440002",
+      "observed_at": "2026-10-01T13:00:00Z",
+      "observed_property": "soil_moisture",
+      "value": 0.62,
+      "unit": "1",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-soil-upper-001",
+      "source": "polaris.synthetic.landslide-co-slope-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-slope-demo-upper",
+      "site_id": "co-slope-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.58, 6.18],
+            [-75.56, 6.18],
+            [-75.56, 6.20],
+            [-75.58, 6.20],
+            [-75.58, 6.18]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-slope-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 landslide integration case"
+      }
+    },
+    {
+      "observation_id": "660e8400-e29b-41d4-a716-446655440003",
+      "observed_at": "2026-10-01T13:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 48.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-rain-upper-001",
+      "source": "polaris.synthetic.landslide-co-slope-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-slope-demo-upper",
+      "site_id": "co-slope-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.58, 6.18],
+            [-75.56, 6.18],
+            [-75.56, 6.20],
+            [-75.58, 6.20],
+            [-75.58, 6.18]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-slope-demo",
+        "data_class": "SIMULATED",
+        "accumulation": "1h",
+        "generator": "hand-authored P2 landslide integration case"
+      }
+    },
+    {
+      "observation_id": "660e8400-e29b-41d4-a716-446655440004",
+      "observed_at": "2026-10-01T13:00:00Z",
+      "observed_property": "slope_deg",
+      "value": 18.0,
+      "unit": "deg",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-inclinometer-lower-001",
+      "source": "polaris.synthetic.landslide-co-slope-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-slope-demo-lower",
+      "site_id": "co-slope-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.58, 6.16],
+            [-75.56, 6.16],
+            [-75.56, 6.18],
+            [-75.58, 6.18],
+            [-75.58, 6.16]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-slope-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 landslide integration case"
+      }
+    },
+    {
+      "observation_id": "660e8400-e29b-41d4-a716-446655440005",
+      "observed_at": "2026-10-01T13:00:00Z",
+      "observed_property": "soil_moisture",
+      "value": 0.48,
+      "unit": "1",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-soil-lower-001",
+      "source": "polaris.synthetic.landslide-co-slope-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-slope-demo-lower",
+      "site_id": "co-slope-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.58, 6.16],
+            [-75.56, 6.16],
+            [-75.56, 6.18],
+            [-75.58, 6.18],
+            [-75.58, 6.16]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-slope-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored P2 landslide integration case"
+      }
+    },
+    {
+      "observation_id": "660e8400-e29b-41d4-a716-446655440006",
+      "observed_at": "2026-10-01T13:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 22.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-rain-lower-001",
+      "source": "polaris.synthetic.landslide-co-slope-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-slope-demo-lower",
+      "site_id": "co-slope-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.58, 6.16],
+            [-75.56, 6.16],
+            [-75.56, 6.18],
+            [-75.58, 6.18],
+            [-75.58, 6.16]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "landslide-co-slope-demo",
+        "data_class": "SIMULATED",
+        "accumulation": "1h",
+        "generator": "hand-authored P2 landslide integration case"
+      }
+    }
+  ]
+}

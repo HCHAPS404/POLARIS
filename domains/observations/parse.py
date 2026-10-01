@@ -121,18 +121,27 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
             )
         if unit != "m":
             raise ObservationParseError("water_level observations require unit='m'")
+    elif observed_property == "slope_deg":
+        if unit != "deg":
+            raise ObservationParseError("slope observations require unit='deg'")
+    elif observed_property == "soil_moisture":
+        if unit not in ("1", "dimensionless"):
+            raise ObservationParseError("soil_moisture requires unit='1' or 'dimensionless'")
     else:
         raise ObservationParseError(
-            "V1 flood baseline accepts observed_property rainfall_mm "
-            "or IoT water_level_m"
+            "observed_property must be rainfall_mm, water_level_m (IoT), "
+            "slope_deg, or soil_moisture"
         )
 
     try:
         value = float(raw["value"])
     except (TypeError, ValueError) as exc:
-        raise ObservationParseError("rainfall value must be numeric") from exc
-    if value < 0:
-        raise ObservationParseError("rainfall_mm must be >= 0")
+        raise ObservationParseError("observation value must be numeric") from exc
+    if observed_property == "soil_moisture":
+        if not 0 <= value <= 1:
+            raise ObservationParseError("soil_moisture must be in [0, 1]")
+    elif value < 0:
+        raise ObservationParseError(f"{observed_property} must be >= 0")
 
     geometry = raw.get("geometry")
     if not isinstance(geometry, dict):

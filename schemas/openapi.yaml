@@ -108,8 +108,16 @@ paths:
     get:
       summary: DRAFT decision-support alerts (never OFFICIAL)
       operationId: listAlerts
+      parameters:
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [cap, json, xml, both]
+          description: Optional CAP DRAFT/SIMULATION representation (not OFFICIAL)
       responses:
-        "200": { description: DRAFT alerts }
+        "200": { description: DRAFT alerts; optional cap_alerts when format is set }
   /v1/map/geojson:
     get:
       summary: GeoJSON FeatureCollection for Horizon

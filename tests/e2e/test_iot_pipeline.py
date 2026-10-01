@@ -9,7 +9,7 @@ from simulation.python.iot.pipeline import golden_digest, run_iot_scenario_path
 ROOT = Path(__file__).resolve().parents[2]
 
 # Captured from seed=42, iot-bogota-demo.yaml — update only when models change intentionally.
-GOLDEN_IOT_DIGEST = "13402a8e6a3258bab993d6d5f31efafa"
+GOLDEN_IOT_DIGEST = "54c92aa1dde75c91a893abd9da19b436"
 
 
 def test_iot_pipeline_deterministic_golden() -> None:

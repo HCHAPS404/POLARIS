@@ -1,0 +1,8 @@
+{
+  "hazard_id": "landslide",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "landslide.phi.slope-moisture-rain.v0.1.0",
+  "model_version": "landslide.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "SIMULATED integration case only. Not calibrated to inventory or in-situ failure data."
+}

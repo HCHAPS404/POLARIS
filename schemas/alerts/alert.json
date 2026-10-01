@@ -29,7 +29,10 @@
     },
     "operational_risk_value": { "type": "number" },
     "provenance": { "type": "object" },
-    "cap": { "type": ["object", "null"], "description": "CAP mapping NOT IMPLEMENTED" },
+    "cap": {
+      "type": ["object", "null"],
+      "description": "Optional CAP DRAFT JSON via format=cap on /v1/alerts; not OFFICIAL"
+    },
     "official": { "type": "boolean", "const": false }
   }
 }

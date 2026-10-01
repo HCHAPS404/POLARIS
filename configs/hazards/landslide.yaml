@@ -1,0 +1,18 @@
+# Hazard config — landslide
+# Evidence: IMPLEMENTED slope-moisture-rain baseline (ADR-0010)
+# Not a calibrated geotechnical model. No field validation claim.
+
+hazard_id: landslide
+evidence: IMPLEMENTED
+formula_version: "landslide.phi.slope-moisture-rain.v0.1.0"
+model_version: "landslide.baseline.v0.1.0"
+phi_mode_policy: declared_on_observation
+thresholds:
+  accumulation: 1h
+  slope_deg: { s0: 12.0, s1: 38.0 }
+  soil_moisture: { m0: 0.30, m1: 0.75 }
+  rainfall_mm: { r0: 15.0, r1: 55.0 }
+limitations:
+  - no_antecedent_rain_memory
+  - no_pore_pressure_physics
+  - not_field_validated

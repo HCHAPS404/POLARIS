@@ -25,9 +25,8 @@ PLATFORM = ROOT / "platform"
 if str(PLATFORM) not in sys.path:
     sys.path.insert(0, str(PLATFORM))
 
-from application.flood_assessment import run_flood_slice  # noqa: E402
-
 from adapters.storage.simulated_json import load_fixture  # noqa: E402
+from domains.hazards.registry import run_hazard_slice  # noqa: E402
 
 
 def load_scenario(path: Path) -> dict[str, Any]:
@@ -46,7 +45,7 @@ def run(scenario_path: Path, seed: int) -> dict[str, Any]:
     scenario = load_scenario(scenario_path)
     fixture_id = str(scenario.get("scenario_id") or scenario.get("fixture") or "")
     fixture = load_fixture(fixture_id)
-    result = run_flood_slice(fixture, seed=seed)
+    result = run_hazard_slice(fixture, seed=seed)
     payload = result.to_dict()
     payload["scenario_id"] = scenario.get("scenario_id")
     payload["scenario_seed"] = seed
