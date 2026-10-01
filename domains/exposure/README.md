@@ -1,7 +1,5 @@
 # domains/exposure
 
-**Evidence:** PLACEHOLDER
+**Evidence:** PLACEHOLDER stubs (used by V1 operational risk)
 
-Bounded context `exposure`. No formula implementations in P0.
-
-**Status:** DESIGNED in architecture; not IMPLEMENTED.
+Uncalibrated dimensionless factors per demo spatial unit. Not census.

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/assessment/assessment.json",
+  "title": "FloodAssessment",
+  "description": "One spatial unit through the V1 chain: observation → GCI → PHI → stub E/V → operational risk → DRAFT alert.",
+  "type": "object",
+  "required": [
+    "spatial_unit_id",
+    "data_class",
+    "disclaimer",
+    "observation",
+    "gci",
+    "phi",
+    "exposure",
+    "vulnerability",
+    "operational_risk",
+    "alert"
+  ],
+  "properties": {
+    "spatial_unit_id": { "type": "string" },
+    "data_class": { "type": "string", "const": "SIMULATED" },
+    "disclaimer": { "type": "string" },
+    "observation": { "type": "object" },
+    "gci": { "type": "object" },
+    "phi": { "type": "object" },
+    "exposure": { "type": "object" },
+    "vulnerability": { "type": "object" },
+    "operational_risk": { "type": "object" },
+    "alert": { "type": "object" }
+  }
+}

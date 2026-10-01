@@ -1,3 +1,3 @@
 # tests/regression
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED seed-42 flood golden checks

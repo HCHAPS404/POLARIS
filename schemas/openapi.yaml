@@ -1,15 +1,15 @@
 openapi: "3.1.0"
 info:
   title: POLARIS API
-  version: 0.0.1
+  version: 0.1.0
   description: |
-    P0 OpenAPI. IMPLEMENTED path: GET /health.
-    All other product routes are DESIGNED and omitted until implemented.
-    POLARIS is decision-support, not an official warning service.
+    Decision-support API. Not an official warning service.
+    IMPLEMENTED: GET /health and V1 flood slice routes over SIMULATED fixtures.
+    LIVE adapters, CHI, HCI engine, and OFFICIAL/CAP alerting are NOT IMPLEMENTED.
 paths:
   /health:
     get:
-      summary: Liveness/readiness for the foundation API
+      summary: Liveness/readiness
       operationId: getHealth
       responses:
         "200":
@@ -25,3 +25,77 @@ paths:
                   evidence: { type: string, example: IMPLEMENTED }
                   maturity: { type: string }
                   utc: { type: string, format: date-time }
+  /v1/observations:
+    get:
+      summary: List SIMULATED observations used by the flood slice
+      operationId: listObservations
+      parameters:
+        - in: query
+          name: seed
+          schema: { type: integer, default: 42 }
+        - in: query
+          name: fixture_id
+          schema: { type: string, default: flood-bogota-demo }
+      responses:
+        "200":
+          description: Observation list with data_class=SIMULATED
+  /v1/observations/{observation_id}:
+    get:
+      summary: Get one SIMULATED observation
+      operationId: getObservation
+      parameters:
+        - in: path
+          name: observation_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200": { description: Observation }
+        "404": { description: Not found }
+  /v1/assessments:
+    get:
+      summary: Run the flood slice (observation→GCI→PHI→risk→DRAFT alert)
+      operationId: listAssessments
+      responses:
+        "200":
+          description: Assessments; alerts are DRAFT only
+  /v1/assessments/{spatial_unit_id}:
+    get:
+      summary: Assessment for one spatial unit
+      operationId: getAssessment
+      parameters:
+        - in: path
+          name: spatial_unit_id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Assessment }
+        "404": { description: Not found }
+  /v1/assessments/run:
+    post:
+      summary: Re-run the SIMULATED flood slice with a seed
+      operationId: runAssessments
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seed: { type: integer, default: 42 }
+                fixture_id: { type: string, default: flood-bogota-demo }
+                data_class: { type: string, enum: [SIMULATED] }
+      responses:
+        "200": { description: Slice result }
+        "400": { description: Non-SIMULATED data_class refused }
+  /v1/alerts:
+    get:
+      summary: DRAFT decision-support alerts (never OFFICIAL)
+      operationId: listAlerts
+      responses:
+        "200": { description: DRAFT alerts }
+  /v1/map/geojson:
+    get:
+      summary: GeoJSON FeatureCollection for Horizon
+      operationId: mapGeojson
+      responses:
+        "200": { description: FeatureCollection labelled SIMULATED }

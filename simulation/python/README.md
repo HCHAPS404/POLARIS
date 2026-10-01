@@ -1,5 +1,5 @@
 # simulation/python
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED flood-slice runner
 
-Digital Testbed layer `python`. See README_SIMULATION_ENGINEERING.md. Wokwi is not primary.
+`python -m simulation.python.run --seed 42` — deterministic SIMULATED assessments.

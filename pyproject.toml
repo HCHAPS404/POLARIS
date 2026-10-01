@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "polaris"
-version = "0.0.1"
-description = "POLARIS P0 foundation — decision-support multi-hazard architecture"
+version = "0.1.0"
+description = "POLARIS decision-support multi-hazard architecture — V1 flood vertical slice"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.12"
@@ -13,6 +13,7 @@ authors = [{ name = "POLARIS team (Helmut, Laura, Lenin)" }]
 dependencies = [
   "fastapi>=0.115",
   "uvicorn[standard]>=0.32",
+  "pyyaml>=6.0",
 ]
 
 [project.optional-dependencies]
@@ -21,13 +22,17 @@ dev = [
   "mypy>=1.13",
   "pytest>=8.3",
   "httpx>=0.27",
+  "jsonschema>=4.23",
 ]
 
-[tool.setuptools]
-packages = []
+[project.scripts]
+polaris-flood-sim = "simulation.python.run:main"
+
+[tool.setuptools.packages.find]
+include = ["domains*", "hazards*", "adapters*", "simulation*"]
 
 [tool.pytest.ini_options]
-pythonpath = ["platform/api", "generators", "."]
+pythonpath = ["platform/api", "platform", "generators", "."]
 testpaths = ["tests"]
 addopts = "-q"
 
@@ -42,4 +47,4 @@ select = ["E", "F", "I", "W"]
 [tool.mypy]
 python_version = "3.12"
 ignore_missing_imports = true
-files = ["platform/api", "generators/hazard", "harness/dev"]
+files = ["platform/api", "platform/application", "domains", "hazards/flood", "generators/hazard", "harness/dev"]

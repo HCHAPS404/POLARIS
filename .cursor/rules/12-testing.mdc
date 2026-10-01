@@ -6,6 +6,6 @@ alwaysApply: false
 
 # Testing
 
-- P0 must keep pytest collection green (health + generator).
+- Pytest must stay green (health, scaffold, V1 flood math, API, e2e pipeline).
 - Do not add tests that require Flutter/pnpm apps that do not exist.
 - Harness/dev must run something real, not docs-only.

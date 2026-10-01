@@ -10,6 +10,6 @@ alwaysApply: true
 - Evidence: DESIGNED is not IMPLEMENTED. Never fake features.
 - Decision-support only. Human-in-the-loop. Not an official evacuation authority.
 - No alerts without disclaimer + provenance.
-- No mass-generated business code. No PHI/CHI/GCI/HCI, maps, IoT, RF, Flutter UI, or Next apps unless the user explicitly leaves P0.
+- No mass-generated business code. Do not add CHI, live adapters, IoT, RF, Flutter UI, or Next apps unless explicitly asked. V1 flood (SIMULATED PHI/GCI/DRAFT + Horizon GeoJSON) is already in tree.
 - No secrets in git. Wokwi is not the Digital Testbed.
 - This product is not Shopify Polaris.

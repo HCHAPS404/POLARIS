@@ -1,0 +1,11 @@
+scenario_id: flood-bogota-demo
+seed: 42
+hazard_id: flood
+data_class: SIMULATED
+fixture: data/synthetic/flood-bogota-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: flood.phi.rainfall-threshold.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED rainfall for the Bogotá INTEGRATION CASE.
+  Same seed must yield the same JSON. Not live. Not official.

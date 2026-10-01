@@ -16,15 +16,15 @@ Canonical tree is the modular monolith in `README_ARCHITECTURE.md`. **Do not** c
 
 | Level | Meaning | Status at P0 merge |
 |-------|---------|--------------------|
-| **P0** | Repo foundation: contract files, canonical empty tree, ADRs, CI guardrails, health, schemas, country stubs, generators, compose skeleton | **this work** |
-| **P1** | Data contracts beyond envelopes: OpenAPI growth, catalog, migrations stubs | not started |
-| **P2** | Mathematical engine: normalization + PHI for **one** hazard, versioned tests | not started |
-| **P3** | Deterministic Digital Testbed runner (`polaris sim run`), seeds, golden JSON | not started |
-| **P4** | Backend vertical: PostGIS optional, one index/alert read path, compose actually used | health only |
-| **P5** | Territorial graphs in memory or PostGIS | not started |
-| **P6** | Horizon/Vector/Forge apps, Flutter, IoT/firmware, RF, hardware, MLOps | README-only |
+| **P0** | Repo foundation: contract files, canonical empty tree, ADRs, CI guardrails, health, schemas, country stubs, generators, compose skeleton | **merged-or-stacked base** |
+| **P1** | Data contracts beyond envelopes: OpenAPI growth, catalog, migrations stubs | V1 extended observation/assessment/alert schemas |
+| **P2** | Mathematical engine: normalization + PHI for **one** hazard, versioned tests | **V1 flood PHI + GCI IMPLEMENTED** |
+| **P3** | Deterministic Digital Testbed runner (`polaris sim run`), seeds, golden JSON | **narrow IMPLEMENTED** (`simulation.python.run` flood demo); full testbed DESIGNED |
+| **P4** | Backend vertical: PostGIS optional, one index/alert read path, compose actually used | **in-memory SIMULATED path IMPLEMENTED**; PostGIS still DESIGNED |
+| **P5** | Territorial graphs in memory or PostGIS | not started (V1 uses 3 GeoJSON polygons) |
+| **P6** | Horizon/Vector/Forge apps, Flutter, IoT/firmware, RF, hardware, MLOps | **Horizon map layer IMPLEMENTED** (static); remaining P6 NOT IMPLEMENTED |
 
-Do **not** implement P1–P6 unless the user explicitly asks. P0 forbids PHI/CHI/GCI engines, maps, IoT, RF, energy, Flutter app, Next.js apps, live adapters, and CAP logic.
+P0 forbids PHI/CHI/GCI engines, maps, IoT, RF, energy, Flutter app, Next.js apps, live adapters, and CAP logic **unless the user explicitly requests a later slice**. V1 is that explicit flood slice.
 
 ## Operating rules
 

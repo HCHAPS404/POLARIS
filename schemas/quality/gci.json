@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/quality/gci.json",
+  "title": "GCI",
+  "description": "GCI v0.1.0 = qc_score × completeness × data_class_trust. SIMULATED trust=0.65.",
+  "type": "object",
+  "required": ["index_family", "formula_version", "value"],
+  "properties": {
+    "index_family": { "type": "string", "const": "GCI" },
+    "formula_version": { "type": "string", "const": "gci.v0.1.0" },
+    "model_version": { "type": "string" },
+    "value": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidence": { "type": "string" }
+  }
+}

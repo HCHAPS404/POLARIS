@@ -1,5 +1,5 @@
 # Schemas
 
-**Evidence:** IMPLEMENTED envelopes
+**Evidence:** IMPLEMENTED envelopes including V1 observation/index/alert/assessment
 
-Typed JSON Schema contracts (observation, hazard, risk, alerts, simulation, configuration). Not live data.
+Typed JSON Schema contracts. Not live data. OpenAPI: `/health` + V1 flood paths.

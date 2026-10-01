@@ -1,3 +1,3 @@
 # schemas/alerts
 
-**Evidence:** IMPLEMENTED contract files (no live data)
+**Evidence:** IMPLEMENTED DRAFT-only alert contract

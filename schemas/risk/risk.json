@@ -2,16 +2,23 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://polaris.local/schemas/risk/risk.json",
   "title": "RiskIndexEnvelope",
-  "description": "Envelope for PHI/CHI/GCI/HCI. Computation NOT IMPLEMENTED in P0.",
+  "description": "Envelope for PHI/CHI/GCI/HCI/operational_risk. CHI/HCI engines remain NOT IMPLEMENTED.",
   "type": "object",
-  "required": ["index_family", "evidence"],
+  "required": ["index_family", "evidence", "formula_version", "value"],
   "properties": {
-    "index_family": { "type": "string", "enum": ["PHI", "CHI", "GCI", "HCI"] },
-    "hazard_id": { "type": "string" },
+    "index_family": {
+      "type": "string",
+      "enum": ["PHI", "CHI", "GCI", "HCI", "operational_risk"]
+    },
+    "hazard_id": { "type": ["string", "null"] },
     "spatial_unit_id": { "type": "string" },
     "value": { "type": ["number", "null"] },
-    "evidence": { "type": "string", "enum": ["IMPLEMENTED", "DESIGNED", "PLACEHOLDER", "NOT_IMPLEMENTED"] },
+    "evidence": {
+      "type": "string",
+      "enum": ["IMPLEMENTED", "DESIGNED", "PLACEHOLDER", "NOT_IMPLEMENTED"]
+    },
     "formula_version": { "type": "string" },
+    "model_version": { "type": "string" },
     "disclaimer": { "type": "string" }
   }
 }

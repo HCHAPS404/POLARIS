@@ -1,7 +1,5 @@
 # domains/alerting
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED DRAFT mapper; OFFICIAL/CAP NOT IMPLEMENTED
 
-Bounded context `alerting`. No formula implementations in P0.
-
-**Status:** DESIGNED in architecture; not IMPLEMENTED.
+Human-in-the-loop required. Serialisation refuses any status other than `DRAFT`.

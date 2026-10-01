@@ -26,7 +26,8 @@ ruff + pytest green; /health remains.
 
 ## Forbidden shortcuts
 
-PHI computation inside a router in P0; platform/__init__.py.
+PHI computation inside a router; platform/__init__.py.
+
 
 ## Relevant paths
 

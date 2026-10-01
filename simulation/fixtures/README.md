@@ -1,5 +1,6 @@
 # simulation/fixtures
 
-**Evidence:** PLACEHOLDER
+**Evidence:** V1 rainfall lives in `data/synthetic/` (SIMULATED)
 
-Digital Testbed layer `fixtures`. See README_SIMULATION_ENGINEERING.md. Wokwi is not primary.
+This folder stays for additional testbed dumps. The flood demo fixture is
+`data/synthetic/flood-bogota-demo.simulated.json` so DATA is not confused with LIVE.

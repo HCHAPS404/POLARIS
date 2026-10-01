@@ -1,7 +1,7 @@
 # domains/risk
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED operational risk formula; CHI NOT IMPLEMENTED
 
-Bounded context `risk`. No formula implementations in P0.
-
-**Status:** DESIGNED in architecture; not IMPLEMENTED.
+`operational_risk = PHI × exposure_stub × vulnerability_stub`
+(`risk.operational.phi-ev-stub.v0.1.0`). Dimensionless ranking, not a probability.
+PHI does not include exposure or vulnerability.

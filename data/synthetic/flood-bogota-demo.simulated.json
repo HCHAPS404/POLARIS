@@ -1,0 +1,108 @@
+{
+  "fixture_id": "flood-bogota-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "flood",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T12:00:00Z",
+  "disclaimer": "Synthetic 1-hour rainfall accumulation for the Bogotá INTEGRATION CASE. Not live gauges. Not an official warning.",
+  "notes": "Three synthetic catchment units. PHI mode is declared per observation. Never labelled LIVE.",
+  "observations": [
+    {
+      "observation_id": "550e8400-e29b-41d4-a716-446655440001",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 72.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-gauge-north-001",
+      "source": "polaris.synthetic.flood-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-north",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-74.10, 4.73],
+            [-74.04, 4.73],
+            [-74.04, 4.78],
+            [-74.10, 4.78],
+            [-74.10, 4.73]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "flood-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored V1 flood slice"
+      }
+    },
+    {
+      "observation_id": "550e8400-e29b-41d4-a716-446655440002",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 45.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-gauge-center-001",
+      "source": "polaris.synthetic.flood-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-74.10, 4.68],
+            [-74.04, 4.68],
+            [-74.04, 4.73],
+            [-74.10, 4.73],
+            [-74.10, 4.68]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "flood-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored V1 flood slice"
+      }
+    },
+    {
+      "observation_id": "550e8400-e29b-41d4-a716-446655440003",
+      "observed_at": "2026-10-01T11:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 12.0,
+      "unit": "mm",
+      "quality_flag": "raw",
+      "source_id": "sim-gauge-south-001",
+      "source": "polaris.synthetic.flood-bogota-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-south",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "FORECAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-74.10, 4.63],
+            [-74.04, 4.63],
+            [-74.04, 4.68],
+            [-74.10, 4.68],
+            [-74.10, 4.63]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "flood-bogota-demo",
+        "data_class": "SIMULATED",
+        "generator": "hand-authored V1 flood slice"
+      }
+    }
+  ]
+}
