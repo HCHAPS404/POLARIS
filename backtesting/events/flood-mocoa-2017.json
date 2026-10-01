@@ -1,0 +1,49 @@
+{
+  "event_id": "flood-mocoa-2017",
+  "hazard_id": "flood",
+  "country_iso": "CO",
+  "site_id": "co-mocoa-2017",
+  "time_window": {
+    "start": "2017-03-31T12:00:00Z",
+    "end": "2017-04-01T12:00:00Z"
+  },
+  "ground_truth_type": "binary_inundation_from_official_reports",
+  "ground_truth_scope": "Mocoa urban area affected by debris flow / flash flood overnight 31 Mar–1 Apr 2017. Not a pixel flood-extent map.",
+  "units": [
+    {
+      "spatial_unit_id": "co-mocoa-2017-acueducto-3h",
+      "ground_truth_flooded": true
+    },
+    {
+      "spatial_unit_id": "co-mocoa-2017-acueducto-24h",
+      "ground_truth_flooded": true
+    },
+    {
+      "spatial_unit_id": "co-mocoa-2017-era5-1h",
+      "ground_truth_flooded": true
+    }
+  ],
+  "citations": [
+    {
+      "title": "Decreto 599 de 2017 (Colombia)",
+      "url": "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_0599_2017.htm",
+      "date": "2017-04-05",
+      "license": "Colombian official public law"
+    },
+    {
+      "title": "UNGRD repository record of the Mocoa night",
+      "url": "http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/30115",
+      "date": "2017-04-03",
+      "license": "UNGRD institutional public repository"
+    }
+  ],
+  "limitations": [
+    "All three units share the same documented urban inundation (no independent non-event control); FAR is therefore not computed.",
+    "Binary GT is municipal/urban occurrence from official reports, not a surveyed flood outline.",
+    "The event was a debris flow / flash flood; V1 PHI is a pluvial rainfall-threshold ranking, not a debris-flow model.",
+    "106 mm is a 3-hour cited total and 129.3 mm is a 24-hour cited total, scored with 1-hour T0/T1.",
+    "ERA5 1.3 mm at 01:00 COT is a legally fetched public reanalysis hour; it does not reproduce the convective burst.",
+    "Exposure and vulnerability remain PLACEHOLDER stubs.",
+    "T0=10 mm and T1=80 mm are demo constants, not a calibrated IDF."
+  ]
+}

@@ -15,7 +15,11 @@ This is a quality score, not a probability of flooding.
 
 from __future__ import annotations
 
-from domains.common import DATA_CLASS_SIMULATED, EVIDENCE_IMPLEMENTED
+from domains.common import (
+    DATA_CLASS_HISTORICAL_REPLAY,
+    DATA_CLASS_SIMULATED,
+    EVIDENCE_IMPLEMENTED,
+)
 from domains.observations.models import Observation
 from domains.provenance.index_record import IndexRecord
 
@@ -31,6 +35,8 @@ QC_SCORE: dict[str, float] = {
 
 DATA_CLASS_TRUST: dict[str, float] = {
     DATA_CLASS_SIMULATED: 0.65,
+    # Reconstructed from public citations or reanalysis — not a live QC'd gauge feed.
+    DATA_CLASS_HISTORICAL_REPLAY: 0.70,
 }
 
 REQUIRED_INPUTS = ("rainfall_mm", "observed_at", "source_id", "data_class")

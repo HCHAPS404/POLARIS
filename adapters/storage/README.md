@@ -1,5 +1,6 @@
 # adapters/storage
 
-**Evidence:** IMPLEMENTED SIMULATED fixture loader
+**Evidence:** IMPLEMENTED SIMULATED and HISTORICAL_REPLAY fixture loader
 
-No live connectors. Refuses files that are not `data_class=SIMULATED`.
+No live connectors. Refuses `data_class=LIVE`.
+

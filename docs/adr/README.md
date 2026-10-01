@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-**Evidence:** IMPLEMENTED (0000–0006)
+**Evidence:** IMPLEMENTED (0000–0007)
 
 Index:
 
@@ -11,3 +11,4 @@ Index:
 - [0004](0004-python-cpp-simulator.md) Python/C++ simulator
 - [0005](0005-apache-2.0-license.md) Apache-2.0
 - [0006](0006-flood-phi-rainfall-baseline.md) Flood PHI rainfall-threshold baseline (V1)
+- [0007](0007-historical-replay.md) Historical replay of Mocoa 2017 (EXPERIMENTAL)

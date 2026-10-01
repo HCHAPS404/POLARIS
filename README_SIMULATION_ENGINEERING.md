@@ -43,7 +43,9 @@ P0 has **no** `polaris sim run` CLI. Do not claim otherwise.
 
 ## Fault injection and backtesting
 
-Harnesses live under `harness/simulation`, `harness/fault-injection`, and `backtesting/`. P0 directories are PLACEHOLDER. Historical events must be catalogued with licenses before use.
+Harnesses live under `harness/simulation`, `harness/fault-injection`, and `backtesting/`.
+`python -m harness.backtesting.replay --seed 42` is IMPLEMENTED for Mocoa 2017
+(HISTORICAL_REPLAY, evidence EXPERIMENTAL). Fault injection remains PLACEHOLDER.
 
 ## Agent rules
 

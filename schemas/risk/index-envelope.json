@@ -43,7 +43,7 @@
     "computed_at": { "type": "string" },
     "quality_flags": { "type": "array", "items": { "type": "string" } },
     "uncertainty": { "type": "number", "minimum": 0 },
-    "data_class": { "type": "string", "const": "SIMULATED" },
+    "data_class": { "type": "string", "enum": ["SIMULATED", "HISTORICAL_REPLAY"] },
     "disclaimer": { "type": "string", "minLength": 16 },
     "notes": { "type": "string" },
     "provenance": { "type": "object" }

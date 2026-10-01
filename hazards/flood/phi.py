@@ -56,10 +56,20 @@ def compute_phi(
     quality_flag: str,
     data_class: str,
     run_id: str,
+    accumulation: str = "1h",
 ) -> IndexRecord:
     if phi_mode not in PHI_MODES:
         raise ValueError(f"phi_mode must be declared in {sorted(PHI_MODES)}; got {phi_mode!r}")
     value = phi_from_rainfall(rainfall_mm)
+    notes = (
+        "Rainfall-threshold PHI baseline. Not a hydrodynamic model. "
+        "Exposure/vulnerability are excluded from PHI."
+    )
+    if accumulation != "1h":
+        notes += (
+            f" T0/T1 are 1-hour demo thresholds applied to accumulation={accumulation}; "
+            "this is a declared limitation, not a calibrated IDF."
+        )
     return IndexRecord(
         index_family="PHI",
         hazard_id=HAZARD_ID,
@@ -71,12 +81,13 @@ def compute_phi(
         model_version=MODEL_VERSION,
         inputs={
             "rainfall_mm": rainfall_mm,
-            "accumulation": "1h",
+            "accumulation": accumulation,
             "t0_mm": T0_MM,
             "t1_mm": T1_MM,
             "phi_mode": phi_mode,
             "exposure_used": False,
             "vulnerability_used": False,
+            "native_threshold_accumulation": "1h",
         },
         source_ids=(source_id,),
         observed_at=observed_at,
@@ -85,8 +96,5 @@ def compute_phi(
         uncertainty=MODE_UNCERTAINTY[phi_mode],
         data_class=data_class,
         run_id=run_id,
-        notes=(
-            "Rainfall-threshold PHI baseline. Not a hydrodynamic model. "
-            "Exposure/vulnerability are excluded from PHI."
-        ),
+        notes=notes,
     )

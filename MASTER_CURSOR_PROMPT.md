@@ -19,7 +19,7 @@ Canonical tree is the modular monolith in `README_ARCHITECTURE.md`. **Do not** c
 | **P0** | Repo foundation: contract files, canonical empty tree, ADRs, CI guardrails, health, schemas, country stubs, generators, compose skeleton | **merged-or-stacked base** |
 | **P1** | Data contracts beyond envelopes: OpenAPI growth, catalog, migrations stubs | V1 extended observation/assessment/alert schemas |
 | **P2** | Mathematical engine: normalization + PHI for **one** hazard, versioned tests | **V1 flood PHI + GCI IMPLEMENTED** |
-| **P3** | Deterministic Digital Testbed runner (`polaris sim run`), seeds, golden JSON | **narrow IMPLEMENTED** (`simulation.python.run` flood demo); full testbed DESIGNED |
+| **P3** | Deterministic Digital Testbed runner (`polaris sim run`), seeds, golden JSON | **narrow IMPLEMENTED** (flood demo + Mocoa 2017 HISTORICAL_REPLAY); full testbed DESIGNED |
 | **P4** | Backend vertical: PostGIS optional, one index/alert read path, compose actually used | **in-memory SIMULATED path IMPLEMENTED**; PostGIS still DESIGNED |
 | **P5** | Territorial graphs in memory or PostGIS | not started (V1 uses 3 GeoJSON polygons) |
 | **P6** | Horizon/Vector/Forge apps, Flutter, IoT/firmware, RF, hardware, MLOps | **Horizon map layer IMPLEMENTED** (static); remaining P6 NOT IMPLEMENTED |

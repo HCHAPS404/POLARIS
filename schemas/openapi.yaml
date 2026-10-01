@@ -1,11 +1,12 @@
 openapi: "3.1.0"
 info:
   title: POLARIS API
-  version: 0.1.0
+  version: "0.1.0"
   description: |
     Decision-support API. Not an official warning service.
-    IMPLEMENTED: GET /health and V1 flood slice routes over SIMULATED fixtures.
-    LIVE adapters, CHI, HCI engine, and OFFICIAL/CAP alerting are NOT IMPLEMENTED.
+    IMPLEMENTED: GET /health and flood slice routes over SIMULATED and
+    HISTORICAL_REPLAY fixtures. LIVE adapters, CHI, HCI engine, and
+    OFFICIAL/CAP alerting are NOT IMPLEMENTED.
 paths:
   /health:
     get:
@@ -27,7 +28,7 @@ paths:
                   utc: { type: string, format: date-time }
   /v1/observations:
     get:
-      summary: List SIMULATED observations used by the flood slice
+      summary: List observations used by the flood slice
       operationId: listObservations
       parameters:
         - in: query
@@ -38,10 +39,10 @@ paths:
           schema: { type: string, default: flood-bogota-demo }
       responses:
         "200":
-          description: Observation list with data_class=SIMULATED
+          description: Observation list (SIMULATED or HISTORICAL_REPLAY)
   /v1/observations/{observation_id}:
     get:
-      summary: Get one SIMULATED observation
+      summary: Get one observation
       operationId: getObservation
       parameters:
         - in: path
@@ -72,7 +73,7 @@ paths:
         "404": { description: Not found }
   /v1/assessments/run:
     post:
-      summary: Re-run the SIMULATED flood slice with a seed
+      summary: Re-run the flood slice with a seed
       operationId: runAssessments
       requestBody:
         required: false
@@ -83,10 +84,10 @@ paths:
               properties:
                 seed: { type: integer, default: 42 }
                 fixture_id: { type: string, default: flood-bogota-demo }
-                data_class: { type: string, enum: [SIMULATED] }
+                data_class: { type: string, enum: [SIMULATED, HISTORICAL_REPLAY] }
       responses:
         "200": { description: Slice result }
-        "400": { description: Non-SIMULATED data_class refused }
+        "400": { description: LIVE or mismatched data_class refused }
   /v1/alerts:
     get:
       summary: DRAFT decision-support alerts (never OFFICIAL)
@@ -98,4 +99,19 @@ paths:
       summary: GeoJSON FeatureCollection for Horizon
       operationId: mapGeojson
       responses:
-        "200": { description: FeatureCollection labelled SIMULATED }
+        "200": { description: FeatureCollection labelled SIMULATED or HISTORICAL_REPLAY }
+  /v1/backtests/{scenario_id}:
+    get:
+      summary: HISTORICAL_REPLAY hit/miss report
+      operationId: getBacktest
+      parameters:
+        - in: path
+          name: scenario_id
+          required: true
+          schema: { type: string }
+        - in: query
+          name: seed
+          schema: { type: integer, default: 42 }
+      responses:
+        "200": { description: EXPERIMENTAL backtest JSON }
+        "404": { description: Scenario not found }

@@ -7,7 +7,7 @@ from typing import Any
 from uuid import NAMESPACE_URL, uuid5
 
 from domains.alerting.draft import DraftAlert, build_draft_alert
-from domains.common import DATA_CLASS_SIMULATED, DISCLAIMER
+from domains.common import DISCLAIMER
 from domains.exposure.stub import ExposureStub, stub_exposure
 from domains.observations.models import Observation
 from domains.observations.parse import parse_fixture
@@ -52,6 +52,8 @@ class UnitAssessment:
                 "data_class": self.observation.data_class,
                 "phi_mode": self.observation.phi_mode,
                 "rainfall_mm": self.observation.value,
+                "accumulation": self.observation.provenance.get("accumulation", "1h"),
+                "observed_at": self.observation.observed_at,
                 "phi": self.phi.value,
                 "gci": self.gci.value,
                 "operational_risk": self.operational_risk.value,
@@ -95,6 +97,7 @@ class FloodSliceResult:
                 "chi": "NOT_IMPLEMENTED",
                 "hci_engine": "NOT_IMPLEMENTED",
                 "official_alerting": "NOT_IMPLEMENTED",
+                "historical_replay": "IMPLEMENTED (EXPERIMENTAL evidence)",
             },
             "assessments": [unit.to_dict() for unit in self.units],
         }
@@ -121,6 +124,7 @@ def assess_observation(
     *, observation: Observation, run_id: str, computed_at: str
 ) -> UnitAssessment:
     gci = compute_gci(observation=observation, run_id=run_id, computed_at=computed_at)
+    accumulation = str(observation.provenance.get("accumulation") or "1h")
     phi = compute_phi(
         rainfall_mm=observation.value,
         phi_mode=observation.phi_mode,
@@ -131,6 +135,7 @@ def assess_observation(
         quality_flag=observation.quality_flag,
         data_class=observation.data_class,
         run_id=run_id,
+        accumulation=accumulation,
     )
     exposure = stub_exposure(observation.spatial_unit_id)
     vulnerability = stub_vulnerability(observation.spatial_unit_id)
@@ -160,12 +165,13 @@ def run_flood_slice(fixture: dict[str, Any], *, seed: int = 42) -> FloodSliceRes
         assess_observation(observation=obs, run_id=run_id, computed_at=as_of)
         for obs in observations
     )
+    data_class = observations[0].data_class if observations else fixture.get("data_class")
     return FloodSliceResult(
         fixture_id=fixture_id,
         run_id=run_id,
         seed=seed,
         as_of=as_of,
-        data_class=DATA_CLASS_SIMULATED,
+        data_class=str(data_class),
         disclaimer=DISCLAIMER,
         units=units,
     )

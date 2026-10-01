@@ -1,3 +1,6 @@
 # docs/validation
 
-**Evidence:** PLACEHOLDER (ADRs live in docs/adr)
+**Evidence:** IMPLEMENTED Mocoa 2017 HISTORICAL_REPLAY report (EXPERIMENTAL)
+
+See [flood-mocoa-2017-replay.md](flood-mocoa-2017-replay.md).
+

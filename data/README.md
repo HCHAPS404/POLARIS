@@ -1,5 +1,6 @@
 # Data
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED synthetic SIMULATED fixture + historical HISTORICAL_REPLAY fixture
 
-Catalog, sample, synthetic. No copyrighted dumps. Licenses required before ingest.
+Catalog, sample, synthetic, historical. No copyrighted dumps. Licenses required before ingest.
+

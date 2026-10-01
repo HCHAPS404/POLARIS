@@ -1,6 +1,6 @@
 # POLARIS
 
-**Evidence:** DESIGNED (product + architecture) · **P0 foundation IMPLEMENTED** · **V1 flood vertical slice IMPLEMENTED** (SIMULATED fixture → GCI → PHI → operational risk → DRAFT alert → API → Horizon map). CHI, live adapters, IoT, RF, energy, Flutter APK, CAP/OFFICIAL alerting, and remaining hazards are **NOT IMPLEMENTED**.
+**Evidence:** DESIGNED (product + architecture) · **P0 foundation IMPLEMENTED** · **V1 flood vertical slice IMPLEMENTED** · **HISTORICAL_REPLAY IMPLEMENTED** (Mocoa 2017, evidence EXPERIMENTAL). CHI, live adapters, IoT, RF, energy, Flutter APK, CAP/OFFICIAL alerting, and remaining hazards are **NOT IMPLEMENTED**.
 
 **POLARIS** (adaptive multi-hazard intelligence architecture) is a **decision-support** system. It is **not** an official evacuation authority. Humans remain in the loop. Alerts without provenance and disclaimer are forbidden.
 
@@ -46,6 +46,7 @@ make health          # GET /health
 make test            # unit + integration + contract + e2e flood slice
 make lint            # ruff
 make sim-flood       # deterministic SIMULATED PHI/GCI JSON (seed 42)
+make sim-replay      # Mocoa 2017 HISTORICAL_REPLAY + hit/miss JSON (EXPERIMENTAL)
 make api             # uvicorn :8000 — then open http://127.0.0.1:8000/horizon/
 make scaffold-hazard NAME=demo_hazard
 ```
@@ -67,7 +68,7 @@ docker compose -f docker-compose.yml -f infra/compose/compose.yml config
 | **PLACEHOLDER** | Directory, README, empty module, or stub interface only |
 | **NOT IMPLEMENTED** | Explicitly out of the current phase |
 
-**Current maturity:** DESIGNED product · foundation IMPLEMENTED · **V1 flood slice IMPLEMENTED** (SIMULATED / DRAFT only).
+**Current maturity:** DESIGNED product · foundation IMPLEMENTED · **V1 flood slice IMPLEMENTED** · **historical replay IMPLEMENTED (EXPERIMENTAL)**.
 
 ## Legal / operational disclaimer
 
