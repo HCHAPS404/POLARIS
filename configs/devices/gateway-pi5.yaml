@@ -1,0 +1,25 @@
+# Logical gateway: Raspberry Pi 5 reference (simulation + firmware stubs)
+device_type: gateway-pi5
+schema_version: "devices.v0.1.0"
+hardware_reference: "Raspberry Pi 5"
+description: >-
+  SIMULATED store-and-forward gateway. ChirpStack / LTE backhaul are DESIGNED only.
+
+roles:
+  - lora_packet_forwarder
+  - time_sync_ntp
+  - ingest_buffer
+
+buffer:
+  max_packets: 256
+  persist_on_backhaul_down: true
+
+backhaul:
+  primary: ethernet
+  fallback: lte
+  note: Simulation toggles backhaul_down in scenario YAML.
+
+communication_profile:
+  radio: lora_subghz
+  role: gateway
+  rx_channels: [868.1, 868.3, 868.5]

@@ -6,6 +6,7 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Added
 
+- **SIMULATED IoT vertical slice:** weather + hydro virtual nodes → LoRa-ish comm → Pi 5 gateway (store-and-forward) → same V1 flood pipeline; `configs/devices/`, `python -m simulation.python.iot_run`, `POST /v1/ingest/iot`, ADR-0008, firmware stubs (PLACEHOLDER)
 - **HISTORICAL_REPLAY** of the 31 Mar–1 Apr 2017 Mocoa event through the same V1 PHI/GCI/risk formulas, with hit/miss backtest (evidence **EXPERIMENTAL**, not HISTORICALLY_VALIDATED)
 - `data_class=HISTORICAL_REPLAY` beside SIMULATED; LIVE still refused
 - Runner `python -m harness.backtesting.replay --seed 42` and `GET /v1/backtests/flood-mocoa-2017-replay`

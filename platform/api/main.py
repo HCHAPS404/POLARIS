@@ -23,6 +23,7 @@ for path in (str(ROOT), str(PLATFORM)):
         sys.path.insert(0, path)
 
 from application.flood_assessment import run_flood_slice  # noqa: E402
+from application.iot_ingest import ingest_iot_scenario  # noqa: E402
 
 from adapters.storage.simulated_json import (  # noqa: E402
     FixtureNotFoundError,
@@ -53,6 +54,11 @@ class AssessmentRunRequest(BaseModel):
     data_class: str | None = None
 
 
+class IoTIngestRequest(BaseModel):
+    seed: int = Field(default=42)
+    scenario_id: str = Field(default="iot-bogota-demo")
+
+
 def _slice(seed: int = 42, fixture_id: str = "flood-bogota-demo"):
     try:
         fixture = load_fixture(fixture_id)
@@ -79,7 +85,7 @@ def health() -> dict[str, str]:
         "status": "ok",
         "service": "polaris",
         "evidence": "IMPLEMENTED",
-        "maturity": "V1-historical-replay",
+        "maturity": "V1-iot-sim",
         "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
@@ -169,6 +175,17 @@ def map_geojson(
     fixture_id: str = Query(default="flood-bogota-demo"),
 ) -> dict:
     return _slice(seed=seed, fixture_id=fixture_id).to_geojson()
+
+
+@app.post("/v1/ingest/iot")
+def ingest_iot(payload: IoTIngestRequest | None = None) -> dict:
+    body = payload or IoTIngestRequest()
+    try:
+        return ingest_iot_scenario(scenario_id=body.scenario_id, seed=body.seed)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.get("/v1/backtests/{scenario_id}")

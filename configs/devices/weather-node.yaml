@@ -1,0 +1,31 @@
+# Logical device type: weather-node (field MCU — STM32 NUCLEO N657X0-Q target)
+device_type: weather-node
+schema_version: "devices.v0.1.0"
+mcu_target: "STM32 NUCLEO N657X0-Q"
+description: >-
+  SIMULATED weather node — pluviometer + optional T/RH. Not a production PCB.
+
+sample_interval_s: 900
+calibration_version: "cal.weather.v0.1.0"
+
+buses:
+  i2c:
+    - id: env_bme280
+      address: "0x76"
+  uart:
+    - id: anemometer
+      baud: 9600
+
+sensors:
+  - id: rainfall
+    observed_property: rainfall_mm
+    unit: mm
+    interface: pulse_counter
+    accumulation_window_s: 3600
+
+communication_profile:
+  radio: lora_subghz
+  role: end_device
+  max_payload_bytes: 51
+  duty_cycle_note: >-
+    EU868 1% duty cycle assumed in comm model config; not enforced in firmware stub.

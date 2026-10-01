@@ -50,10 +50,22 @@ def test_refuse_negative_rainfall() -> None:
         parse_observation(payload)
 
 
-def test_refuse_wrong_property() -> None:
-    payload = {**BASE, "observed_property": "water_level_m"}
-    with pytest.raises(ObservationParseError, match="rainfall_mm"):
+def test_refuse_water_level_without_iot_source() -> None:
+    payload = {**BASE, "observed_property": "water_level_m", "unit": "m", "value": 1.2}
+    with pytest.raises(ObservationParseError, match="iot/"):
         parse_observation(payload)
+
+
+def test_parse_iot_water_level() -> None:
+    payload = {
+        **BASE,
+        "observed_property": "water_level_m",
+        "unit": "m",
+        "value": 1.2,
+        "source_id": "iot/hydro-node-001",
+    }
+    obs = parse_observation(payload)
+    assert obs.observed_property == "water_level_m"
 
 
 def test_parse_historical_replay_requires_event_time() -> None:

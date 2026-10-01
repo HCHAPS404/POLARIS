@@ -88,6 +88,22 @@ paths:
       responses:
         "200": { description: Slice result }
         "400": { description: LIVE or mismatched data_class refused }
+  /v1/ingest/iot:
+    post:
+      summary: Run SIMULATED IoT scenario through gateway ingest and flood slice
+      operationId: ingestIot
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seed: { type: integer, default: 42 }
+                scenario_id: { type: string, default: iot-bogota-demo }
+      responses:
+        "200": { description: IoT ingest + flood_slice (SIMULATED only) }
+        "404": { description: Scenario not found }
   /v1/alerts:
     get:
       summary: DRAFT decision-support alerts (never OFFICIAL)

@@ -2,7 +2,7 @@
 
 **Corte:** 2026-10-01 (post merge P0+V1 + HISTORICAL_REPLAY)  
 **Release objetivo:** 2026-10-08  
-**Fuente de verdad de código:** `main` @ `01ce186` (P0+V1) más el PR `feature/v1-historical-replay` para replay.
+**Fuente de verdad de código:** `main` @ `8f70a16` (P0+V1 + HISTORICAL_REPLAY merge PR #3); slice IoT en PR `feature/v1-iot-sim-pipeline`.
 
 Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo** (deber, no entrega única)
 
@@ -25,7 +25,7 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo** (deber, no entreg
 | **P0** | Repositorio, arquitectura, CI, esquemas, país/sitio | **Hecho** | Contrato, árbol canónico, reglas, ADRs, CI, `/health`, 15 CountryProfile stub, compose PostGIS/NATS/MQTT | Migraciones DB reales |
 | **P1** | Ingesta, GIS, base, API, fuente live, mapa público | **Parcial** | Esquemas observación; API `/v1/*`; mapa Horizon; fixture SIMULATED + HISTORICAL_REPLAY | Adapter live (nunca fake); PostGIS persistido; catálogo de fuentes real; GIS de producción |
 | **P2** | Primer hazard, PHI, GCI, riesgo, alertas | **Parcial** | PHI inundación umbral lluvia; GCI v0.1.0; riesgo `PHI × E_stub × V_stub`; alerta DRAFT | E/V reales; calibración; CAP; política de alerta; hidrodinámica |
-| **P3** | Simulación, sintético, replay, sensores, RF, energía | **Parcial** | Runner flood Bogotá seed 42; **HISTORICAL_REPLAY Mocoa 2017 (EXPERIMENTAL)** | Kernel C++/pybind11; sensor model; comunicaciones; energía; FAULT_INJECTION |
+| **P3** | Simulación, sintético, replay, sensores, RF, energía | **Parcial** | Runner flood + replay Mocoa; **IoT sim weather/hydro → gateway (PR iot)** | Kernel C++/pybind11; energía; FAULT_INJECTION; RF avanzado |
 | **P4** | Más hazards, CHI, fault injection, casos país/sitio | **Falta** | Carpetas hazard scaffold | CHI; landslide/wildfire/heat/…; perfiles sitio no-demo |
 | **P5** | APK, Vector, demo, backtesting | **Parcial** | Backtest Mocoa 2017 EXPERIMENTAL | Flutter APK; Vector profesional; Forge UI; backtest HISTORICALLY_VALIDATED |
 | **P6** | PCB/CAD, más países, spec piloto físico | **Falta** | Árbol `hardware/` vacío documentado | KiCad, BOM, spec piloto Colombia |
@@ -46,7 +46,7 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo** (deber, no entreg
 | ALERT DRAFT | Hecho | HITL; nunca OFFICIAL |
 | API | Hecho | `/health`, observaciones, assessments, alerts, geojson, backtests |
 | MAP Horizon | Hecho mínimo | `?fixture_id=`; no OSM; no PWA completa |
-| Sensor sim → radio → gateway → misma cadena | Falta | Siguiente demo del contrato |
+| Sensor sim → radio → gateway → misma cadena | **Parcial (SIMULATED)** | PR IoT: `make sim-iot`, `POST /v1/ingest/iot`; sin LIVE |
 | Evento histórico → replay → métricas backtest | **Hecho (EXPERIMENTAL)** | Mocoa 2017; no HISTORICALLY_VALIDATED |
 
 ---

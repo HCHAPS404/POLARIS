@@ -41,6 +41,16 @@ When a runner exists it **must**:
 
 P0 has **no** `polaris sim run` CLI. Do not claim otherwise.
 
+## IoT sensor error models (V1 SIMULATED slice)
+
+Field nodes (weather + hydro) use seeded error models in `simulation/python/iot/sensors.py`:
+
+- **Rainfall:** true accumulation → bias + drift×elapsed + Gaussian noise → quantization (mm).
+- **Water level:** true stage → bias + drift + noise → quantization (m).
+- **Radio:** abstract LoRa-ish packets with FSPL-based RSSI stub, latency, optional `packet_loss`.
+
+Gateway (Pi 5 logical sim) preserves `event_time`, adds `ingest_time`, and supports store-and-forward when `backhaul_down` is set in the scenario YAML. Runner: `make sim-iot` or `python -m simulation.python.iot_run --seed 42`.
+
 ## Fault injection and backtesting
 
 Harnesses live under `harness/simulation`, `harness/fault-injection`, and `backtesting/`.

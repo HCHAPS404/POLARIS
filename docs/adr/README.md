@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-**Evidence:** IMPLEMENTED (0000–0007)
+**Evidence:** IMPLEMENTED (0000–0008)
 
 Index:
 
@@ -12,3 +12,4 @@ Index:
 - [0005](0005-apache-2.0-license.md) Apache-2.0
 - [0006](0006-flood-phi-rainfall-baseline.md) Flood PHI rainfall-threshold baseline (V1)
 - [0007](0007-historical-replay.md) Historical replay of Mocoa 2017 (EXPERIMENTAL)
+- [0008](0008-edge-hardware-reference.md) Edge hardware reference (N657X0-Q + Pi 5, SIMULATED)
