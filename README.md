@@ -1,6 +1,6 @@
 # POLARIS
 
-**Evidence:** DESIGNED (product + architecture) · **P0 foundation IMPLEMENTED** · **V1 flood vertical slice IMPLEMENTED** · **HISTORICAL_REPLAY IMPLEMENTED** (Mocoa 2017, evidence EXPERIMENTAL). CHI, live adapters, IoT, RF, energy, Flutter APK, CAP/OFFICIAL alerting, and remaining hazards are **NOT IMPLEMENTED**.
+**Evidence:** DESIGNED (product vision) · **P0–P4 engineering IMPLEMENTED** on `main` · **P5 RC prep** (docs, RF FSPL, release workflow draft) on branch `feature/p5-release-candidate-prep`. CAP **OFFICIAL**, territorial graphs, PCB, and full HCI remain **NOT IMPLEMENTED**. See [technical overview](docs/manuals/technical-overview.md).
 
 **POLARIS** (adaptive multi-hazard intelligence architecture) is a **decision-support** system. It is **not** an official evacuation authority. Humans remain in the loop. Alerts without provenance and disclaimer are forbidden.
 
@@ -18,8 +18,8 @@
 |---------|---------|------|-----------|
 | **Horizon** | `apps/horizon-web` | Institutional / operations dashboard (web) | Minimal MapLibre flood layer IMPLEMENTED; full dashboard DESIGNED |
 | **Vector** | `apps/vector-console` | Operator console and field coordination | README + directory only |
-| **Forge** | `apps/forge-studio` | Model, scenario, and configuration studio | README + directory only |
-| Horizon Mobile | `apps/horizon-mobile` | Flutter field app ([ADR-0003](docs/adr/0003-flutter-mobile.md)) | README + directory only |
+| **Forge** | `apps/forge-studio` | Model, scenario, and configuration studio | Static shell IMPLEMENTED |
+| Horizon Mobile | `apps/horizon-mobile` | Flutter field app ([ADR-0003](docs/adr/0003-flutter-mobile.md)) | Minimal app IMPLEMENTED (CI debug APK) |
 
 ## What this repository is today
 
@@ -51,9 +51,18 @@ make api             # uvicorn :8000 — then open http://127.0.0.1:8000/horizon
 python -m simulation.python.iot_run --seed 42   # SIMULATED IoT → gateway → flood slice
 python -m simulation.python.iot_run --scenario simulation/scenarios/iot-bogota-fault-packet-loss.yaml --seed 42
 make scaffold-hazard NAME=demo_hazard
+make demo             # full harness: test + sim-flood + API smoke (see harness/demo/run_demo.sh)
 ```
 
-Release freeze **2026-10-08:** demo steps in [docs/manuals/demo-script.md](docs/manuals/demo-script.md) and [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md). Third hazard baseline: **wildfire** (`wildfire-co-bogota-demo`, ADR-0012). `GET /health` maturity reports `P4-wildfire-fault-release-prep-2026-10-08`.
+### Clean reproducibility (from repo root)
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+./harness/demo/run_demo.sh    # logs to harness/demo/output/demo-*.log
+```
+
+Release freeze **2026-10-08:** [demo script](docs/manuals/demo-script.md), [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md), [technical overview](docs/manuals/technical-overview.md). Tag **`v1.0.0-response-quest`** is draft-only until checklist + Helmut approval (workflow `.github/workflows/release-response-quest.yml`). `GET /health` maturity: `P5-release-candidate-prep-2026-10-08`.
 
 V1 map: `GET /v1/map/geojson` (SIMULATED FeatureCollection) rendered by `apps/horizon-web` (static MapLibre, no `package.json`).
 

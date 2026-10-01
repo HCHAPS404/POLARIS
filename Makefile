@@ -1,4 +1,4 @@
-.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api db-up db-migrate
+.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api db-up db-migrate demo
 
 PYTHON ?= python3
 
@@ -32,6 +32,9 @@ sim-replay:
 
 sim-iot:
 	$(PYTHON) -m simulation.python.iot_run --scenario simulation/scenarios/iot-bogota-demo.yaml --seed 42
+
+demo:
+	bash harness/demo/run_demo.sh
 
 api:
 	$(PYTHON) -m uvicorn main:app --app-dir platform/api --reload --port 8000

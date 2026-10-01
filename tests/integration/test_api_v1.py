@@ -20,7 +20,7 @@ def test_health_still_ok() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"
-    assert body["maturity"] == "P4-wildfire-fault-release-prep-2026-10-08"
+    assert body["maturity"] == "P5-release-candidate-prep-2026-10-08"
     assert body["storage_backend"] in ("memory", "postgis")
 
 
