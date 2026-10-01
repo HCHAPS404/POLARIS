@@ -1,0 +1,14 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: KE
+name: Kenya
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Africa/Nairobi
+priority_hazards:
+  - drought
+  - flood
+  - heat
+official_alert_authority: "KMD / NDOC"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

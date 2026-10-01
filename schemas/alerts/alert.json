@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/alerts/alert.json",
+  "title": "DecisionSupportAlert",
+  "description": "Alert-shaped payload. HITL required. Not official CAP fan-out. Logic NOT IMPLEMENTED in P0.",
+  "type": "object",
+  "required": ["alert_id", "disclaimer", "provenance", "human_in_the_loop"],
+  "properties": {
+    "alert_id": { "type": "string", "format": "uuid" },
+    "level": { "type": "string", "enum": ["info", "watch", "warning", "proposed"] },
+    "hazard_id": { "type": "string" },
+    "human_in_the_loop": { "type": "boolean", "const": true },
+    "disclaimer": {
+      "type": "string",
+      "minLength": 16,
+      "description": "Must state decision-support / not official evacuation authority."
+    },
+    "provenance": { "type": "object" },
+    "cap": { "type": "object", "description": "CAP mapping DESIGNED, not implemented" }
+  }
+}

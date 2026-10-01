@@ -1,0 +1,34 @@
+name: security
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Block committed .env and key files
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '(^|/)\.env$|\.pem$|^id_rsa$'; then
+            echo "Forbidden secret-like files tracked in git"
+            exit 1
+          fi
+          echo "No .env or pem files tracked."
+      - name: Pattern scan (no credentials)
+        run: |
+          set -euo pipefail
+          # Fail on obvious private keys or AWS-style access keys in tracked files.
+          if git grep -I -E 'BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY' -- . ':!.github/workflows/security.yml'; then
+            echo "Private key material found"
+            exit 1
+          fi
+          if git grep -I -E 'AKIA[0-9A-Z]{16}' -- . ':!.github/workflows/security.yml'; then
+            echo "AWS access key pattern found"
+            exit 1
+          fi
+          echo "Pattern scan clean."

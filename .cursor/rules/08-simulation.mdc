@@ -1,0 +1,11 @@
+---
+description: Digital Testbed simulation
+globs: simulation/**,harness/simulation/**,schemas/simulation/**
+alwaysApply: false
+---
+
+# Simulation
+
+- Python + C++20 + CMake is primary. Wokwi is not primary.
+- Future runner must be seeded and provenance-rich. No `polaris sim run` in P0.
+- See `README_SIMULATION_ENGINEERING.md` and ADR-0004.

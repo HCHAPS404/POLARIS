@@ -1,0 +1,37 @@
+# POLARIS P0 — DESIGNED / dev skeleton. NOT production.
+# Services: Postgres+PostGIS, Mosquitto (MQTT), NATS (internal bus, ADR-0002).
+# Do not claim HA, backups, or internet exposure.
+
+name: polaris-p0-dev
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-polaris}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-polaris}
+      POSTGRES_DB: ${POSTGRES_DB:-polaris}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U polaris"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./infra/compose/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  nats:
+    image: nats:2-alpine
+    restart: unless-stopped
+    command: ["-js", "-m", "8222"]
+    ports:
+      - "4222:4222"
+      - "8222:8222"

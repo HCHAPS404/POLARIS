@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/observation/observation.json",
+  "title": "Observation",
+  "description": "Typed observation contract. Not live sensor data.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["observation_id", "observed_at", "observed_property", "value", "source"],
+  "properties": {
+    "observation_id": { "type": "string", "format": "uuid" },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "observed_property": { "type": "string" },
+    "value": { "type": ["number", "string", "boolean"] },
+    "unit": { "type": "string" },
+    "quality_flag": { "type": "string", "enum": ["unknown", "raw", "qc_pass", "qc_fail"] },
+    "geometry": { "type": "object" },
+    "country_iso": { "type": "string", "minLength": 2, "maxLength": 2 },
+    "site_id": { "type": "string" },
+    "source": { "type": "string" },
+    "provenance": { "type": "object" }
+  }
+}

@@ -1,0 +1,14 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: DE
+name: Germany
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: Europe/Berlin
+priority_hazards:
+  - flood
+  - heat
+  - storm
+official_alert_authority: "DWD / BBK"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

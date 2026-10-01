@@ -1,0 +1,12 @@
+---
+description: Territorial and GIS contracts
+globs: domains/territory/**,configs/countries/**,configs/regions/**,configs/sites/**,docs/countries/**
+alwaysApply: false
+---
+
+# GIS / territory
+
+- Config hierarchy: CountryProfile → RegionProfile → SiteProfile.
+- Fifteen YAML countries are **integration stubs, not pilots**.
+- Colombia example region/site is labelled INTEGRATION CASE.
+- No live PostGIS claims in P0.

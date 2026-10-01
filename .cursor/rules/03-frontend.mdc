@@ -1,0 +1,11 @@
+---
+description: Horizon, Vector, Forge web surfaces
+globs: apps/horizon-web/**,apps/vector-console/**,apps/forge-studio/**
+alwaysApply: false
+---
+
+# Frontend
+
+- Apps are DESIGNED in P0 (README-only). Do not invent `package.json` unless implementing a real slice.
+- CI web jobs must skip when manifests are absent.
+- Decision-support copy: no official-warning language.

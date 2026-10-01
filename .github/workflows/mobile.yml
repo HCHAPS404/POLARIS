@@ -1,0 +1,19 @@
+name: mobile
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip until pubspec.yaml exists
+        run: |
+          if [ ! -f apps/horizon-mobile/pubspec.yaml ]; then
+            echo "horizon-mobile is README-only (P0 / ADR-0003). Skipping Flutter."
+            exit 0
+          fi
+          echo "pubspec.yaml present — add a real Flutter job in a later PR."
+          exit 0

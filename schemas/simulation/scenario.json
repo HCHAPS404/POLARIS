@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/simulation/scenario.json",
+  "title": "SimulationScenario",
+  "description": "Digital Testbed scenario contract. Runner NOT IMPLEMENTED in P0.",
+  "type": "object",
+  "required": ["scenario_id", "seed", "evidence"],
+  "properties": {
+    "scenario_id": { "type": "string" },
+    "seed": { "type": "integer" },
+    "hazard_id": { "type": "string" },
+    "fixtures": { "type": "array", "items": { "type": "string" } },
+    "evidence": { "type": "string" }
+  }
+}

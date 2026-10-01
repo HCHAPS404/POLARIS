@@ -1,0 +1,6 @@
+# Config schema fragment for hazard `flood`
+# Evidence: DESIGNED contract
+
+hazard_id: flood
+type: object
+required: [hazard_id, evidence]

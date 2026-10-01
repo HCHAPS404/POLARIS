@@ -1,0 +1,16 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: CO
+name: Colombia
+status: INTEGRATION_CASE
+evidence: DESIGNED
+timezone: America/Bogota
+priority_hazards:
+  - flood
+  - landslide
+  - earthquake
+  - volcano
+  - wildfire
+official_alert_authority: "UNGRD"
+notes: >
+  Integration case for config shape (Region + Site examples). NOT a field pilot.

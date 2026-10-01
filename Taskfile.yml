@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+  test:
+    desc: Run pytest
+    cmds:
+      - python3 -m pytest
+  lint:
+    desc: Run ruff
+    cmds:
+      - python3 -m ruff check .
+  health:
+    desc: Runnable P0 health check
+    cmds:
+      - python3 harness/dev/healthcheck.py
+  scaffold:hazard:
+    desc: Scaffold a hazard plugin
+    cmds:
+      - python3 generators/hazard/scaffold.py --name "{{.NAME}}"
+    requires:
+      vars: [NAME]
+  test:cpp:
+    desc: Configure, build, and test C++ placeholder
+    cmds:
+      - cmake -S . -B build/cpp
+      - cmake --build build/cpp
+      - ctest --test-dir build/cpp --output-on-failure

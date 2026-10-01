@@ -1,0 +1,12 @@
+---
+description: Architecture layering and bootstrap order
+globs: README_ARCHITECTURE.md,docs/adr/**,docs/architecture/**,platform/ports/**,platform/domain/**
+alwaysApply: false
+---
+
+# Architecture
+
+- Hexagonal + clean: domain must not import FastAPI, NATS, MQTT, PostGIS drivers, or UI kits.
+- Follow bootstrap order in `README_ARCHITECTURE.md`.
+- New ADRs go in `docs/adr/` with Status/Context/Decision/Alternatives/Consequences/Validation.
+- Country → Region → Site is the territorial config model.

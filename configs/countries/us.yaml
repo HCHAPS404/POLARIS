@@ -1,0 +1,16 @@
+# CountryProfile stub — P0
+# Evidence: DESIGNED. Not a live integration. Not a pilot.
+iso_code: US
+name: United States
+status: INTEGRATION_STUB
+evidence: DESIGNED
+timezone: America/New_York
+priority_hazards:
+  - flood
+  - cyclone
+  - wildfire
+  - earthquake
+  - tornado
+official_alert_authority: "NWS / FEMA"
+notes: >
+  Integration stub for onboarding research. NOT a national pilot or deployment.

@@ -1,0 +1,22 @@
+name: integration
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "harness/integration/**"
+      - "infra/compose/**"
+      - "docker-compose.yml"
+      - ".github/workflows/integration.yml"
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: P0 — no live stack required
+        run: |
+          echo "Compose is a DESIGNED skeleton, not production."
+          echo "Integration tests beyond health are PLACEHOLDER."
+          test -f docker-compose.yml
+          test -f harness/dev/healthcheck.py

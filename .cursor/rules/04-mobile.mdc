@@ -1,0 +1,11 @@
+---
+description: Flutter Horizon Mobile
+globs: apps/horizon-mobile/**
+alwaysApply: false
+---
+
+# Mobile
+
+- Flutter per ADR-0003. No `pubspec.yaml` until a real mobile slice is requested.
+- CI mobile job must skip, not fail, while README-only.
+- Offline + HITL disclaimer required when UI exists.

@@ -1,0 +1,27 @@
+openapi: "3.1.0"
+info:
+  title: POLARIS API
+  version: 0.0.1
+  description: |
+    P0 OpenAPI. IMPLEMENTED path: GET /health.
+    All other product routes are DESIGNED and omitted until implemented.
+    POLARIS is decision-support, not an official warning service.
+paths:
+  /health:
+    get:
+      summary: Liveness/readiness for the foundation API
+      operationId: getHealth
+      responses:
+        "200":
+          description: Service is up
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, service, evidence]
+                properties:
+                  status: { type: string, example: ok }
+                  service: { type: string, example: polaris }
+                  evidence: { type: string, example: IMPLEMENTED }
+                  maturity: { type: string }
+                  utc: { type: string, format: date-time }

@@ -1,0 +1,12 @@
+---
+description: FastAPI platform API and Python backend
+globs: platform/api/**,platform/application/**,platform/adapters/**
+alwaysApply: false
+---
+
+# Backend
+
+- FastAPI app in `platform/api`. P0: `GET /health` only.
+- Do not add PHI/alert routes without schemas, provenance, and tests.
+- Do not name a Python package `platform` at repo root (`platform/__init__.py` is forbidden — stdlib clash).
+- Python ≥ 3.12. Ruff + pytest must stay green.

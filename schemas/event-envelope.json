@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.local/schemas/event-envelope.json",
+  "title": "PolarisEventEnvelope",
+  "description": "Typed event envelope for NATS/internal bus. DESIGNED contract, not live traffic.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "event_type", "occurred_at", "source", "payload"],
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "minLength": 1 },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "source": { "type": "string", "minLength": 1 },
+    "schema_version": { "type": "string", "default": "0.0.1" },
+    "payload": { "type": "object" },
+    "provenance": { "$ref": "#/$defs/provenance" }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "run_id": { "type": "string" },
+        "git_sha": { "type": "string" },
+        "formula_version": { "type": "string" },
+        "checksum": { "type": "string" }
+      }
+    }
+  }
+}

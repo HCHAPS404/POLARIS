@@ -1,0 +1,57 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+.coverage
+htmlcov/
+
+# Node / Flutter (future)
+node_modules/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+.pub-cache/
+
+# C++ / CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+*.o
+*.so
+*.a
+*.dylib
+*.exe
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+credentials.json
+
+# Data dumps
+*.dump
+*.sql.gz
+data/raw/
+simulation/reports/*.json
+backtesting/reports/*.json
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Task
+.task/

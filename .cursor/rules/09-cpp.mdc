@@ -1,0 +1,11 @@
+---
+description: C++20 kernels and pybind11
+globs: simulation/cpp/**,simulation/bindings/**,CMakeLists.txt
+alwaysApply: false
+---
+
+# C++
+
+- C++20. Placeholder lib only in P0.
+- Do not add physics without tests and a formula version.
+- Bindings directory is DESIGNED until pybind11 is wired.

@@ -1,0 +1,19 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  note:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: P0 release guard
+        run: |
+          echo "No binary artefacts in P0. Tagging documents the foundation only."
+          echo "Do not publish PHI/alerts as a product release from this workflow."
+          test -f LICENSE
+          test -f platform/api/main.py
