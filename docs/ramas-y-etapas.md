@@ -1,6 +1,6 @@
 # POLARIS — Ramas, PRs y etapas
 
-**Corte:** 2026-10-02 (post backlog #13–#16, Ola 2 pre-local) · Repo: [HCHAPS404/POLARIS](https://github.com/HCHAPS404/POLARIS)
+**Corte:** 2026-10-02 (post #18 pulido web + mobile skeleton) · Repo: [HCHAPS404/POLARIS](https://github.com/HCHAPS404/POLARIS) · **`main`:** `c776f96`
 
 ## Tags en `main`
 
@@ -28,6 +28,8 @@
 | **P5 RC prep (FSPL, overview)** | [#10](https://github.com/HCHAPS404/POLARIS/pull/10) | `feature/p5-release-candidate-prep` | `ba146ab` |
 | **Release tag / CHANGELOG** | [#11](https://github.com/HCHAPS404/POLARIS/pull/11) | `cursor/release-tag-v1-3da7` | `2e0ff00` |
 | **Pulido + Docker local** | [#12](https://github.com/HCHAPS404/POLARIS/pull/12) | `feature/polish-product-local-deploy` | `0b233aa` |
+| **Ola 2 pre-local integration** | [#17](https://github.com/HCHAPS404/POLARIS/pull/17) | `feature/ola2-pre-local-integration` | `b528e8f` |
+| **Pulido web + Horizon Mobile skeleton** | [#18](https://github.com/HCHAPS404/POLARIS/pull/18) | `feature/polish-web-mobile-structure` | `c776f96` |
 
 ---
 
@@ -44,11 +46,11 @@ Notas merge: #14 primero; #15 rebased sobre `main` (conflictos en `pyproject.tom
 
 ---
 
-## Ola 2 (en curso)
+## Ola 2 — mergeada
 
-| Etapa | Rama | Contenido |
-|-------|------|-----------|
-| **Pre-local integration** | `feature/ola2-pre-local-integration` | E2E harness cadena completa, docs post-backlog, tag `v1.1.0-pre-local` |
+| Etapa | PR | Rama | Notas |
+|-------|-----|------|-------|
+| **Pre-local integration** | [#17](https://github.com/HCHAPS404/POLARIS/pull/17) | `feature/ola2-pre-local-integration` | Tag `v1.1.0-pre-local` @ `b528e8f` (anterior a #18; usar `main` HEAD para prueba local) |
 
 Copia sincronizada en store: `/cursor/stores/bc-c1aa1eb2-6730-427d-9ae9-6d6926cea46f/docs/ramas-y-etapas.md`.
 
@@ -58,7 +60,8 @@ Copia sincronizada en store: `/cursor/stores/bc-c1aa1eb2-6730-427d-9ae9-6d6926ce
 
 | Etapa | Contenido típico |
 |-------|------------------|
-| **Local polish** | Validación Helmut `docker compose up` + Horizon/Vector |
+| **Local polish** | Validación Helmut `docker compose up` + Horizon/Vector + [guía mobile](../manuals/horizon-mobile-test-guide.md) |
+| **Sim → web/mobile** | Runners registran vía API (ver `docs/product/mobile-data-flow.md`) — fase posterior |
 | **Calibración hazards** | Baselines #16 → calibración; sin HISTORICALLY_VALIDATED global |
 | **P6 Hardware productivo** | KiCad layout, firmware N657X0-Q |
 | **IEEE evidencia** | Release publicada, video, paper (envío humano) |
