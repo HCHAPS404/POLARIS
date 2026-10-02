@@ -56,12 +56,28 @@ function applyFixtureFromUrl() {
   }
 }
 
+function showApiError(message) {
+  const banner = qs("api-error-banner");
+  const detail = qs("api-error-detail");
+  if (banner) banner.classList.remove("hidden");
+  if (detail) detail.textContent = message ? `: ${message}` : "";
+}
+
+function clearApiError() {
+  qs("api-error-banner")?.classList.add("hidden");
+  const detail = qs("api-error-detail");
+  if (detail) detail.textContent = "";
+}
+
 async function refresh() {
   const floodId = qs("flood-fixture").value;
   const landslideId = qs("landslide-fixture").value;
   const extraId = qs("extra-hazard-fixture")?.value;
   const siteId = qs("compound-site").value;
   syncLinks(floodId);
+
+  qs("status").textContent = "Cargando API…";
+  clearApiError();
 
   try {
     const extraPromise = extraId
@@ -78,6 +94,11 @@ async function refresh() {
 
     qs("status").textContent = `API ${health.status} · ${health.maturity} · ${health.utc}`;
     qs("storage-backend").textContent = health.storage_backend;
+    const footer = qs("footer-version");
+    if (footer) {
+      footer.textContent = `${health.service} · ${health.maturity} · storage ${health.storage_backend}`;
+    }
+    clearApiError();
 
     const assessmentRows = [
       ...renderAssessments("flood", flood),
@@ -122,6 +143,9 @@ async function refresh() {
     );
   } catch (err) {
     qs("status").textContent = `Error: ${err.message}`;
+    showApiError(err.message);
+    const footer = qs("footer-version");
+    if (footer) footer.textContent = "API no alcanzable — datos en pantalla pueden estar obsoletos";
   }
 }
 

@@ -138,6 +138,26 @@ th {
   color: #ffb86b;
 }
 
+.app-footer {
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  color: #9fb0c3;
+}
+
+.api-error-banner {
+  background: #4a2020;
+  color: #ffc9c9;
+  border: 1px solid #8a4040;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+}
+
+.api-error-banner.hidden {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .layout {
     grid-template-columns: 1fr;

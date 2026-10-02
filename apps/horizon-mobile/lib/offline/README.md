@@ -1,6 +1,6 @@
-# Mobile offline package structure
+# Mobile offline cache policy
 
-**Evidence:** DESIGNED (directory contract; in-memory stub in `lib/services/offline_cache_stub.dart`)
+**Evidence:** DESIGNED (directory contract + in-memory stub)
 
 Production mobile builds would persist under app documents:
 
@@ -9,14 +9,25 @@ offline/
   manifest.json          # schema_version, data_class, ttl, provenance
   assessments.json       # last-good /v1/assessments body
   health.json            # last-good /health body
-  map/                   # optional vector tiles or geojson fragments (NOT IMPLEMENTED)
+  alerts.json            # last-good /v1/alerts body
+  map/                   # optional GeoJSON fragments (NOT IMPLEMENTED)
 ```
 
 ## Current implementation
 
-- `OfflineCacheStub` — in-memory only for tests and demo
+- `offline_cache_stub.dart` — in-memory only for tests and demo
 - No `path_provider` persistence in CI
 
-## Policy
+## Badges (SIMULATED vs LIVE)
 
-All cached payloads must retain `data_class` and decision-support disclaimers. No auto-send of alerts.
+| `data_class` | UI badge | Policy |
+|--------------|----------|--------|
+| `SIMULATED` | SIM | Default fixtures; safe for demos |
+| `HISTORICAL_REPLAY` | REPLAY | Mocoa 2017 replay; not HISTORICALLY_VALIDATED globally |
+| `LIVE_INTEGRATED` | LIVE | Only when API returns it with provenance; never assumed offline |
+
+Cached payloads **must** retain `data_class` and decision-support disclaimers. Stale cache shows an error hint — not fresh LIVE data.
+
+## Alerts
+
+DRAFT alerts may be cached for read-only review. **No auto-send** of operational notifications.

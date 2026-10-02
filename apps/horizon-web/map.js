@@ -43,6 +43,40 @@
   const statusEl = document.getElementById("status");
   const badgeEl = document.getElementById("data-class-badge");
   const freshnessEl = document.getElementById("freshness");
+  const footerVersion = document.getElementById("footer-version");
+  const footerStorage = document.getElementById("footer-storage");
+  const errorBanner = document.getElementById("api-error-banner");
+  const errorDetail = document.getElementById("api-error-detail");
+
+  function showApiError(message) {
+    if (!errorBanner) return;
+    errorBanner.classList.remove("hidden");
+    if (errorDetail) errorDetail.textContent = message ? ` ${message}` : "";
+  }
+
+  function clearApiError() {
+    errorBanner?.classList.add("hidden");
+    if (errorDetail) errorDetail.textContent = "";
+  }
+
+  async function refreshHealthFooter() {
+    try {
+      const res = await fetch(`${apiBase}/health`);
+      if (!res.ok) throw new Error(`health ${res.status}`);
+      const health = await res.json();
+      if (footerVersion) {
+        footerVersion.textContent = `${health.service} · ${health.maturity} · ${health.utc}`;
+      }
+      if (footerStorage) {
+        footerStorage.textContent = `storage ${health.storage_backend}`;
+      }
+      clearApiError();
+    } catch (err) {
+      if (footerVersion) footerVersion.textContent = "API no alcanzable";
+      if (footerStorage) footerStorage.textContent = "storage —";
+      showApiError(err.message);
+    }
+  }
   const fixtureSelect = document.getElementById("fixture-select");
   const vectorLink = document.getElementById("vector-link");
   const tilesToggle = document.getElementById("tiles-toggle");
@@ -243,6 +277,7 @@
     } catch (error) {
       statusEl.textContent = `Error: ${error.message}. ¿API en :8000?`;
       badgeEl.textContent = "error";
+      showApiError(error.message);
     }
   }
 
@@ -264,6 +299,7 @@
   });
 
   (async () => {
+    await refreshHealthFooter();
     try {
       const cfgRes = await fetch(`${apiBase}/v1/config/map`);
       if (cfgRes.ok) {

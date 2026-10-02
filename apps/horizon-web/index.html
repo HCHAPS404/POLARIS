@@ -63,6 +63,16 @@
       <p class="hint">Toca un polígono para ver fórmulas, GCI y nivel DRAFT.</p>
     </aside>
     <div id="map"></div>
+    <footer class="app-footer" id="app-footer">
+      <span id="footer-version">API …</span>
+      <span class="footer-sep">·</span>
+      <span id="footer-storage">storage …</span>
+    </footer>
+    <div class="api-error-banner hidden" id="api-error-banner" role="alert">
+      <strong>API no disponible o datos obsoletos.</strong>
+      <span id="api-error-detail"></span>
+      Comprueba <code>curl -s localhost:8000/health</code> o reinicia <code>docker compose up</code>.
+    </div>
     <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
     <script src="./offline-cache.js"></script>
     <script src="./map.js"></script>

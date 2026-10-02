@@ -12,6 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  go_router: ^14.6.2
   http: ^1.2.2
   webview_flutter: ^4.10.0
 
