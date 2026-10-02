@@ -1,6 +1,6 @@
 # POLARIS
 
-**Evidence:** DESIGNED (product vision) · **P0–P4 engineering IMPLEMENTED** on `main` · **P5 RC prep** (docs, RF FSPL, release workflow draft) on branch `feature/p5-release-candidate-prep`. CAP **OFFICIAL**, territorial graphs, PCB, and full HCI remain **NOT IMPLEMENTED**. See [technical overview](docs/manuals/technical-overview.md).
+**Evidence:** DESIGNED (product vision) · **P0–P6 backlog slice IMPLEMENTED** on `main` (PRs #1–#16). CAP **OFFICIAL**, PCB layout productivo, and full HCI remain **NOT IMPLEMENTED**. See [technical overview](docs/manuals/technical-overview.md) and [ramas y etapas](docs/ramas-y-etapas.md).
 
 **POLARIS** (adaptive multi-hazard intelligence architecture) is a **decision-support** system. It is **not** an official evacuation authority. Humans remain in the loop. Alerts without provenance and disclaimer are forbidden.
 
@@ -10,7 +10,7 @@
 | Team | Helmut, Laura, Lenin |
 | Target release (this sprint) | 2026-10-08 |
 | License | Apache-2.0 ([ADR-0005](docs/adr/0005-apache-2.0-license.md)) |
-| Repo maturity | Foundation on `main` once this PR merges; previously a 27-byte stub |
+| Repo maturity | Pre-local integration bundle on `main` (tag `v1.1.0-pre-local` after Ola 2) |
 
 ## Products (DESIGNED)
 
@@ -52,6 +52,7 @@ python -m simulation.python.iot_run --seed 42   # SIMULATED IoT → gateway → 
 python -m simulation.python.iot_run --scenario simulation/scenarios/iot-bogota-fault-packet-loss.yaml --seed 42
 make scaffold-hazard NAME=demo_hazard
 make demo             # full harness: test + sim-flood + API smoke (see harness/demo/run_demo.sh)
+make harness-e2e      # Ola 2 chain: sim + IoT + pytest e2e + API smoke (see harness/e2e/)
 ```
 
 ### Clean reproducibility (from repo root)
@@ -62,7 +63,7 @@ pip install -e ".[dev]"
 ./harness/demo/run_demo.sh    # logs to harness/demo/output/demo-*.log
 ```
 
-Release freeze **2026-10-08:** [demo script](docs/manuals/demo-script.md), [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md), [technical overview](docs/manuals/technical-overview.md). Tag **`v1.0.0-response-quest`** marks the IEEE Response Quest 2026 release artifact (draft GitHub Release; not competition submission). `GET /health` maturity: `v1.0.0-response-quest`.
+Release freeze **2026-10-08:** [demo script](docs/manuals/demo-script.md), [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md), [technical overview](docs/manuals/technical-overview.md). Tags: **`v1.0.0-response-quest`** (IEEE RC) and **`v1.1.0-pre-local`** (post-backlog pre-local bundle; not competition submission). Local Docker: [local deployment](docs/manuals/local-deployment.md). `GET /health` maturity: `v1.1.0-pre-local` (after Ola 2 merge).
 
 V1 map: `GET /v1/map/geojson` (SIMULATED FeatureCollection) rendered by `apps/horizon-web` (static MapLibre, no `package.json`).
 
@@ -81,7 +82,7 @@ docker compose -f docker-compose.yml -f infra/compose/compose.yml config
 | **PLACEHOLDER** | Directory, README, empty module, or stub interface only |
 | **NOT IMPLEMENTED** | Explicitly out of the current phase |
 
-**Current maturity:** DESIGNED product · foundation IMPLEMENTED · **V1 flood slice IMPLEMENTED** · **historical replay IMPLEMENTED (EXPERIMENTAL)**.
+**Current maturity:** DESIGNED product · **V1 flood + IoT + PostGIS dev IMPLEMENTED** · **15-country INTEGRATION CASE IMPLEMENTED** · **baseline hazard plugins IMPLEMENTED** · historical replay **EXPERIMENTAL** (not global HISTORICALLY_VALIDATED).
 
 ## Legal / operational disclaimer
 
