@@ -1,0 +1,5 @@
+hazard_id: erosion_subsidence
+evidence: IMPLEMENTED
+formula_version: erosion_subsidence.phi.cohesion-slope-rain.v0.1.0
+model_version: erosion_subsidence.baseline.v0.1.0
+phi_mode_policy: declared_on_observation

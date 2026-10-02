@@ -1,0 +1,10 @@
+scenario_id: tsunami-co-demo
+seed: 42
+hazard_id: tsunami
+data_class: SIMULATED
+fixture: data/synthetic/tsunami-co-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: tsunami.phi.event-wave.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED baseline for tsunami. Not field-validated. Not official.

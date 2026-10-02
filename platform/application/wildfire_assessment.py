@@ -55,6 +55,27 @@ class WildfireSliceResult:
             "assessments": [unit.to_dict() for unit in self.units],
         }
 
+    def to_geojson(self) -> dict[str, Any]:
+        from application.slice_result import BaselineHazardSliceResult
+
+        shim = BaselineHazardSliceResult(
+            hazard_id="wildfire",
+            fixture_id=self.fixture_id,
+            run_id=self.run_id,
+            seed=self.seed,
+            as_of=self.as_of,
+            data_class=self.data_class,
+            disclaimer=self.disclaimer,
+            units=self.units,
+            all_observations=self.all_observations,
+            evidence_block={},
+            phi_evidence_key="wildfire_phi",
+        )
+        return shim.to_geojson()
+
+    def observations(self) -> list[dict[str, Any]]:
+        return list(self.all_observations)
+
 
 def run_id_for(fixture_id: str, seed: int) -> str:
     return str(uuid5(NAMESPACE_URL, f"polaris:wildfire-slice:{fixture_id}:{seed}"))

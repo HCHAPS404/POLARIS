@@ -1,7 +1,15 @@
 # hazards/volcano
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED (transparent PHI baseline)
 
-Per-hazard plugin `volcano`. Individual-first. PHI not computed in P0.
+## Formula
 
-Regenerate extras with `make scaffold-hazard NAME=<id>`.
+`volcano.phi.so2-ash.v0.1.0` — see `phi.py` for thresholds and merge rules.
+
+## Limitations
+
+SO2 + ashfall screening; not VAAC plume model. Exposure and vulnerability are excluded from PHI. Not field-validated. Not official.
+
+## Fixture
+
+`data/synthetic/volcano-co-demo.simulated.json`

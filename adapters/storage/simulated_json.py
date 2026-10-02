@@ -30,6 +30,15 @@ FIXTURES: dict[str, Path] = {
     / "data"
     / "synthetic"
     / "wildfire-co-bogota-demo.simulated.json",
+    "flash-flood-co-demo": ROOT / "data" / "synthetic" / "flash-flood-co-demo.simulated.json",
+    "drought-co-demo": ROOT / "data" / "synthetic" / "drought-co-demo.simulated.json",
+    "heat-co-demo": ROOT / "data" / "synthetic" / "heat-co-demo.simulated.json",
+    "cyclone-co-demo": ROOT / "data" / "synthetic" / "cyclone-co-demo.simulated.json",
+    "smoke-co-demo": ROOT / "data" / "synthetic" / "smoke-co-demo.simulated.json",
+    "earthquake-co-demo": ROOT / "data" / "synthetic" / "earthquake-co-demo.simulated.json",
+    "tsunami-co-demo": ROOT / "data" / "synthetic" / "tsunami-co-demo.simulated.json",
+    "volcano-co-demo": ROOT / "data" / "synthetic" / "volcano-co-demo.simulated.json",
+    "erosion-co-demo": ROOT / "data" / "synthetic" / "erosion-co-demo.simulated.json",
 }
 
 

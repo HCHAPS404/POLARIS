@@ -59,14 +59,19 @@ function applyFixtureFromUrl() {
 async function refresh() {
   const floodId = qs("flood-fixture").value;
   const landslideId = qs("landslide-fixture").value;
+  const extraId = qs("extra-hazard-fixture")?.value;
   const siteId = qs("compound-site").value;
   syncLinks(floodId);
 
   try {
-    const [health, flood, landslide, chi, alerts] = await Promise.all([
+    const extraPromise = extraId
+      ? fetchJson(`/v1/assessments?fixture_id=${encodeURIComponent(extraId)}`)
+      : Promise.resolve({ assessments: [] });
+    const [health, flood, landslide, extra, chi, alerts] = await Promise.all([
       fetchJson("/health"),
       fetchJson(`/v1/assessments?fixture_id=${encodeURIComponent(floodId)}`),
       fetchJson(`/v1/assessments?fixture_id=${encodeURIComponent(landslideId)}`),
+      extraPromise,
       fetchJson(`/v1/compound/chi?site_id=${encodeURIComponent(siteId)}`),
       fetchJson(`/v1/alerts?fixture_id=${encodeURIComponent(floodId)}`),
     ]);

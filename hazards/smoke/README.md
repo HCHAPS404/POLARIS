@@ -1,7 +1,15 @@
 # hazards/smoke
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED (transparent PHI baseline)
 
-Per-hazard plugin `smoke`. Individual-first. PHI not computed in P0.
+## Formula
 
-Regenerate extras with `make scaffold-hazard NAME=<id>`.
+`smoke.phi.pm-visibility.v0.1.0` — see `phi.py` for thresholds and merge rules.
+
+## Limitations
+
+PM2.5 + visibility; not dispersion model. Exposure and vulnerability are excluded from PHI. Not field-validated. Not official.
+
+## Fixture
+
+`data/synthetic/smoke-co-demo.simulated.json`

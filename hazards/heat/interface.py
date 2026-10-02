@@ -1,4 +1,4 @@
-"""Port for hazard `heat`. Evidence: PLACEHOLDER — registry stub only; no PHI in P5."""
+"""Port for hazard `heat`. Evidence: IMPLEMENTED heat-stress PHI baseline."""
 
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ class HeatModel(Protocol):
         *,
         temperature_c: float,
         heat_index_c: float | None,
+        phi_mode: str,
         spatial_unit_id: str,
         source_id: str,
         observed_at: str,

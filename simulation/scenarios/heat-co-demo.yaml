@@ -1,0 +1,10 @@
+scenario_id: heat-co-demo
+seed: 42
+hazard_id: heat
+data_class: SIMULATED
+fixture: data/synthetic/heat-co-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: heat.phi.heat-stress.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED baseline for heat. Not field-validated. Not official.

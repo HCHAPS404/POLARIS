@@ -1,0 +1,8 @@
+{
+  "hazard_id": "smoke",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "smoke.phi.pm-visibility.v0.1.0",
+  "model_version": "smoke.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "PM2.5 + visibility; not dispersion model."
+}

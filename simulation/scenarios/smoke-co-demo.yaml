@@ -1,0 +1,10 @@
+scenario_id: smoke-co-demo
+seed: 42
+hazard_id: smoke
+data_class: SIMULATED
+fixture: data/synthetic/smoke-co-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: smoke.phi.pm-visibility.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED baseline for smoke. Not field-validated. Not official.

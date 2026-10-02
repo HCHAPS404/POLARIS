@@ -1,7 +1,15 @@
 # hazards/tsunami
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED (transparent PHI baseline)
 
-Per-hazard plugin `tsunami`. Individual-first. PHI not computed in P0.
+## Formula
 
-Regenerate extras with `make scaffold-hazard NAME=<id>`.
+`tsunami.phi.event-wave.v0.1.0` — see `phi.py` for thresholds and merge rules.
+
+## Limitations
+
+Event-triggered wave/run-up; no standalone forecast. Exposure and vulnerability are excluded from PHI. Not field-validated. Not official.
+
+## Fixture
+
+`data/synthetic/tsunami-co-demo.simulated.json`

@@ -23,6 +23,21 @@
       fixture: "wildfire-co-bogota-demo",
       paint: { "fill-color": "#d62728", "fill-opacity": 0.4 },
     },
+    heat: {
+      checkbox: "layer-heat",
+      fixture: "heat-co-demo",
+      paint: { "fill-color": "#ff7f0e", "fill-opacity": 0.42 },
+    },
+    flash_flood: {
+      checkbox: "layer-flash_flood",
+      fixture: "flash-flood-co-demo",
+      paint: { "fill-color": "#1f78b4", "fill-opacity": 0.48 },
+    },
+    earthquake: {
+      checkbox: "layer-earthquake",
+      fixture: "earthquake-co-demo",
+      paint: { "fill-color": "#9467bd", "fill-opacity": 0.45 },
+    },
   };
 
   const statusEl = document.getElementById("status");

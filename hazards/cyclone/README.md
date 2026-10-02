@@ -1,7 +1,15 @@
 # hazards/cyclone
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED (transparent PHI baseline)
 
-Per-hazard plugin `cyclone`. Individual-first. PHI not computed in P0.
+## Formula
 
-Regenerate extras with `make scaffold-hazard NAME=<id>`.
+`cyclone.phi.wind-pressure.v0.1.0` — see `phi.py` for thresholds and merge rules.
+
+## Limitations
+
+Wind + optional pressure; not track forecast. Exposure and vulnerability are excluded from PHI. Not field-validated. Not official.
+
+## Fixture
+
+`data/synthetic/cyclone-co-demo.simulated.json`

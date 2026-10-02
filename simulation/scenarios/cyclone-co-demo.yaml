@@ -1,0 +1,10 @@
+scenario_id: cyclone-co-demo
+seed: 42
+hazard_id: cyclone
+data_class: SIMULATED
+fixture: data/synthetic/cyclone-co-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: cyclone.phi.wind-pressure.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED baseline for cyclone. Not field-validated. Not official.

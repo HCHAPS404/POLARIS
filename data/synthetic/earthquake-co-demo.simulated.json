@@ -1,0 +1,57 @@
+{
+  "fixture_id": "earthquake-co-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "earthquake",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T12:00:00Z",
+  "disclaimer": "Synthetic earthquake baseline demo. SIMULATED only.",
+  "observations": [
+    {
+      "observation_id": "eq-1",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "pga_g",
+      "value": 0.12,
+      "unit": "g",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-earthquake-001",
+      "source": "polaris.synthetic.earthquake-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "RAPID_DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "earthquake-co-demo",
+        "data_class": "SIMULATED"
+      }
+    }
+  ]
+}

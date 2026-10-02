@@ -1,7 +1,15 @@
 # hazards/flash_flood
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED (transparent PHI baseline)
 
-Per-hazard plugin `flash_flood`. Individual-first. PHI not computed in P0.
+## Formula
 
-Regenerate extras with `make scaffold-hazard NAME=<id>`.
+`flash_flood.phi.rain-burst.v0.1.0` — see `phi.py` for thresholds and merge rules.
+
+## Limitations
+
+Intense rain burst; not hydrodynamic routing. Exposure and vulnerability are excluded from PHI. Not field-validated. Not official.
+
+## Fixture
+
+`data/synthetic/flash-flood-co-demo.simulated.json`

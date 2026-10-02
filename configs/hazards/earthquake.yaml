@@ -1,0 +1,6 @@
+hazard_id: earthquake
+evidence: IMPLEMENTED
+formula_version: earthquake.phi.pga-shaking.v0.1.0
+model_version: earthquake.baseline.v0.1.0
+phi_mode_policy: rapid_detection_eew_only
+notes: No prediction; RAPID_DETECTION and EEW modes only.

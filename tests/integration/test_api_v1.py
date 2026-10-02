@@ -106,6 +106,30 @@ def test_landslide_fixture_via_api() -> None:
     assert len(body["assessments"]) == 2
 
 
+def test_hazards_catalog() -> None:
+    response = client.get("/v1/hazards")
+    assert response.status_code == 200
+    body = response.json()
+    ids = {h["hazard_id"] for h in body["hazards"]}
+    assert "earthquake" in ids
+    assert "heat" in ids
+    assert all(h["evidence"] == "IMPLEMENTED" for h in body["hazards"])
+
+
+def test_heat_fixture_hazard_id_param() -> None:
+    ok = client.get(
+        "/v1/assessments",
+        params={"fixture_id": "heat-co-demo", "hazard_id": "heat"},
+    )
+    assert ok.status_code == 200
+    assert ok.json()["hazard_id"] == "heat"
+    bad = client.get(
+        "/v1/assessments",
+        params={"fixture_id": "heat-co-demo", "hazard_id": "flood"},
+    )
+    assert bad.status_code == 400
+
+
 def test_alerts_cap_format() -> None:
     response = client.get("/v1/alerts", params={"format": "cap"})
     assert response.status_code == 200
