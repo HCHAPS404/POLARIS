@@ -21,7 +21,7 @@ POLARIS is **decision-support only**. Humans in the loop. No OFFICIAL evacuation
 
 | Area | Evidence | Notes |
 |------|----------|-------|
-| `GET /health` | IMPLEMENTED | Maturity `P5-release-candidate-prep-2026-10-08` |
+| `GET /health` | IMPLEMENTED | Maturity `v1.0.0-response-quest` |
 | FastAPI V1 observations/assessments/alerts/map | IMPLEMENTED | SIMULATED + HISTORICAL_REPLAY fixtures |
 | PostGIS persistence | IMPLEMENTED | Optional; in-memory fallback |
 | CAP OFFICIAL alerting | NOT IMPLEMENTED | DRAFT/SIMULATION via `format=cap` only |
