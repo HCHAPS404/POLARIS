@@ -1,5 +1,5 @@
 # simulation/bindings
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED (optional pybind11 module)
 
-Digital Testbed layer `bindings`. See README_SIMULATION_ENGINEERING.md. Wokwi is not primary.
+`event_scheduler_module.cpp` exposes `polaris.EventScheduler` when built with `-DBUILD_PYBIND11_BINDINGS=ON` (`make test-cpp-bindings`). Wokwi is not primary.

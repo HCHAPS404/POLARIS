@@ -1,14 +1,17 @@
-# N657X0-Q — reference BOM placeholder
+# N657X0-Q — reference design
 
 **Evidence:** DESIGNED (no fabrication, certification, or field deployment claim)
 
-Placeholder reference design for the **N657X0-Q** LoRa-class sensor node referenced in SIMULATED IoT scenarios (`configs/devices/`, ADR-0008). Intended for P6 hardware spin — not part of the `v1.0.0-response-quest` release evidence bar.
+Reference integration case for the **STM32 NUCLEO N657X0-Q** field node (ADR-0008). Aligns with SIMULATED IoT scenarios (`configs/devices/*-node.yaml`, `firmware/node/`).
 
-## Scope (future)
+## Artifacts
 
-- KiCad project + BOM stub (PLACEHOLDER)
-- Firmware contract alignment with `schemas/` IoT ingest payloads
-- RF link budget cross-check via `simulation/python/rf/` (**SIMULATED** FSPL only)
+| Artifact | Path | Evidence |
+|----------|------|----------|
+| BOM (CSV) | [bom.csv](./bom.csv) | DESIGNED |
+| Block diagram | [block-diagram.md](./block-diagram.md) | DESIGNED |
+| Antenna notes | [../../antenna/n657x0-q-antenna-notes.md](../../antenna/n657x0-q-antenna-notes.md) | DESIGNED |
+| KiCad placeholder | [../../pcb/kicad/n657x0-q-node/README.md](../../pcb/kicad/n657x0-q-node/README.md) | NOT PRODUCTION |
 
 ## Explicit non-claims
 

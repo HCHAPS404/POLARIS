@@ -83,6 +83,10 @@ async function refresh() {
       assessmentRows,
     );
 
+    if (window.PolarisVectorTimelines) {
+      window.PolarisVectorTimelines.renderTimeline(flood);
+    }
+
     const chiRows = (chi.units || []).map((u) => {
       const active = u.chi?.inputs?.interaction_active;
       const cls = active ? ' class="chi-active"' : "";

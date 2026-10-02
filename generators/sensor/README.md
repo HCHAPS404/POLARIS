@@ -1,3 +1,3 @@
 # generators/sensor
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED — `scaffold.py` + `task scaffold:sensor`

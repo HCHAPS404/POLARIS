@@ -1,3 +1,3 @@
 # generators/scenario
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED — `scaffold.py` + `task scaffold:scenario`

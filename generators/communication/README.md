@@ -1,3 +1,3 @@
 # generators/communication
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED — `scaffold.py` + `task scaffold:communication`

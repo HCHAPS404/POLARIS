@@ -1,0 +1,11 @@
+ref,quantity,description,manufacturer,mpn,evidence,notes
+U1,1,STM32N6 MCU module (NUCLEO carrier),STMicroelectronics,NUCLEO-N657X0-Q,DESIGNED,Reference board per ADR-0008 — not a custom PCB spin
+U2,1,Sub-GHz LoRa transceiver module placeholder,Murata / Semtech,TYPE-ABZ-868,DESIGNED,Logical link to simulation/python/iot/comm — no RF validation
+J1,1,SWD debug header,Generic,2x5 1.27mm,DESIGNED,Factory / lab only
+J2,1,USB-C (power + ST-LINK),On-board NUCLEO,-,DESIGNED,Dev kit integrated
+S1,1,Ultrasonic level sensor (I2C),Generic,JSN-SR04T-PLACEHOLDER,DESIGNED,Maps to configs/devices/hydro-node.yaml
+S2,1,Tipping bucket rain gauge (pulse/GPIO),Generic,TB4-PLACEHOLDER,DESIGNED,Maps to configs/devices/weather-node.yaml
+ANT1,1,868 MHz whip / PCB antenna,Generic,SUBGHZ-868-STUB,DESIGNED,See hardware/antenna/n657x0-q-antenna-notes.md
+C1-C10,10,Decoupling 100nF,Generic,0402,DESIGNED,Placeholder counts
+R1-R6,6,Pull-ups / series,Generic,0402,DESIGNED,Placeholder counts
+PWR1,1,Li-SOCl2 or mains-derived supply (site dependent),TBD,FIELD-DEPENDENT,DESIGNED,Not specified in repo — integration case only

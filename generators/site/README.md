@@ -1,3 +1,3 @@
 # generators/site
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED — `scaffold.py` + `task scaffold:site`

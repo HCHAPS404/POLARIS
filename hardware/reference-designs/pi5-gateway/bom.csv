@@ -1,0 +1,7 @@
+ref,quantity,description,manufacturer,mpn,evidence,notes
+GW1,1,Raspberry Pi 5 8GB,Raspberry Pi,SC1111,DESIGNED,Reference SBC — not ruggedized field enclosure
+PS1,1,27W USB-C PSU certified for Pi 5,Generic,USB-C-27W,DESIGNED,Lab bench reference
+RF1,1,USB LoRa concentrator / HAT placeholder,RAK / Waveshare,CONCENTRATOR-868-STUB,DESIGNED,No homologation claim
+ANT-GW,1,868 MHz gateway antenna,Generic,GATEWAY-868-STUB,DESIGNED,See hardware/antenna/pi5-gateway-antenna-notes.md
+SD1,1,Industrial microSD 32GB+,Generic,IND-SD-32,DESIGNED,OS + buffer persistence DESIGNED only
+ENC1,1,IP-rated enclosure,TBD,SITE-DEPENDENT,DESIGNED,Not specified in-tree
