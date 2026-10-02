@@ -24,6 +24,17 @@ def test_health_still_ok() -> None:
     assert body["storage_backend"] in ("memory", "postgis")
 
 
+def test_mobile_bootstrap_minimal() -> None:
+    response = client.get("/v1/mobile/bootstrap")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["evidence"] == "IMPLEMENTED"
+    assert body["maturity"] == "v1.1.0-pre-local"
+    assert "flood-bogota-demo" in body["fixtures"]
+    assert body["horizon_url"].startswith("/horizon/")
+    assert "disclaimer" in body
+
+
 def test_assessments_chain_and_draft_only() -> None:
     response = client.get("/v1/assessments")
     assert response.status_code == 200

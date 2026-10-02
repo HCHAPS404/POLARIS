@@ -178,6 +178,25 @@ def list_hazards() -> dict:
     }
 
 
+@app.get("/v1/mobile/bootstrap")
+def mobile_bootstrap(
+    fixture_id: str = Query(default="flood-bogota-demo"),
+) -> dict:
+    """Minimal mobile shell bootstrap — maturity, fixtures, Horizon path (no LIVE feed)."""
+    try:
+        load_fixture(fixture_id)
+    except FixtureNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return {
+        "disclaimer": DISCLAIMER,
+        "maturity": "v1.1.0-pre-local",
+        "fixtures": ["flood-bogota-demo", "flood-mocoa-2017-replay"],
+        "default_fixture_id": fixture_id,
+        "horizon_url": f"/horizon/?fixture_id={fixture_id}",
+        "evidence": "IMPLEMENTED",
+    }
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     repo = get_observation_repository()

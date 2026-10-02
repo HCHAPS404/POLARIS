@@ -12,6 +12,7 @@ FastAPI delivery.
 | `POST /v1/assessments/run` | IMPLEMENTED |
 | `GET /v1/alerts` | IMPLEMENTED (DRAFT only) |
 | `GET /v1/map/geojson` | IMPLEMENTED |
+| `GET /v1/mobile/bootstrap` | IMPLEMENTED (maturity, fixtures, Horizon path) |
 | `GET /v1/config/map` | IMPLEMENTED (Horizon tile env) |
 | `GET /v1/meta/demo-latest` | IMPLEMENTED (latest demo log path) |
 | `GET /v1/backtests/{scenario_id}` | IMPLEMENTED (HISTORICAL_REPLAY, EXPERIMENTAL) |

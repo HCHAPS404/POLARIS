@@ -4,6 +4,19 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ## [Unreleased]
 
+### Added
+
+- **Horizon Mobile structure:** clean-arch folders (`lib/core`, `lib/features`, `lib/shared`), go_router bottom nav, stub screens (Home, Map, Alerts, Site status, Settings, Preparedness), minimal Dart models aligned with V1 API
+- **Docs:** `docs/manuals/horizon-mobile-test-guide.md`, `docs/product/mobile-data-flow.md` (sim → API → mobile, phase 2)
+- **API:** `GET /v1/mobile/bootstrap` — maturity, fixtures, relative Horizon URL for WebView
+
+### Changed
+
+- **Web polish:** Horizon/Vector loading + stale-API error banners; footer version from `GET /health`
+- **Forge:** phase-2 note — simulations feed web/mobile via shared API + harness runners
+- **Docs:** `docs/countries/README.md` index for 15 ISO territories; `local-deployment.md` notes `v1.1.0-pre-local` checkout
+- **Product:** `docs/product/obligaciones.md` — polish + mobile skeleton tracked; Ola 2 merge pending tag
+
 ## [v1.1.0-pre-local] — 2026-10-02
 
 Post-backlog **pre-local integration** bundle (PRs #13–#16 already on `main`). **Not** IEEE competition submission; **not** global HISTORICALLY_VALIDATED.

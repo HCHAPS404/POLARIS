@@ -7,7 +7,12 @@ POLARIS is **decision-support only**. No OFFICIAL alerts. Data on the map is `SI
 ## Prerequisites
 
 - Docker Engine 24+ and Docker Compose v2
-- Git clone of this repository
+- Git clone of this repository (recommended checkout for the pre-local bundle: **`v1.1.0-pre-local`** when the tag is published on `main`)
+
+```bash
+git fetch --tags
+git checkout v1.1.0-pre-local   # optional; main may match pre-local maturity string in GET /health
+```
 - Optional: Flutter SDK 3.24+ if you build the Horizon Mobile APK (`apps/horizon-mobile`)
 - Optional: outbound HTTPS if you enable OSM raster tiles (`POLARIS_MAP_TILE_ENABLED=1`)
 
