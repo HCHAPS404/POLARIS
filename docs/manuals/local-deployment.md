@@ -37,17 +37,20 @@ Wait until the API container logs `Application startup complete`, then verify:
 
 ## Seed / demo data
 
-Fixtures ship in `data/synthetic/` — no separate DB seed is required for the map. To run the full IEEE harness (pytest + sim + API smoke log):
+Fixtures ship in `data/synthetic/` — no separate DB seed is required for the map.
 
-```bash
-make demo
-# or inside compose:
-make demo-compose
-# or:
-docker compose exec api make demo
-```
+### Harness (post-backlog `main`)
 
-Logs land in `harness/demo/output/demo-*.log` on the host when you run `make demo` locally.
+| Command | Scope |
+|---------|--------|
+| `make harness-e2e` | **Ola 2 chain:** sim flood + IoT → pytest `tests/e2e` → API smoke (no Docker) |
+| `python harness/e2e/run_e2e.py --postgis` | Same + PostGIS roundtrip when `POLARIS_DATABASE_URL` is set |
+| `make demo` | Full IEEE bundle: **all** pytest + sim-flood + API smoke log |
+| `make demo-compose` / `docker compose exec api make demo` | Demo inside running stack |
+
+See [harness/e2e/README.md](../../harness/e2e/README.md).
+
+Logs land in `harness/demo/output/demo-*.log` when you run `make demo` locally.
 
 ## PostGIS migrations
 

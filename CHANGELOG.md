@@ -4,6 +4,19 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ## [Unreleased]
 
+## [v1.1.0-pre-local] — 2026-10-02
+
+Post-backlog **pre-local integration** bundle (PRs #13–#16 already on `main`). **Not** IEEE competition submission; **not** global HISTORICALLY_VALIDATED.
+
+### Added
+
+- **Ola 2 E2E harness:** `harness/e2e/run_e2e.py` — sim flood + IoT → pytest `tests/e2e` → API smoke; optional PostGIS via `--postgis` / `POLARIS_DATABASE_URL`
+- **Docs:** `docs/ramas-y-etapas.md` (tabla PR #13–#16), obligaciones y local-deployment actualizados para post-backlog `main`
+
+### Changed
+
+- `GET /health` maturity string → `v1.1.0-pre-local`
+
 ## [v1.0.0-response-quest] — 2026-10-02
 
 IEEE Response Quest 2026 release artifact (decision-support / SIMULATED + HISTORICAL_REPLAY evidence). **Not** a competition submission marker; **not** OFFICIAL alerting.
