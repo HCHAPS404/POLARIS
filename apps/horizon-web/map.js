@@ -1,4 +1,4 @@
-/* Horizon: MapLibre layer over SIMULATED or HISTORICAL_REPLAY flood assessments. */
+/* Horizon: MapLibre over SIMULATED / HISTORICAL_REPLAY assessments. No LIVE. */
 (() => {
   const params = new URLSearchParams(window.location.search);
   const apiBase = (() => {
@@ -9,25 +9,50 @@
     }
     return "http://127.0.0.1:8000";
   })();
-  const fixtureId = params.get("fixture_id") || "flood-bogota-demo";
 
-  const status = document.getElementById("status");
-  const map = new maplibregl.Map({
-    container: "map",
-    style: {
-      version: 8,
-      sources: {},
-      layers: [
-        {
-          id: "background",
-          type: "background",
-          paint: { "background-color": "#d9e4ec" },
-        },
-      ],
+  let fixtureId = params.get("fixture_id") || "flood-bogota-demo";
+  const LAYER_DEFS = {
+    flood: { checkbox: "layer-flood", suffix: "", primary: true },
+    landslide: {
+      checkbox: "layer-landslide",
+      fixture: "landslide-co-slope-demo",
+      paint: { "fill-color": "#8c564b", "fill-opacity": 0.45 },
     },
-    center: [-74.07, 4.71],
-    zoom: 11,
-  });
+    wildfire: {
+      checkbox: "layer-wildfire",
+      fixture: "wildfire-co-bogota-demo",
+      paint: { "fill-color": "#d62728", "fill-opacity": 0.4 },
+    },
+  };
+
+  const statusEl = document.getElementById("status");
+  const badgeEl = document.getElementById("data-class-badge");
+  const freshnessEl = document.getElementById("freshness");
+  const fixtureSelect = document.getElementById("fixture-select");
+  const vectorLink = document.getElementById("vector-link");
+  const tilesToggle = document.getElementById("tiles-toggle");
+
+  if (fixtureSelect) {
+    fixtureSelect.value = fixtureId;
+    fixtureSelect.addEventListener("change", () => {
+      fixtureId = fixtureSelect.value;
+      syncUrl();
+      reloadLayers();
+    });
+  }
+
+  function syncUrl() {
+    const next = new URL(window.location.href);
+    next.searchParams.set("fixture_id", fixtureId);
+    window.history.replaceState({}, "", next);
+    if (vectorLink) {
+      vectorLink.href = `/vector/?fixture_id=${encodeURIComponent(fixtureId)}`;
+    }
+  }
+  syncUrl();
+
+  let mapConfig = { tiles_enabled: false, tile_url_template: null };
+  let map;
 
   function riskColor(value) {
     if (value >= 0.2) return "#e31a1c";
@@ -53,63 +78,179 @@
     `;
   }
 
-  map.on("load", async () => {
-    try {
-      const response = await fetch(
-        `${apiBase}/v1/map/geojson?fixture_id=${encodeURIComponent(fixtureId)}`
-      );
-      if (!response.ok) {
-        throw new Error(`API ${response.status}`);
-      }
-      const geojson = await response.json();
-      const allowed = new Set(["SIMULATED", "HISTORICAL_REPLAY"]);
-      if (!allowed.has(geojson.data_class)) {
-        throw new Error("refusing map layer that is not SIMULATED or HISTORICAL_REPLAY");
-      }
-      status.textContent =
-        `Loaded ${geojson.features.length} ${geojson.data_class} units · ${fixtureId} · run ${geojson.run_id}`;
-
-      geojson.features.forEach((feature) => {
-        feature.properties.color = riskColor(feature.properties.operational_risk);
+  function baseStyle() {
+    const layers = [
+      {
+        id: "background",
+        type: "background",
+        paint: { "background-color": "#d9e4ec" },
+      },
+    ];
+    const sources = {};
+    if (tilesToggle?.checked && mapConfig.tile_url_template) {
+      sources.osm = {
+        type: "raster",
+        tiles: [mapConfig.tile_url_template],
+        tileSize: 256,
+        attribution: mapConfig.attribution || "",
+      };
+      layers.push({
+        id: "osm-raster",
+        type: "raster",
+        source: "osm",
+        paint: { "raster-opacity": 0.85 },
       });
+    }
+    return { version: 8, sources, layers };
+  }
 
-      const first = geojson.features[0];
-      if (first && first.geometry && first.geometry.type === "Polygon") {
-        const ring = first.geometry.coordinates[0];
-        const lon = ring.reduce((s, p) => s + p[0], 0) / ring.length;
-        const lat = ring.reduce((s, p) => s + p[1], 0) / ring.length;
-        map.setCenter([lon, lat]);
-        if (geojson.data_class === "HISTORICAL_REPLAY") {
-          map.setZoom(12);
+  function ensureMap() {
+    if (map) {
+      return map;
+    }
+    map = new maplibregl.Map({
+      container: "map",
+      style: baseStyle(),
+      center: [-74.07, 4.71],
+      zoom: 11,
+    });
+    map.on("click", (e) => {
+      const features = map.queryRenderedFeatures(e.point);
+      const hit = features.find((f) => f.layer.id.startsWith("hazard-"));
+      if (!hit) return;
+      const props = hit.properties;
+      new maplibregl.Popup({ offset: 18, maxWidth: "280px", anchor: "left" })
+        .setLngLat(e.lngLat)
+        .setHTML(popupHtml(props))
+        .addTo(map);
+    });
+    return map;
+  }
+
+  function removeLayer(id) {
+    if (map.getLayer(`${id}-fill`)) map.removeLayer(`${id}-fill`);
+    if (map.getLayer(`${id}-line`)) map.removeLayer(`${id}-line`);
+    if (map.getSource(id)) map.removeSource(id);
+  }
+
+  async function loadGeojson(layerId, fid) {
+    const response = await fetch(
+      `${apiBase}/v1/map/geojson?fixture_id=${encodeURIComponent(fid)}`,
+    );
+    if (!response.ok) {
+      throw new Error(`${layerId} API ${response.status}`);
+    }
+    const geojson = await response.json();
+    const allowed = new Set(["SIMULATED", "HISTORICAL_REPLAY"]);
+    if (!allowed.has(geojson.data_class)) {
+      throw new Error(`refusing ${geojson.data_class}`);
+    }
+    geojson.features.forEach((feature) => {
+      feature.properties.color = riskColor(feature.properties.operational_risk);
+    });
+    return geojson;
+  }
+
+  async function addLayer(layerId, fid, paintOverride) {
+    removeLayer(layerId);
+    const geojson = await loadGeojson(layerId, fid);
+    map.addSource(layerId, { type: "geojson", data: geojson });
+    const fillPaint = paintOverride || {
+      "fill-color": ["get", "color"],
+      "fill-opacity": 0.55,
+    };
+    map.addLayer({
+      id: `${layerId}-fill`,
+      type: "fill",
+      source: layerId,
+      paint: fillPaint,
+    });
+    map.addLayer({
+      id: `${layerId}-line`,
+      type: "line",
+      source: layerId,
+      paint: { "line-color": "#222", "line-width": 1.2 },
+    });
+    return geojson;
+  }
+
+  async function reloadLayers() {
+    const m = ensureMap();
+    statusEl.textContent = "Cargando capas…";
+    try {
+      let primaryMeta = null;
+      if (document.getElementById(LAYER_DEFS.flood.checkbox)?.checked) {
+        primaryMeta = await addLayer("hazard-flood", fixtureId);
+      } else {
+        removeLayer("hazard-flood");
+      }
+
+      for (const [key, def] of Object.entries(LAYER_DEFS)) {
+        if (key === "flood") continue;
+        const el = document.getElementById(def.checkbox);
+        if (el?.checked) {
+          await addLayer(`hazard-${key}`, def.fixture, def.paint);
+        } else {
+          removeLayer(`hazard-${key}`);
         }
       }
 
-      map.addSource("flood-slice", { type: "geojson", data: geojson });
-      map.addLayer({
-        id: "flood-fill",
-        type: "fill",
-        source: "flood-slice",
-        paint: {
-          "fill-color": ["get", "color"],
-          "fill-opacity": 0.55,
-        },
-      });
-      map.addLayer({
-        id: "flood-line",
-        type: "line",
-        source: "flood-slice",
-        paint: { "line-color": "#222", "line-width": 1.5 },
-      });
-
-      map.on("click", "flood-fill", (event) => {
-        const props = event.features[0].properties;
-        new maplibregl.Popup({ offset: 18, maxWidth: "280px", anchor: "left" })
-          .setLngLat(event.lngLat)
-          .setHTML(popupHtml(props))
-          .addTo(map);
-      });
+      if (primaryMeta) {
+        badgeEl.textContent = primaryMeta.data_class;
+        badgeEl.className = `badge dc-${primaryMeta.data_class.toLowerCase()}`;
+        freshnessEl.textContent = `run ${primaryMeta.run_id} · ${primaryMeta.features.length} unidades · API ${apiBase || "(same origin)"}`;
+        const first = primaryMeta.features[0];
+        if (first?.geometry?.type === "Polygon") {
+          const ring = first.geometry.coordinates[0];
+          const lon = ring.reduce((s, p) => s + p[0], 0) / ring.length;
+          const lat = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+          m.setCenter([lon, lat]);
+          if (primaryMeta.data_class === "HISTORICAL_REPLAY") {
+            m.setZoom(12);
+          }
+        }
+        statusEl.textContent = `Principal: ${fixtureId}`;
+      } else {
+        badgeEl.textContent = "sin capa principal";
+        statusEl.textContent = "Activa inundación u otra capa.";
+      }
     } catch (error) {
-      status.textContent = `Cannot load assessments: ${error.message}. Start the API on :8000.`;
+      statusEl.textContent = `Error: ${error.message}. ¿API en :8000?`;
+      badgeEl.textContent = "error";
     }
+  }
+
+  function applyTileStyle() {
+    if (!map) return;
+    const center = map.getCenter();
+    const zoom = map.getZoom();
+    map.setStyle(baseStyle());
+    map.once("styledata", () => {
+      map.setCenter(center);
+      map.setZoom(zoom);
+      reloadLayers();
+    });
+  }
+
+  tilesToggle?.addEventListener("change", applyTileStyle);
+  Object.values(LAYER_DEFS).forEach((def) => {
+    document.getElementById(def.checkbox)?.addEventListener("change", reloadLayers);
   });
+
+  (async () => {
+    try {
+      const cfgRes = await fetch(`${apiBase}/v1/config/map`);
+      if (cfgRes.ok) {
+        mapConfig = await cfgRes.json();
+        if (tilesToggle) {
+          tilesToggle.checked = Boolean(mapConfig.tiles_enabled);
+          tilesToggle.disabled = !mapConfig.tile_url_template;
+        }
+      }
+    } catch {
+      /* local background only */
+    }
+    ensureMap();
+    map.on("load", reloadLayers);
+  })();
 })();

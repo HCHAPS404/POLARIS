@@ -1,4 +1,4 @@
-.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api db-up db-migrate demo
+.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api db-up db-migrate demo up down demo-compose smoke-compose
 
 PYTHON ?= python3
 
@@ -45,3 +45,15 @@ db-up:
 db-migrate:
 	@test -n "$$POLARIS_DATABASE_URL" || (echo "Set POLARIS_DATABASE_URL (see .env.example)"; exit 1)
 	$(PYTHON) -m alembic -c adapters/storage/alembic.ini upgrade head
+
+up:
+	docker compose up --build -d
+
+down:
+	docker compose down
+
+demo-compose:
+	docker compose exec -T api make demo
+
+smoke-compose:
+	bash harness/dev/smoke_compose.sh

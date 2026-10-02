@@ -1,4 +1,5 @@
 const API = "";
+const params = new URLSearchParams(window.location.search);
 
 function qs(id) {
   return document.getElementById(id);
@@ -24,23 +25,42 @@ async function fetchJson(path) {
 }
 
 function renderAssessments(label, body) {
-  const rows = (body.assessments || []).map((u) => [
+  return (body.assessments || []).map((u) => [
     u.spatial_unit_id,
     label,
+    body.data_class ?? "—",
     u.gci?.value?.toFixed(3) ?? "—",
     u.phi?.value?.toFixed(3) ?? "—",
     u.operational_risk?.value?.toFixed(3) ?? "—",
     u.alert?.level ?? "—",
     u.phi?.formula_version ?? "",
   ]);
-  return rows;
+}
+
+function syncLinks(floodId) {
+  qs("cap-link").href = `/v1/alerts?fixture_id=${encodeURIComponent(floodId)}&format=cap`;
+  qs("horizon-link").href = `/horizon/?fixture_id=${encodeURIComponent(floodId)}`;
+  const next = new URL(window.location.href);
+  next.searchParams.set("fixture_id", floodId);
+  window.history.replaceState({}, "", next);
+}
+
+function applyFixtureFromUrl() {
+  const fromUrl = params.get("fixture_id");
+  if (fromUrl) {
+    const select = qs("flood-fixture");
+    const hasOption = [...select.options].some((o) => o.value === fromUrl);
+    if (hasOption) {
+      select.value = fromUrl;
+    }
+  }
 }
 
 async function refresh() {
   const floodId = qs("flood-fixture").value;
   const landslideId = qs("landslide-fixture").value;
   const siteId = qs("compound-site").value;
-  qs("cap-link").href = `/v1/alerts?fixture_id=${encodeURIComponent(floodId)}&format=cap`;
+  syncLinks(floodId);
 
   try {
     const [health, flood, landslide, chi, alerts] = await Promise.all([
@@ -51,14 +71,15 @@ async function refresh() {
       fetchJson(`/v1/alerts?fixture_id=${encodeURIComponent(floodId)}`),
     ]);
 
-    qs("status").textContent = `API ${health.status} · ${health.maturity} · storage ${health.storage_backend}`;
+    qs("status").textContent = `API ${health.status} · ${health.maturity} · ${health.utc}`;
+    qs("storage-backend").textContent = health.storage_backend;
 
     const assessmentRows = [
       ...renderAssessments("flood", flood),
       ...renderAssessments("landslide", landslide),
     ];
     qs("assessments").innerHTML = table(
-      ["Unit", "Hazard", "GCI", "PHI", "Risk", "DRAFT level", "PHI formula"],
+      ["Unit", "Hazard", "data_class", "GCI", "PHI", "Risk", "DRAFT level", "PHI formula"],
       assessmentRows,
     );
 
@@ -95,6 +116,7 @@ async function refresh() {
   }
 }
 
+applyFixtureFromUrl();
 ["flood-fixture", "landslide-fixture", "compound-site"].forEach((id) => {
   qs(id).addEventListener("change", refresh);
 });

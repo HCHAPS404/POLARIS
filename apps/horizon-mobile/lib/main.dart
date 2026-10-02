@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import 'services/polaris_api.dart';
 
-/// Default for Android emulator → host machine API (`make api`).
+/// Default for Android emulator → host machine API (`make api` / docker compose).
 const kDefaultApiBase = String.fromEnvironment(
   'POLARIS_API_BASE',
   defaultValue: 'http://10.0.2.2:8000',
+);
+
+/// WebView loads Horizon static mount; override for device → LAN IP.
+const kHorizonPath = String.fromEnvironment(
+  'POLARIS_HORIZON_PATH',
+  defaultValue: '/horizon/?fixture_id=flood-bogota-demo',
 );
 
 void main() {
@@ -42,11 +49,22 @@ class _HorizonHomeScreenState extends State<HorizonHomeScreen> {
   String _hazardLine = '—';
   String? _error;
   bool _loading = false;
+  late final WebViewController _mapController;
 
   @override
   void initState() {
     super.initState();
+    final horizonUrl = _horizonUrl();
+    _mapController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse(horizonUrl));
     _refresh();
+  }
+
+  String _horizonUrl() {
+    final base = widget.api.baseUrl.replaceAll(RegExp(r'/+$'), '');
+    final path = kHorizonPath.startsWith('/') ? kHorizonPath : '/$kHorizonPath';
+    return '$base$path';
   }
 
   Future<void> _refresh() async {
@@ -97,7 +115,8 @@ class _HorizonHomeScreenState extends State<HorizonHomeScreen> {
         children: [
           const _DisclaimerBanner(),
           const SizedBox(height: 16),
-          Text('API: $kDefaultApiBase', style: Theme.of(context).textTheme.bodySmall),
+          Text('API: ${widget.api.baseUrl}', style: Theme.of(context).textTheme.bodySmall),
+          Text('Horizon: ${_horizonUrl()}', style: Theme.of(context).textTheme.bodySmall),
           const SizedBox(height: 12),
           _InfoTile(title: 'Health', value: _healthLine),
           _InfoTile(title: 'Estado de amenaza (V1)', value: _hazardLine),
@@ -106,9 +125,15 @@ class _HorizonHomeScreenState extends State<HorizonHomeScreen> {
             Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
           ],
           const SizedBox(height: 24),
-          Text('Mapa', style: Theme.of(context).textTheme.titleMedium),
+          Text('Mapa (WebView)', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 8),
-          const _MapPlaceholder(),
+          SizedBox(
+            height: 280,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: WebViewWidget(controller: _mapController),
+            ),
+          ),
         ],
       ),
     );
@@ -147,33 +172,6 @@ class _InfoTile extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(title),
       subtitle: Text(value),
-    );
-  }
-}
-
-/// Placeholder until WebView to `/horizon/` is wired for production builds.
-class _MapPlaceholder extends StatelessWidget {
-  const _MapPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 220,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).dividerColor),
-        borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-      ),
-      child: const Padding(
-        padding: EdgeInsets.all(16),
-        child: Text(
-          'Placeholder de mapa.\n'
-          'En producción: WebView → /horizon/ (MapLibre SIMULATED).\n'
-          'Caché offline: stub en lib/services/offline_cache_stub.dart',
-          textAlign: TextAlign.center,
-        ),
-      ),
     );
   }
 }

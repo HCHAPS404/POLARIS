@@ -11,23 +11,68 @@ body {
   inset: 0;
 }
 
-.banner {
+.topbar {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   left: 12px;
   right: 12px;
   top: 12px;
-  background: #3b120f;
-  color: #fff8f6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.94);
   padding: 10px 14px;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
   font-size: 13px;
-  line-height: 1.4;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-.banner code {
-  color: #ffd7a8;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e8eef2;
+  text-transform: uppercase;
+}
+
+.badge.dc-simulated {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge.dc-historical_replay {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.nav-links a {
+  color: #0b5cad;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.freshness {
+  margin: 0;
+  flex: 1 1 100%;
+  color: #445;
+  font-size: 12px;
 }
 
 .legend {
@@ -35,25 +80,45 @@ body {
   z-index: 2;
   left: 12px;
   bottom: 12px;
-  width: 280px;
+  width: min(320px, calc(100vw - 24px));
+  max-height: calc(100vh - 120px);
+  overflow: auto;
   background: rgba(255, 255, 255, 0.95);
   padding: 14px 16px;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
 }
 
-.legend h1 {
+.disclaimer {
+  font-size: 11px;
   margin: 0 0 8px;
-  font-size: 18px;
+  color: #3b120f;
+  background: #fff8f6;
+  padding: 6px 8px;
+  border-radius: 4px;
 }
 
-.legend h1 span {
-  font-weight: 400;
-  color: #5b6b75;
-  font-size: 13px;
+.fixture-label,
+.tiles-toggle {
+  display: block;
+  font-size: 12px;
+  margin: 8px 0;
 }
 
-.legend dl {
+.layers {
+  border: 1px solid #ccd6de;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.layers label {
+  display: block;
+  margin: 4px 0;
+}
+
+.gci-legend {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 4px 10px;
@@ -61,7 +126,7 @@ body {
   font-size: 12px;
 }
 
-.legend dt {
+.gci-legend dt {
   font-weight: 700;
 }
 
@@ -107,4 +172,19 @@ body {
 .maplibregl-popup-content {
   font-size: 12px;
   max-width: 280px;
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    font-size: 12px;
+  }
+  .legend {
+    bottom: auto;
+    top: auto;
+    position: fixed;
+    max-height: 40vh;
+  }
+  #map {
+    top: 96px;
+  }
 }

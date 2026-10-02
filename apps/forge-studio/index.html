@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>POLARIS Forge — scenario studio (minimal)</title>
+    <title>POLARIS Forge — scenario studio</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -16,14 +16,29 @@
       <section class="panel">
         <h1>Forge <span>studio</span></h1>
         <p class="meta">
-          Shell estático para operadores e ingeniería: enlaces a simulaciones, replay y métricas.
+          Tarjetas de acción para simulaciones, replay e inspección de la API local.
         </p>
-        <h2>Simulaciones (repo root)</h2>
-        <ul class="commands">
-          <li><code>make sim-flood</code> — escenario flood Bogotá (seed 42)</li>
-          <li><code>make sim-iot</code> — pipeline IoT SIMULATED → gateway → V1</li>
-          <li><code>make sim-replay</code> — Mocoa 2017 replay + backtest harness</li>
-        </ul>
+        <div class="cards" id="cards">
+          <article class="card">
+            <h2>Sim flood Bogotá</h2>
+            <p><code>make sim-flood</code> o escenario YAML seed 42.</p>
+            <p><a href="/horizon/?fixture_id=flood-bogota-demo">Abrir en Horizon</a></p>
+          </article>
+          <article class="card">
+            <h2>Sim IoT pipeline</h2>
+            <p><code>make sim-iot</code> — nodos SIMULATED → gateway → V1.</p>
+            <p><a href="/v1/observations?fixture_id=flood-bogota-demo">Ver observations</a></p>
+          </article>
+          <article class="card">
+            <h2>Mocoa 2017 replay</h2>
+            <p><code>make sim-replay</code> — EXPERIMENTAL, no HISTORICALLY_VALIDATED.</p>
+            <p>
+              <a href="/horizon/?fixture_id=flood-mocoa-2017-replay">Horizon replay</a>
+              ·
+              <a href="/v1/backtests/flood-mocoa-2017-replay">Backtest JSON</a>
+            </p>
+          </article>
+        </div>
         <h2>Consolas web</h2>
         <p class="links">
           <a href="/horizon/">Horizon map</a>
@@ -31,16 +46,15 @@
           <a href="/vector/">Vector console</a>
           ·
           <a href="/health">API health</a>
+          ·
+          <a href="/docs">OpenAPI</a>
         </p>
-        <h2>Métricas y validación</h2>
-        <ul>
-          <li><code>domains/backtesting/metrics.py</code> — hit/miss replay</li>
-          <li><code>docs/validation/flood-mocoa-2017-replay.md</code> — evidencia EXPERIMENTAL</li>
-          <li><code>backtesting/reports/</code> — figuras SVG de replay</li>
-        </ul>
         <h2>Demo IEEE (un comando)</h2>
-        <p><code>./harness/demo/run_demo.sh</code> — test → sim → API (TestClient) → log en <code>harness/demo/output/</code></p>
+        <p><code>make demo</code> en el host, o <code>docker compose exec api make demo</code>.</p>
+        <p class="meta" id="demo-latest">Último log demo: consultando API…</p>
+        <p class="meta">Salida habitual: <code>harness/demo/output/demo-*.log</code></p>
       </section>
     </main>
+    <script src="./forge.js"></script>
   </body>
 </html>

@@ -12,7 +12,7 @@
 }
 
 .layout {
-  max-width: 52rem;
+  max-width: 56rem;
   margin: 1.5rem auto;
   padding: 0 1rem;
 }
@@ -33,6 +33,25 @@ h1 span {
   color: #5a7080;
 }
 
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 1rem 0 1.5rem;
+}
+
+.card {
+  border: 1px solid #d8e2ea;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fafcfe;
+}
+
+.card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
 .commands code,
 p code {
   background: #eef3f7;
@@ -40,6 +59,7 @@ p code {
   border-radius: 4px;
 }
 
-.links a {
+.links a,
+.card a {
   color: #0b5cad;
 }
