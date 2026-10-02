@@ -1,7 +1,15 @@
 # hazards/erosion_subsidence
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED (transparent PHI baseline)
 
-Per-hazard plugin `erosion_subsidence`. Individual-first. PHI not computed in P0.
+## Formula
 
-Regenerate extras with `make scaffold-hazard NAME=<id>`.
+`erosion_subsidence.phi.cohesion-slope-rain.v0.1.0` — see `phi.py` for thresholds and merge rules.
+
+## Limitations
+
+Cohesion-slope-rain; not geotechnical FEM. Exposure and vulnerability are excluded from PHI. Not field-validated. Not official.
+
+## Fixture
+
+`data/synthetic/erosion-co-demo.simulated.json`

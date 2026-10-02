@@ -1,0 +1,10 @@
+scenario_id: drought-co-demo
+seed: 42
+hazard_id: drought
+data_class: SIMULATED
+fixture: data/synthetic/drought-co-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: drought.phi.precip-moisture.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED baseline for drought. Not field-validated. Not official.

@@ -1,0 +1,5 @@
+hazard_id: drought
+evidence: IMPLEMENTED
+formula_version: drought.phi.precip-moisture.v0.1.0
+model_version: drought.baseline.v0.1.0
+phi_mode_policy: declared_on_observation

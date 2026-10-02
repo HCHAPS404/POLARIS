@@ -1,0 +1,107 @@
+{
+  "fixture_id": "tsunami-co-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "tsunami",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T12:00:00Z",
+  "disclaimer": "Synthetic tsunami baseline demo. SIMULATED only.",
+  "observations": [
+    {
+      "observation_id": "ts-1",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "wave_height_m",
+      "value": 1.2,
+      "unit": "m",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-tsunami-001",
+      "source": "polaris.synthetic.tsunami-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "EVENT_TRIGGERED",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "tsunami-co-demo",
+        "data_class": "SIMULATED",
+        "event_triggered": true,
+        "trigger_event_id": "eq-sim-2010"
+      }
+    },
+    {
+      "observation_id": "ts-2",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "distance_km",
+      "value": 120.0,
+      "unit": "km",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-tsunami-001",
+      "source": "polaris.synthetic.tsunami-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "EVENT_TRIGGERED",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "tsunami-co-demo",
+        "data_class": "SIMULATED",
+        "event_triggered": true,
+        "trigger_event_id": "eq-sim-2010"
+      }
+    }
+  ]
+}

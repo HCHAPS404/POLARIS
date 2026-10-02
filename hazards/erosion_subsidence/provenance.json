@@ -1,0 +1,8 @@
+{
+  "hazard_id": "erosion_subsidence",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "erosion_subsidence.phi.cohesion-slope-rain.v0.1.0",
+  "model_version": "erosion_subsidence.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "Cohesion-slope-rain; not geotechnical FEM."
+}

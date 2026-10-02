@@ -1,0 +1,6 @@
+hazard_id: tsunami
+evidence: IMPLEMENTED
+formula_version: tsunami.phi.event-wave.v0.1.0
+model_version: tsunami.baseline.v0.1.0
+phi_mode_policy: event_triggered_only
+notes: PHI requires declared trigger; no standalone forecast.

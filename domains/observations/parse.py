@@ -9,7 +9,7 @@ from domains.common import (
     DATA_CLASS_HISTORICAL_REPLAY,
     DATA_CLASS_LIVE,
     DATA_CLASS_LIVE_INTEGRATED,
-    PHI_MODES,
+    PHI_MODES_DECLARED,
     QUALITY_FLAGS,
 )
 from domains.observations.models import Observation
@@ -93,9 +93,10 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
         raise ObservationParseError(f"missing observation fields: {missing}")
 
     phi_mode = raw["phi_mode"]
-    if phi_mode not in PHI_MODES:
+    if phi_mode not in PHI_MODES_DECLARED:
         raise ObservationParseError(
-            "phi_mode must be declared as DETECTION, NOWCAST, or FORECAST; "
+            "phi_mode must be declared (DETECTION/NOWCAST/FORECAST, "
+            "RAPID_DETECTION/EEW, or EVENT_TRIGGERED); "
             f"got {phi_mode!r}"
         )
 
@@ -139,18 +140,47 @@ def parse_observation(raw: dict[str, Any]) -> Observation:
     elif observed_property == "pm25_ugm3":
         if unit not in ("ug/m3", "µg/m3"):
             raise ObservationParseError("pm25_ugm3 requires unit='ug/m3' or 'µg/m3'")
+    elif observed_property == "precipitation_mm_30d":
+        if unit != "mm":
+            raise ObservationParseError("precipitation_mm_30d requires unit='mm'")
+    elif observed_property == "heat_index_c":
+        if unit not in ("C", "degC"):
+            raise ObservationParseError("heat_index_c requires unit='C' or 'degC'")
+    elif observed_property == "pressure_hpa":
+        if unit != "hPa":
+            raise ObservationParseError("pressure_hpa requires unit='hPa'")
+    elif observed_property == "visibility_m":
+        if unit != "m":
+            raise ObservationParseError("visibility_m requires unit='m'")
+    elif observed_property == "pga_g":
+        if unit != "g":
+            raise ObservationParseError("pga_g requires unit='g'")
+    elif observed_property == "wave_height_m":
+        if unit != "m":
+            raise ObservationParseError("wave_height_m requires unit='m'")
+    elif observed_property == "distance_km":
+        if unit != "km":
+            raise ObservationParseError("distance_km requires unit='km'")
+    elif observed_property == "so2_ton_per_day":
+        if unit not in ("t/d", "ton/d"):
+            raise ObservationParseError("so2_ton_per_day requires unit='t/d' or 'ton/d'")
+    elif observed_property == "ashfall_mm_h":
+        if unit != "mm/h":
+            raise ObservationParseError("ashfall_mm_h requires unit='mm/h'")
+    elif observed_property == "soil_cohesion_proxy":
+        if unit not in ("1", "dimensionless"):
+            raise ObservationParseError("soil_cohesion_proxy requires unit='1' or 'dimensionless'")
+    elif observed_property == "tsunami_trigger":
+        if unit not in ("1", "dimensionless"):
+            raise ObservationParseError("tsunami_trigger requires unit='1' or 'dimensionless'")
     else:
-        raise ObservationParseError(
-            "observed_property must be rainfall_mm, water_level_m (IoT), "
-            "slope_deg, soil_moisture, temperature_c, relative_humidity, "
-            "wind_speed_ms, or pm25_ugm3"
-        )
+        raise ObservationParseError(f"unsupported observed_property {observed_property!r}")
 
     try:
         value = float(raw["value"])
     except (TypeError, ValueError) as exc:
         raise ObservationParseError("observation value must be numeric") from exc
-    if observed_property in ("soil_moisture", "relative_humidity"):
+    if observed_property in ("soil_moisture", "relative_humidity", "soil_cohesion_proxy"):
         if not 0 <= value <= 1:
             raise ObservationParseError(f"{observed_property} must be in [0, 1]")
     elif value < 0:

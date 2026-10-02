@@ -32,7 +32,13 @@ from adapters.storage.simulated_json import (  # noqa: E402
     load_fixture,
 )
 from domains.common import ALLOWED_DATA_CLASSES, DATA_CLASS_LIVE, DISCLAIMER  # noqa: E402
-from domains.hazards.registry import run_hazard_slice  # noqa: E402
+from domains.hazards.registry import (  # noqa: E402
+    get_registry_entry,
+    list_registered_hazards,
+    list_registry_hazard_ids,
+    resolve_hazard_id,
+    run_hazard_slice,
+)
 
 app = FastAPI(
     title="POLARIS API",
@@ -54,6 +60,10 @@ app.add_middleware(
 class AssessmentRunRequest(BaseModel):
     seed: int = Field(default=42)
     fixture_id: str = Field(default="flood-bogota-demo")
+    hazard_id: str | None = Field(
+        default=None,
+        description="Optional check that fixture hazard_id matches this value",
+    )
     data_class: str | None = None
 
 
@@ -67,12 +77,26 @@ class LivePrecipIngestRequest(BaseModel):
     seed: int = Field(default=42)
 
 
-def _slice(seed: int = 42, fixture_id: str = "flood-bogota-demo"):
+def _slice(
+    seed: int = 42,
+    fixture_id: str = "flood-bogota-demo",
+    hazard_id: str | None = None,
+):
     try:
         fixture = load_fixture(fixture_id)
     except FixtureNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    resolved = resolve_hazard_id(fixture)
+    if hazard_id is not None and hazard_id != resolved:
+        raise HTTPException(
+            status_code=400,
+            detail=f"hazard_id mismatch: query={hazard_id!r} fixture={resolved!r}",
+        )
+    try:
+        get_registry_entry(resolved)
+    except KeyError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     return run_hazard_slice(fixture, seed=seed)
 
@@ -129,6 +153,31 @@ def demo_latest_log() -> dict:
     }
 
 
+@app.get("/v1/hazards")
+def list_hazards() -> dict:
+    """Registry catalog (IMPLEMENTED slice runners + metadata)."""
+    items = []
+    for hid in list_registry_hazard_ids():
+        entry = get_registry_entry(hid)
+        items.append(
+            {
+                "hazard_id": entry.hazard_id,
+                "evidence": entry.evidence,
+                "formula_version": entry.formula_version,
+                "model_version": entry.model_version,
+                "phi_mode_policy": entry.phi_mode_policy,
+                "config_path": str(entry.config_path.relative_to(ROOT)),
+                "notes": entry.notes,
+                "slice_runner": entry.hazard_id in list_registered_hazards(),
+            }
+        )
+    return {
+        "disclaimer": DISCLAIMER,
+        "implemented_runners": list(list_registered_hazards()),
+        "hazards": items,
+    }
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     repo = get_observation_repository()
@@ -153,6 +202,7 @@ def health() -> dict[str, str]:
 def list_observations(
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    hazard_id: str | None = Query(default=None),
     run_id: str | None = Query(default=None),
 ) -> dict:
     if run_id:
@@ -172,7 +222,7 @@ def list_observations(
                 else "memory",
                 "observations": stored,
             }
-    result = _slice(seed=seed, fixture_id=fixture_id)
+    result = _slice(seed=seed, fixture_id=fixture_id, hazard_id=hazard_id)
     return {
         "data_class": result.data_class,
         "fixture_id": result.fixture_id,
@@ -187,8 +237,9 @@ def get_observation(
     observation_id: str,
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    hazard_id: str | None = Query(default=None),
 ) -> dict:
-    result = _slice(seed=seed, fixture_id=fixture_id)
+    result = _slice(seed=seed, fixture_id=fixture_id, hazard_id=hazard_id)
     for item in result.observations():
         if item["observation_id"] == observation_id:
             return item
@@ -199,6 +250,7 @@ def get_observation(
 def list_assessments(
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    hazard_id: str | None = Query(default=None),
     run_id: str | None = Query(default=None),
 ) -> dict:
     if run_id:
@@ -206,7 +258,7 @@ def list_assessments(
         snap = repo.get_assessment_snapshot(run_id)
         if snap:
             return snap
-    return _slice(seed=seed, fixture_id=fixture_id).to_dict()
+    return _slice(seed=seed, fixture_id=fixture_id, hazard_id=hazard_id).to_dict()
 
 
 @app.get("/v1/assessments/{spatial_unit_id}")
@@ -214,8 +266,9 @@ def get_assessment(
     spatial_unit_id: str,
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    hazard_id: str | None = Query(default=None),
 ) -> dict:
-    result = _slice(seed=seed, fixture_id=fixture_id)
+    result = _slice(seed=seed, fixture_id=fixture_id, hazard_id=hazard_id)
     for unit in result.units:
         if unit.spatial_unit_id == spatial_unit_id:
             return unit.to_dict()
@@ -226,7 +279,11 @@ def get_assessment(
 def run_assessment(payload: AssessmentRunRequest | None = None) -> dict:
     body = payload or AssessmentRunRequest()
     _refuse_live(body.data_class)
-    result = _slice(seed=body.seed, fixture_id=body.fixture_id)
+    result = _slice(
+        seed=body.seed,
+        fixture_id=body.fixture_id,
+        hazard_id=body.hazard_id,
+    )
     if body.data_class is not None and body.data_class != result.data_class:
         raise HTTPException(
             status_code=400,
@@ -239,11 +296,12 @@ def run_assessment(payload: AssessmentRunRequest | None = None) -> dict:
 def list_alerts(
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    hazard_id: str | None = Query(default=None),
     format: str | None = Query(default=None, alias="format"),
 ) -> dict:
     from domains.alerting.cap_draft import cap_bundle_for_alert
 
-    result = _slice(seed=seed, fixture_id=fixture_id)
+    result = _slice(seed=seed, fixture_id=fixture_id, hazard_id=hazard_id)
     alerts = [unit.alert.to_dict() for unit in result.units]
     if any(item["status"] != "DRAFT" for item in alerts):
         raise HTTPException(status_code=500, detail="non-DRAFT alert blocked")
@@ -265,8 +323,9 @@ def list_alerts(
 def map_geojson(
     seed: int = Query(default=42),
     fixture_id: str = Query(default="flood-bogota-demo"),
+    hazard_id: str | None = Query(default=None),
 ) -> dict:
-    return _slice(seed=seed, fixture_id=fixture_id).to_geojson()
+    return _slice(seed=seed, fixture_id=fixture_id, hazard_id=hazard_id).to_geojson()
 
 
 @app.post("/v1/ingest/live/precipitation")

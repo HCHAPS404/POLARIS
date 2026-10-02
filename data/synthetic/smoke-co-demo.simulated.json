@@ -1,0 +1,103 @@
+{
+  "fixture_id": "smoke-co-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "smoke",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T12:00:00Z",
+  "disclaimer": "Synthetic smoke baseline demo. SIMULATED only.",
+  "observations": [
+    {
+      "observation_id": "sm-1",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "pm25_ugm3",
+      "value": 120.0,
+      "unit": "ug/m3",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-smoke-001",
+      "source": "polaris.synthetic.smoke-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "smoke-co-demo",
+        "data_class": "SIMULATED"
+      }
+    },
+    {
+      "observation_id": "sm-2",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "visibility_m",
+      "value": 4500.0,
+      "unit": "m",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-smoke-001",
+      "source": "polaris.synthetic.smoke-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "smoke-co-demo",
+        "data_class": "SIMULATED"
+      }
+    }
+  ]
+}

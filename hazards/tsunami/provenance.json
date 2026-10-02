@@ -1,0 +1,8 @@
+{
+  "hazard_id": "tsunami",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "tsunami.phi.event-wave.v0.1.0",
+  "model_version": "tsunami.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "Event-triggered wave/run-up; no standalone forecast."
+}

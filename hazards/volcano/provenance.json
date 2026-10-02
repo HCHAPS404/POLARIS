@@ -1,0 +1,8 @@
+{
+  "hazard_id": "volcano",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "volcano.phi.so2-ash.v0.1.0",
+  "model_version": "volcano.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "SO2 + ashfall screening; not VAAC plume model."
+}

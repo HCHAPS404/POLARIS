@@ -1,0 +1,10 @@
+scenario_id: flash-flood-co-demo
+seed: 42
+hazard_id: flash_flood
+data_class: SIMULATED
+fixture: data/synthetic/flash-flood-co-demo.simulated.json
+evidence: IMPLEMENTED
+formula_version: flash_flood.phi.rain-burst.v0.1.0
+phi_mode_policy: declared_on_observation
+notes: >
+  Deterministic SIMULATED baseline for flash_flood. Not field-validated. Not official.

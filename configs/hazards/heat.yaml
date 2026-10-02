@@ -1,7 +1,11 @@
-# Heat hazard — PLACEHOLDER config (registry only; PHI NOT IMPLEMENTED)
+# Heat hazard — IMPLEMENTED heat-stress PHI baseline
 hazard_id: heat
-evidence: PLACEHOLDER
-model_version: heat.baseline.v0.0.0-placeholder
-formula_version: heat.phi.not-implemented
-notes: >
-  Interface stub for future urban heat / heat-stress PHI. No runner or API slice in P5 RC.
+evidence: IMPLEMENTED
+formula_version: heat.phi.heat-stress.v0.1.0
+model_version: heat.baseline.v0.1.0
+phi_mode_policy: declared_on_observation
+thresholds:
+  t0_c: 30.0
+  t1_c: 40.0
+  hi0_c: 32.0
+  hi1_c: 41.0

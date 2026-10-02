@@ -1,0 +1,5 @@
+hazard_id: cyclone
+evidence: IMPLEMENTED
+formula_version: cyclone.phi.wind-pressure.v0.1.0
+model_version: cyclone.baseline.v0.1.0
+phi_mode_policy: declared_on_observation

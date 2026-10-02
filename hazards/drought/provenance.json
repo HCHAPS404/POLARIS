@@ -1,0 +1,8 @@
+{
+  "hazard_id": "drought",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "drought.phi.precip-moisture.v0.1.0",
+  "model_version": "drought.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "30d precip + soil moisture; not SPI/PDSI."
+}

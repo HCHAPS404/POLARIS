@@ -1,0 +1,150 @@
+{
+  "fixture_id": "erosion-co-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "erosion_subsidence",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T12:00:00Z",
+  "disclaimer": "Synthetic erosion_subsidence baseline demo. SIMULATED only.",
+  "observations": [
+    {
+      "observation_id": "er-1",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "soil_cohesion_proxy",
+      "value": 0.42,
+      "unit": "1",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-erosion-001",
+      "source": "polaris.synthetic.erosion-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "erosion-co-demo",
+        "data_class": "SIMULATED"
+      }
+    },
+    {
+      "observation_id": "er-2",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "slope_deg",
+      "value": 14.0,
+      "unit": "deg",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-erosion-001",
+      "source": "polaris.synthetic.erosion-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "erosion-co-demo",
+        "data_class": "SIMULATED"
+      }
+    },
+    {
+      "observation_id": "er-3",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 42.0,
+      "unit": "mm",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-erosion-001",
+      "source": "polaris.synthetic.erosion-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "erosion-co-demo",
+        "data_class": "SIMULATED",
+        "accumulation": "1h"
+      }
+    }
+  ]
+}

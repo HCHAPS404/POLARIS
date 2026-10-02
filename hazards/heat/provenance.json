@@ -1,0 +1,8 @@
+{
+  "hazard_id": "heat",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "heat.phi.heat-stress.v0.1.0",
+  "model_version": "heat.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "Temperature + optional heat index; not WBGT."
+}

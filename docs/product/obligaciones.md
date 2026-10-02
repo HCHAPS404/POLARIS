@@ -1,6 +1,6 @@
 # POLARIS — Obligaciones y estado
 
-**Corte:** 2026-10-02 (product polish + local deploy)  
+**Corte:** 2026-10-02 (complete hazard baselines + product polish)  
 **Release objetivo:** `v1.0.0-response-quest` (RC)  
 **Fuente de verdad de código:** `main` + PR polish local deploy
 
@@ -37,7 +37,11 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo**
 | PHI lluvia + nivel (max merge) | **Hecho IMPLEMENTED** (ADR-0009) |
 | Landslide PHI slope/moisture/rain | **Hecho IMPLEMENTED** (ADR-0010) |
 | Wildfire PHI fire-weather-pm | **Hecho IMPLEMENTED** (ADR-0012) |
-| Heat PHI | **Falta** — registry PLACEHOLDER (P5) |
+| Heat PHI | **Hecho IMPLEMENTED** (heat.phi.heat-stress.v0.1.0) |
+| Flash flood / drought / cyclone / smoke / volcano / erosion PHI | **Hecho IMPLEMENTED** (baseline v0.1.0) |
+| Earthquake PHI (RAPID_DETECTION/EEW, no predicción) | **Hecho IMPLEMENTED** |
+| Tsunami PHI (solo event-triggered) | **Hecho IMPLEMENTED** |
+| Catálogo API `GET /v1/hazards` + param `hazard_id` en assessments | **Hecho IMPLEMENTED** |
 | CAP OFFICIAL | **Falta** — DRAFT/SIMULATION (`format=cap`) |
 | Site E/V configurable | **Parcial EXPERIMENTAL** |
 | CHI flood+landslide (minimal) | **Hecho IMPLEMENTED** (ADR-0011) |

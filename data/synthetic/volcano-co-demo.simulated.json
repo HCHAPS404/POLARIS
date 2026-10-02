@@ -1,0 +1,103 @@
+{
+  "fixture_id": "volcano-co-demo",
+  "data_class": "SIMULATED",
+  "hazard_id": "volcano",
+  "site_id": "co-bogota-demo",
+  "country_iso": "CO",
+  "as_of": "2026-10-01T12:00:00Z",
+  "disclaimer": "Synthetic volcano baseline demo. SIMULATED only.",
+  "observations": [
+    {
+      "observation_id": "vo-1",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "so2_ton_per_day",
+      "value": 2200.0,
+      "unit": "t/d",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-volcano-001",
+      "source": "polaris.synthetic.volcano-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "volcano-co-demo",
+        "data_class": "SIMULATED"
+      }
+    },
+    {
+      "observation_id": "vo-2",
+      "observed_at": "2026-10-01T12:00:00Z",
+      "observed_property": "ashfall_mm_h",
+      "value": 1.8,
+      "unit": "mm/h",
+      "quality_flag": "qc_pass",
+      "source_id": "sim-volcano-001",
+      "source": "polaris.synthetic.volcano-co-demo",
+      "data_class": "SIMULATED",
+      "spatial_unit_id": "co-bogota-demo-center",
+      "site_id": "co-bogota-demo",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.1,
+              4.68
+            ],
+            [
+              -74.04,
+              4.68
+            ],
+            [
+              -74.04,
+              4.73
+            ],
+            [
+              -74.1,
+              4.73
+            ],
+            [
+              -74.1,
+              4.68
+            ]
+          ]
+        ]
+      },
+      "provenance": {
+        "fixture_id": "volcano-co-demo",
+        "data_class": "SIMULATED"
+      }
+    }
+  ]
+}

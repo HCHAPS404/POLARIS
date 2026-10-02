@@ -1,7 +1,15 @@
 # hazards/heat
 
-**Evidence:** PLACEHOLDER (P5 registry stub)
+**Evidence:** IMPLEMENTED (transparent PHI baseline)
 
-Urban heat / heat-stress hazard slot. `interface.py` defines the port; `configs/hazards/heat.yaml` is registered in `domains/hazards/registry.py` with **no** PHI runner, fixture, or API slice.
+## Formula
 
-Regenerate scaffold extras with `make scaffold-hazard NAME=heat` when implementing PHI.
+`heat.phi.heat-stress.v0.1.0` — see `phi.py` for thresholds and merge rules.
+
+## Limitations
+
+Temperature + optional heat index; not WBGT. Exposure and vulnerability are excluded from PHI. Not field-validated. Not official.
+
+## Fixture
+
+`data/synthetic/heat-co-demo.simulated.json`

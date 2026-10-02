@@ -1,0 +1,8 @@
+{
+  "hazard_id": "flash_flood",
+  "evidence": "IMPLEMENTED",
+  "formula_version": "flash_flood.phi.rain-burst.v0.1.0",
+  "model_version": "flash_flood.baseline.v0.1.0",
+  "field_validation": false,
+  "notes": "Intense rain burst; not hydrodynamic routing."
+}
