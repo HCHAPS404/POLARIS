@@ -2,15 +2,13 @@
 library;
 
 class OfflineManifest {
+  static const schemaVersion = 'horizon.mobile.offline.v0.1.0';
+
   const OfflineManifest({
-    required this.schemaVersion,
     required this.dataClass,
     required this.fetchedAtUtc,
   });
 
-  static const schemaVersion = 'horizon.mobile.offline.v0.1.0';
-
-  final String schemaVersion;
   final String dataClass;
   final String fetchedAtUtc;
 
