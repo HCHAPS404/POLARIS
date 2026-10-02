@@ -1,14 +1,22 @@
-# CountryProfile stub — P0
-# Evidence: DESIGNED. Not a live integration. Not a pilot.
+# CountryProfile — Germany INTEGRATION CASE
+# Evidence: IMPLEMENTED (config + national catalog adapter). Not a field pilot.
 iso_code: DE
 name: Germany
-status: INTEGRATION_STUB
-evidence: DESIGNED
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
 timezone: Europe/Berlin
 priority_hazards:
   - flood
   - heat
   - storm
 official_alert_authority: "DWD / BBK"
+integration:
+  label: INTEGRATION CASE
+  region_id: de-berlin
+  site_id: de-berlin-demo
+national_catalog_path: configs/data/catalog/de.yaml
+adapters:
+  - adapters.data.national.catalog_ingest
+  - adapters.data.global_feeds.open_meteo_precip
 notes: >
-  Integration stub for onboarding research. NOT a national pilot or deployment.
+  Integration case for Germany — representative site only, not a national pilot.

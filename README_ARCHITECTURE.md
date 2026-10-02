@@ -49,7 +49,7 @@ Configuration is hierarchical and versioned YAML (not live GIS in P0):
 2. **RegionProfile** — nested under a country (`configs/regions/`)
 3. **SiteProfile** — instrumented or modelled site (`configs/sites/`)
 
-Fifteen **integration countries** have YAML stubs. They are **not pilots**. Colombia additionally has an example Region + Site labelled **INTEGRATION CASE**.
+Fifteen **integration countries** have complete CountryProfile YAML, national catalogs under `configs/data/catalog/`, and at least one Region + Site labelled **INTEGRATION CASE** each (Colombia remains the reference case). They are **not pilots**. National catalog ingest: `adapters/data/national/` (**IMPLEMENTED**).
 
 ## Stack (DESIGNED)
 

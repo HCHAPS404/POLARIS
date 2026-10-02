@@ -1,14 +1,22 @@
-# CountryProfile stub — P0
-# Evidence: DESIGNED. Not a live integration. Not a pilot.
+# CountryProfile — Ethiopia INTEGRATION CASE
+# Evidence: IMPLEMENTED (config + national catalog adapter). Not a field pilot.
 iso_code: ET
 name: Ethiopia
-status: INTEGRATION_STUB
-evidence: DESIGNED
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
 timezone: Africa/Addis_Ababa
 priority_hazards:
   - drought
   - flood
   - heat
 official_alert_authority: "NMA / EDRMC"
+integration:
+  label: INTEGRATION CASE
+  region_id: et-addis
+  site_id: et-addis-demo
+national_catalog_path: configs/data/catalog/et.yaml
+adapters:
+  - adapters.data.national.catalog_ingest
+  - adapters.data.global_feeds.open_meteo_precip
 notes: >
-  Integration stub for onboarding research. NOT a national pilot or deployment.
+  Integration case for Ethiopia — representative site only, not a national pilot.

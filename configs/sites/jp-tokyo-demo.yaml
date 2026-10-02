@@ -1,0 +1,33 @@
+# SiteProfile — Japan INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: JP
+region_id: jp-kanto
+site_id: jp-tokyo-demo
+name: Japan integration demo catchment
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Tokyo
+priority_hazards:
+  - earthquake
+  - tsunami
+  - cyclone
+  - volcano
+  - flood
+coordinates:
+  lon: 139.6503
+  lat: 35.6762
+exposure_vulnerability:
+  version: site-ev.v0.1.0
+  evidence: EXPERIMENTAL
+  notes: Illustrative weights — not census or building inventories.
+  units:
+    jp-tokyo-demo-north:
+      exposure: 0.40
+      vulnerability: 0.50
+    jp-tokyo-demo-center:
+      exposure: 0.70
+      vulnerability: 0.55
+notes: >
+  INTEGRATION CASE site for Country → Region → Site YAML and Open-Meteo LIVE precip binding.
+  Not an installed sensor network.

@@ -1,0 +1,16 @@
+# RegionProfile — Germany INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: DE
+region_id: de-berlin
+name: De Berlin
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Europe/Berlin
+priority_hazards:
+  - flood
+  - heat
+  - storm
+notes: >
+  Representative region for Germany config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

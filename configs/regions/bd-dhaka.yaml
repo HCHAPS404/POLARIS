@@ -1,0 +1,16 @@
+# RegionProfile — Bangladesh INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: BD
+region_id: bd-dhaka
+name: Bd Dhaka
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Dhaka
+priority_hazards:
+  - flood
+  - cyclone
+  - flash_flood
+notes: >
+  Representative region for Bangladesh config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

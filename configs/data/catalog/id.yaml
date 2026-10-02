@@ -1,0 +1,17 @@
+# National source catalog — ID INTEGRATION CASE
+catalog_id: national/id-integration-v1
+country_iso: ID
+evidence: IMPLEMENTED
+documented_sources:
+  - source_id: live/open-meteo/precipitation
+    role: hazard_nowcast_proxy
+    shared_catalog: configs/data/sources/open-meteo-precipitation.yaml
+    license_note: Open-Meteo API — verify https://open-meteo.com/en/license
+  - source_id: catalog/id/country-profile
+    role: territorial_metadata
+    path: configs/countries/id.yaml
+precipitation_binding:
+  adapter_id: open_meteo_precip
+  site_id: id-jakarta-demo
+  data_class: LIVE_INTEGRATED
+live_metadata_sources: []

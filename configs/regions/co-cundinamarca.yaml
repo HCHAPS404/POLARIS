@@ -5,7 +5,7 @@ country_iso: CO
 region_id: co-cundinamarca
 name: Cundinamarca
 status: INTEGRATION_CASE
-evidence: DESIGNED
+evidence: IMPLEMENTED
 timezone: America/Bogota
 priority_hazards:
   - flood

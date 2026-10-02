@@ -18,7 +18,8 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo**
 | P3 Horizon Mobile + Forge + demo harness | **Hecho** | Merge PR #8 → main |
 | P4 wildfire + fault injection + release prep | **Hecho** | Merge PR #9 → **`45b67c0`** |
 | P5 RC prep (docs, RF, release workflow draft) | **Hecho** | PR #10 merged |
-| Product polish + one-command local deploy | **Parcial / PR abierto** | `feature/polish-product-local-deploy` |
+| Product polish + one-command local deploy | **Hecho** | merged main |
+| 15 países INTEGRATION CASE + adaptadores nacionales | **Hecho IMPLEMENTED** | `feature/complete-country-adapters` |
 
 ---
 
@@ -32,7 +33,7 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo**
 | RF FSPL link budget (SIMULATED) | **Hecho IMPLEMENTED** (P5) |
 | PostGIS dev + API `run_id` | **Hecho IMPLEMENTED** |
 | Docker compose demo (PostGIS + API + static apps) | **Hecho IMPLEMENTED** (polish PR) |
-| LIVE_INTEGRATED Open-Meteo | **Parcial IMPLEMENTED** |
+| LIVE_INTEGRATED Open-Meteo | **Hecho IMPLEMENTED** (15 sitios + catálogo nacional) |
 | PHI lluvia + nivel (max merge) | **Hecho IMPLEMENTED** (ADR-0009) |
 | Landslide PHI slope/moisture/rain | **Hecho IMPLEMENTED** (ADR-0010) |
 | Wildfire PHI fire-weather-pm | **Hecho IMPLEMENTED** (ADR-0012) |
@@ -52,7 +53,7 @@ Leyenda: **Hecho** · **Parcial** · **Falta** · **Continuo**
 
 ## Siguiente ejecutable
 
-1. CI verde en PR polish local deploy.  
+1. CI verde y merge PR adaptadores 15 países → `main`.  
 2. Helmut valida `docker compose up` + Horizon/Vector en localhost.  
 3. Publicar GitHub Release draft cuando apruebe tag.  
 4. No reclamar HISTORICALLY_VALIDATED / alertas OFFICIAL / envío concurso sin aprobación.

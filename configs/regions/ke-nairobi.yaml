@@ -1,0 +1,16 @@
+# RegionProfile — Kenya INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: KE
+region_id: ke-nairobi
+name: Ke Nairobi
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Africa/Nairobi
+priority_hazards:
+  - drought
+  - flood
+  - heat
+notes: >
+  Representative region for Kenya config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

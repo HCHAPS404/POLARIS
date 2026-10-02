@@ -1,0 +1,31 @@
+# SiteProfile — Bangladesh INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: BD
+region_id: bd-dhaka
+site_id: bd-dhaka-demo
+name: Bangladesh integration demo catchment
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Dhaka
+priority_hazards:
+  - flood
+  - cyclone
+  - flash_flood
+coordinates:
+  lon: 90.4125
+  lat: 23.8103
+exposure_vulnerability:
+  version: site-ev.v0.1.0
+  evidence: EXPERIMENTAL
+  notes: Illustrative weights — not census or building inventories.
+  units:
+    bd-dhaka-demo-north:
+      exposure: 0.40
+      vulnerability: 0.50
+    bd-dhaka-demo-center:
+      exposure: 0.70
+      vulnerability: 0.55
+notes: >
+  INTEGRATION CASE site for Country → Region → Site YAML and Open-Meteo LIVE precip binding.
+  Not an installed sensor network.

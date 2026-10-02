@@ -1,9 +1,9 @@
-# CountryProfile stub — P0
-# Evidence: DESIGNED. Not a live integration. Not a pilot.
+# CountryProfile — Japan INTEGRATION CASE
+# Evidence: IMPLEMENTED (config + national catalog adapter). Not a field pilot.
 iso_code: JP
 name: Japan
-status: INTEGRATION_STUB
-evidence: DESIGNED
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
 timezone: Asia/Tokyo
 priority_hazards:
   - earthquake
@@ -12,5 +12,13 @@ priority_hazards:
   - volcano
   - flood
 official_alert_authority: "JMA"
+integration:
+  label: INTEGRATION CASE
+  region_id: jp-kanto
+  site_id: jp-tokyo-demo
+national_catalog_path: configs/data/catalog/jp.yaml
+adapters:
+  - adapters.data.national.catalog_ingest
+  - adapters.data.global_feeds.open_meteo_precip
 notes: >
-  Integration stub for onboarding research. NOT a national pilot or deployment.
+  Integration case for Japan — representative site only, not a national pilot.

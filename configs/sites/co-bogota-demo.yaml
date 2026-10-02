@@ -6,7 +6,7 @@ region_id: co-cundinamarca
 site_id: co-bogota-demo
 name: Bogotá demo catchment (synthetic)
 status: INTEGRATION_CASE
-evidence: DESIGNED
+evidence: IMPLEMENTED
 timezone: America/Bogota
 priority_hazards:
   - flood

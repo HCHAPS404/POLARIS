@@ -1,0 +1,18 @@
+# RegionProfile — Japan INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: JP
+region_id: jp-kanto
+name: Jp Kanto
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Tokyo
+priority_hazards:
+  - earthquake
+  - tsunami
+  - cyclone
+  - volcano
+  - flood
+notes: >
+  Representative region for Japan config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

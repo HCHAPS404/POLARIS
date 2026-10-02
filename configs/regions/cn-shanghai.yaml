@@ -1,0 +1,16 @@
+# RegionProfile — China INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: CN
+region_id: cn-shanghai
+name: Cn Shanghai
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Shanghai
+priority_hazards:
+  - flood
+  - earthquake
+  - typhoon
+notes: >
+  Representative region for China config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

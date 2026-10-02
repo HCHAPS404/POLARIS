@@ -1,0 +1,17 @@
+# RegionProfile — Indonesia INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: ID
+region_id: id-jakarta
+name: Id Jakarta
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Jakarta
+priority_hazards:
+  - earthquake
+  - tsunami
+  - volcano
+  - flood
+notes: >
+  Representative region for Indonesia config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

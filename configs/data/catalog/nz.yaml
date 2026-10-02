@@ -1,0 +1,20 @@
+# National source catalog — NZ INTEGRATION CASE
+catalog_id: national/nz-integration-v1
+country_iso: NZ
+evidence: IMPLEMENTED
+documented_sources:
+  - source_id: live/open-meteo/precipitation
+    role: hazard_nowcast_proxy
+    shared_catalog: configs/data/sources/open-meteo-precipitation.yaml
+    license_note: Open-Meteo API — verify https://open-meteo.com/en/license
+  - source_id: catalog/nz/country-profile
+    role: territorial_metadata
+    path: configs/countries/nz.yaml
+precipitation_binding:
+  adapter_id: open_meteo_precip
+  site_id: nz-auckland-demo
+  data_class: LIVE_INTEGRATED
+live_metadata_sources:
+  - source_id: live/nz/geonet-recent-quakes
+    endpoint: https://api.geonet.org.nz/quake?MMI=3
+    data_class: LIVE_INTEGRATED

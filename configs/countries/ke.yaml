@@ -1,14 +1,22 @@
-# CountryProfile stub — P0
-# Evidence: DESIGNED. Not a live integration. Not a pilot.
+# CountryProfile — Kenya INTEGRATION CASE
+# Evidence: IMPLEMENTED (config + national catalog adapter). Not a field pilot.
 iso_code: KE
 name: Kenya
-status: INTEGRATION_STUB
-evidence: DESIGNED
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
 timezone: Africa/Nairobi
 priority_hazards:
   - drought
   - flood
   - heat
 official_alert_authority: "KMD / NDOC"
+integration:
+  label: INTEGRATION CASE
+  region_id: ke-nairobi
+  site_id: ke-nairobi-demo
+national_catalog_path: configs/data/catalog/ke.yaml
+adapters:
+  - adapters.data.national.catalog_ingest
+  - adapters.data.global_feeds.open_meteo_precip
 notes: >
-  Integration stub for onboarding research. NOT a national pilot or deployment.
+  Integration case for Kenya — representative site only, not a national pilot.

@@ -1,0 +1,17 @@
+# RegionProfile — Philippines INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: PH
+region_id: ph-ncr
+name: Ph Ncr
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Manila
+priority_hazards:
+  - cyclone
+  - flood
+  - earthquake
+  - volcano
+notes: >
+  Representative region for Philippines config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

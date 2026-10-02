@@ -1,0 +1,31 @@
+# SiteProfile — China INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: CN
+region_id: cn-shanghai
+site_id: cn-shanghai-demo
+name: China integration demo catchment
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Asia/Shanghai
+priority_hazards:
+  - flood
+  - earthquake
+  - typhoon
+coordinates:
+  lon: 121.4737
+  lat: 31.2304
+exposure_vulnerability:
+  version: site-ev.v0.1.0
+  evidence: EXPERIMENTAL
+  notes: Illustrative weights — not census or building inventories.
+  units:
+    cn-shanghai-demo-north:
+      exposure: 0.40
+      vulnerability: 0.50
+    cn-shanghai-demo-center:
+      exposure: 0.70
+      vulnerability: 0.55
+notes: >
+  INTEGRATION CASE site for Country → Region → Site YAML and Open-Meteo LIVE precip binding.
+  Not an installed sensor network.

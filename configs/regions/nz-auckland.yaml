@@ -1,0 +1,17 @@
+# RegionProfile — New Zealand INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: NZ
+region_id: nz-auckland
+name: Nz Auckland
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Pacific/Auckland
+priority_hazards:
+  - earthquake
+  - tsunami
+  - volcano
+  - flood
+notes: >
+  Representative region for New Zealand config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.
