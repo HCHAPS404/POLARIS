@@ -8,33 +8,56 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="banner">
-      <strong>Decision-support only.</strong>
-      This map is <code>SIMULATED</code> or <code>HISTORICAL_REPLAY</code>
-      rainfall. Use <code>?fixture_id=flood-mocoa-2017-replay</code> for the
-      Mocoa 2017 backtest (EXPERIMENTAL).
-      Alerts are <code>DRAFT</code> and require a human in the loop.
-      POLARIS is not an official warning service. Layers show dimensionless
-      operational risk (<code>PHI × E_stub × V_stub</code>), not a flood probability.
+    <header class="topbar">
+      <div class="brand">
+        <h1>Horizon</h1>
+        <span class="badge" id="data-class-badge">…</span>
+      </div>
+      <nav class="nav-links">
+        <a id="vector-link" href="/vector/">Vector console</a>
+        <a href="/forge/">Forge</a>
+        <a href="/docs" title="OpenAPI">API</a>
+      </nav>
+      <p class="freshness" id="freshness">Cargando…</p>
     </header>
-    <aside class="legend">
-      <h1>Horizon <span>V1 flood</span></h1>
+    <aside class="legend" id="legend-panel">
+      <p class="disclaimer">
+        Solo apoyo a la decisión. No es alerta oficial. Capas
+        <code>SIMULATED</code> / <code>HISTORICAL_REPLAY</code> únicamente.
+      </p>
+      <label class="fixture-label">
+        Escenario (fixture_id)
+        <select id="fixture-select">
+          <option value="flood-bogota-demo">flood-bogota-demo</option>
+          <option value="flood-mocoa-2017-replay">flood-mocoa-2017-replay</option>
+        </select>
+      </label>
+      <fieldset class="layers">
+        <legend>Capas opcionales</legend>
+        <label><input type="checkbox" id="layer-flood" checked /> Inundación (principal)</label>
+        <label><input type="checkbox" id="layer-landslide" /> Deslizamiento</label>
+        <label><input type="checkbox" id="layer-wildfire" /> Incendio forestal</label>
+      </fieldset>
+      <label class="tiles-toggle">
+        <input type="checkbox" id="tiles-toggle" />
+        Mapa base OSM (requiere red)
+      </label>
       <p id="status">Loading GeoJSON from API…</p>
-      <dl>
-        <dt>PHI</dt>
-        <dd>rainfall-threshold baseline</dd>
+      <dl class="gci-legend">
         <dt>GCI</dt>
-        <dd>qc × completeness × SIMULATED trust</dd>
-        <dt>Risk</dt>
-        <dd>PHI × stub exposure × stub vulnerability</dd>
+        <dd>qc × completeness × confianza de fuente (no probabilidad)</dd>
+        <dt>PHI</dt>
+        <dd>índice por amenaza (baseline documentado)</dd>
+        <dt>Riesgo operativo</dt>
+        <dd>PHI × E_stub × V_stub</dd>
       </dl>
-      <ol class="scale">
+      <ol class="scale" aria-label="Escala de riesgo operativo">
         <li><span class="swatch s0"></span> 0.00–0.05</li>
         <li><span class="swatch s1"></span> 0.05–0.10</li>
         <li><span class="swatch s2"></span> 0.10–0.20</li>
         <li><span class="swatch s3"></span> ≥ 0.20</li>
       </ol>
-      <p class="hint">Click a catchment for formula versions, mode, and DRAFT level.</p>
+      <p class="hint">Toca un polígono para ver fórmulas, GCI y nivel DRAFT.</p>
     </aside>
     <div id="map"></div>
     <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>

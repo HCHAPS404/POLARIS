@@ -22,7 +22,9 @@ body {
   display: grid;
   gap: 1rem;
   padding: 1rem;
-  grid-template-columns: minmax(240px, 320px) 1fr;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .panel {
@@ -36,16 +38,25 @@ body {
   grid-column: 1 / -1;
 }
 
+.sidebar {
+  grid-row: span 3;
+}
+
 h1,
 h2 {
   margin: 0 0 0.75rem;
   font-weight: 600;
 }
 
-h1 span,
-h2 span {
+h1 span {
   color: #7eb8ff;
   font-weight: 500;
+}
+
+.subhead {
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  color: #9fb0c3;
 }
 
 label {
@@ -61,13 +72,47 @@ select {
   padding: 0.35rem;
 }
 
-.meta {
+.meta,
+.chi-note {
   font-size: 0.85rem;
   color: #9fb0c3;
 }
 
 .links a {
   color: #7eb8ff;
+}
+
+.health-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+}
+
+.health-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot.ok {
+  background: #3dd68c;
+}
+
+.dot.warn {
+  background: #ffb86b;
+}
+
+.table-wrap {
+  overflow-x: auto;
 }
 
 table {
@@ -91,4 +136,13 @@ th {
 
 .chi-active {
   color: #ffb86b;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    grid-row: auto;
+  }
 }

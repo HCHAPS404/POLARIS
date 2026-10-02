@@ -3,19 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>POLARIS Vector — operator shell (minimal)</title>
+    <title>POLARIS Vector — operator console</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="banner">
       <strong>Decision-support only.</strong>
-      Lists are <code>SIMULATED</code> fixtures. Alerts remain <code>DRAFT</code> with human-in-the-loop.
-      POLARIS is not an official warning service. CHI is a documented rain-coupling index (ADR-0011), not a probability.
+      Lists are <code>SIMULATED</code> or <code>HISTORICAL_REPLAY</code> fixtures. Alerts remain
+      <code>DRAFT</code> with human-in-the-loop. POLARIS is not an official warning service.
     </header>
     <main class="layout">
-      <section class="panel">
+      <section class="panel sidebar">
         <h1>Vector <span>console</span></h1>
         <p class="meta" id="status">Loading API…</p>
+        <h2 class="subhead">Source health (stub)</h2>
+        <ul class="health-list" id="source-health">
+          <li><span class="dot ok"></span> SIMULATED fixtures — catalog local</li>
+          <li><span class="dot ok"></span> API storage — <code id="storage-backend">…</code></li>
+          <li><span class="dot warn"></span> LIVE adapters — refused (not faked)</li>
+          <li><span class="dot warn"></span> National feeds — NOT IMPLEMENTED</li>
+        </ul>
         <label>
           Flood fixture
           <select id="flood-fixture">
@@ -37,9 +44,9 @@
           </select>
         </label>
         <p class="links">
-          <a id="cap-link" href="#" target="_blank" rel="noopener">CAP draft (format=cap)</a>
+          <a id="horizon-link" href="/horizon/" target="_blank" rel="noopener">Horizon map</a>
           ·
-          <a href="/horizon/" target="_blank" rel="noopener">Horizon map</a>
+          <a id="cap-link" href="#" target="_blank" rel="noopener">CAP draft (format=cap)</a>
         </p>
       </section>
       <section class="panel wide">
@@ -48,6 +55,7 @@
       </section>
       <section class="panel wide">
         <h2>Compound CHI</h2>
+        <p class="meta chi-note">Minimal rain-coupling index (ADR-0011). Not a probability.</p>
         <div id="chi" class="table-wrap"></div>
       </section>
       <section class="panel wide">

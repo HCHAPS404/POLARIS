@@ -1,8 +1,8 @@
-# POLARIS dev compose — local PostGIS + MQTT + NATS. NOT production.
-# Enable persistence: POLARIS_DATABASE_URL=postgresql+psycopg://polaris:polaris@localhost:5432/polaris
-# Do not claim HA, backups, or internet exposure.
+# POLARIS local demo compose — PostGIS + API (Horizon/Vector/Forge static mounts).
+# Optional MQTT/NATS: docker compose --profile optional up --build
+# NOT production — no HA, backups, or internet exposure claims.
 
-name: polaris-p0-dev
+name: polaris-local
 
 services:
   postgres:
@@ -13,16 +13,36 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-polaris}
       POSTGRES_DB: ${POSTGRES_DB:-polaris}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - ./infra/compose/postgres-init.sql:/docker-entrypoint-initdb.d/01-postgis.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U polaris"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-polaris} -d ${POSTGRES_DB:-polaris}"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 12
+      start_period: 10s
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/compose/Dockerfile.api
+    restart: unless-stopped
+    ports:
+      - "${API_PORT:-8000}:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      POLARIS_DATABASE_URL: ${POLARIS_DATABASE_URL:-postgresql+psycopg://polaris:polaris@postgres:5432/polaris}
+      POLARIS_MAP_TILE_URL: ${POLARIS_MAP_TILE_URL:-}
+      POLARIS_MAP_TILE_ENABLED: ${POLARIS_MAP_TILE_ENABLED:-0}
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   mosquitto:
+    profiles: ["optional"]
     image: eclipse-mosquitto:2
     restart: unless-stopped
     ports:
@@ -31,6 +51,7 @@ services:
       - ./infra/compose/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
 
   nats:
+    profiles: ["optional"]
     image: nats:2-alpine
     restart: unless-stopped
     command: ["-js", "-m", "8222"]

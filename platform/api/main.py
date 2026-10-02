@@ -7,6 +7,7 @@ No LIVE adapters. No OFFICIAL alerts.
 
 from __future__ import annotations
 
+import os
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -84,6 +85,48 @@ def _refuse_live(data_class: str | None) -> None:
             status_code=400,
             detail="data_class must be SIMULATED or HISTORICAL_REPLAY",
         )
+
+
+DEFAULT_OSM_TILE_TEMPLATE = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+
+@app.get("/v1/config/map")
+def map_client_config() -> dict:
+    """Horizon MapLibre tile settings (env-driven; no LIVE claims)."""
+    enabled_raw = os.environ.get("POLARIS_MAP_TILE_ENABLED", "0").lower()
+    enabled = enabled_raw in ("1", "true", "yes", "on")
+    explicit = os.environ.get("POLARIS_MAP_TILE_URL", "").strip()
+    if explicit.lower() in ("off", "none", "0", "false"):
+        enabled = False
+        explicit = ""
+    template = explicit or (DEFAULT_OSM_TILE_TEMPLATE if enabled else "")
+    return {
+        "disclaimer": DISCLAIMER,
+        "evidence": "IMPLEMENTED",
+        "tiles_enabled": bool(template),
+        "tile_url_template": template or None,
+        "attribution": "© OpenStreetMap contributors" if template else None,
+        "notes": (
+            "Set POLARIS_MAP_TILE_ENABLED=1 or POLARIS_MAP_TILE_URL in .env. "
+            "Empty = local background only."
+        ),
+    }
+
+
+@app.get("/v1/meta/demo-latest")
+def demo_latest_log() -> dict:
+    """Latest IEEE demo harness log path (if run on host)."""
+    out_dir = ROOT / "harness" / "demo" / "output"
+    if not out_dir.is_dir():
+        return {"evidence": "PLACEHOLDER", "latest_log": None, "output_dir": str(out_dir)}
+    logs = sorted(out_dir.glob("demo-*.log"), key=lambda p: p.stat().st_mtime, reverse=True)
+    latest = logs[0] if logs else None
+    return {
+        "evidence": "IMPLEMENTED",
+        "output_dir": str(out_dir.relative_to(ROOT)),
+        "latest_log": str(latest.relative_to(ROOT)) if latest else None,
+        "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
 
 
 @app.get("/health")

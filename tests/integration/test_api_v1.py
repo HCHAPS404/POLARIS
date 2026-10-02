@@ -69,6 +69,23 @@ def test_geojson_for_horizon() -> None:
     assert len(body["features"]) == 3
 
 
+def test_map_client_config_defaults_local_background() -> None:
+    response = client.get("/v1/config/map")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["evidence"] == "IMPLEMENTED"
+    assert body["tiles_enabled"] is False
+    assert body["tile_url_template"] is None
+
+
+def test_demo_latest_meta() -> None:
+    response = client.get("/v1/meta/demo-latest")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["evidence"] in ("IMPLEMENTED", "PLACEHOLDER")
+    assert "output_dir" in body
+
+
 def test_iot_ingest_endpoint() -> None:
     response = client.post("/v1/ingest/iot", json={"seed": 42, "scenario_id": "iot-bogota-demo"})
     assert response.status_code == 200
