@@ -1,5 +1,5 @@
 # hardware/reference-designs
 
-**Evidence:** PLACEHOLDER
+**Evidence:** DESIGNED (N657X0-Q node + Pi 5 gateway BOM/block diagrams)
 
-No fabrication claim in P0.
+No fabrication or certification claim. KiCad under `../pcb/kicad/` is placeholder only.

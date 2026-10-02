@@ -1,4 +1,4 @@
-.PHONY: test lint health scaffold-hazard test-cpp compose-config sim-flood sim-replay sim-iot api db-up db-migrate demo up down demo-compose smoke-compose
+.PHONY: test lint health scaffold-hazard scaffold-country scaffold-site scaffold-sensor scaffold-communication scaffold-scenario test-cpp test-cpp-bindings compose-config sim-flood sim-replay sim-iot api db-up db-migrate demo up down demo-compose smoke-compose harness-integration harness-simulation harness-faults harness-e2e harness-benchmark
 
 PYTHON ?= python3
 
@@ -15,10 +15,52 @@ scaffold-hazard:
 	@test -n "$(NAME)" || (echo "NAME is required, e.g. make scaffold-hazard NAME=flood"; exit 1)
 	$(PYTHON) generators/hazard/scaffold.py --name "$(NAME)"
 
+scaffold-country:
+	@test -n "$(ISO)" || (echo "ISO is required, e.g. make scaffold-country ISO=co"; exit 1)
+	$(PYTHON) generators/country/scaffold.py --iso "$(ISO)"
+
+scaffold-site:
+	@test -n "$(ID)" || (echo "ID is required"; exit 1)
+	@test -n "$(COUNTRY)" || (echo "COUNTRY is required"; exit 1)
+	$(PYTHON) generators/site/scaffold.py --id "$(ID)" --country "$(COUNTRY)"
+
+scaffold-sensor:
+	@test -n "$(NAME)" || (echo "NAME is required"; exit 1)
+	$(PYTHON) generators/sensor/scaffold.py --name "$(NAME)"
+
+scaffold-communication:
+	@test -n "$(NAME)" || (echo "NAME is required"; exit 1)
+	$(PYTHON) generators/communication/scaffold.py --name "$(NAME)"
+
+scaffold-scenario:
+	@test -n "$(NAME)" || (echo "NAME is required"; exit 1)
+	$(PYTHON) generators/scenario/scaffold.py --name "$(NAME)" --hazard "$(or $(HAZARD),flood)"
+
+harness-integration:
+	$(PYTHON) harness/integration/run_integration.py
+
+harness-simulation:
+	$(PYTHON) harness/simulation/run_simulation.py
+
+harness-faults:
+	$(PYTHON) harness/fault-injection/run_faults.py
+
+harness-e2e:
+	$(PYTHON) harness/e2e/run_e2e.py
+
+harness-benchmark:
+	$(PYTHON) harness/benchmark/benchmark_flood.py
+
 test-cpp:
 	cmake -S . -B build/cpp
 	cmake --build build/cpp
 	cd build/cpp && ctest --output-on-failure
+
+test-cpp-bindings:
+	cmake -S . -B build/cpp -DBUILD_PYBIND11_BINDINGS=ON
+	cmake --build build/cpp
+	cd build/cpp && ctest --output-on-failure
+	POLARIS_EVENT_SCHEDULER_BUILT=1 PYTHONPATH=build/cpp $(PYTHON) -m pytest tests/unit/test_event_scheduler_binding.py -q
 
 compose-config:
 	docker compose -f docker-compose.yml -f infra/compose/compose.yml config

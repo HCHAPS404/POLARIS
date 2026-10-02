@@ -1,3 +1,3 @@
 # generators/country
 
-**Evidence:** PLACEHOLDER
+**Evidence:** IMPLEMENTED — `scaffold.py` + `task scaffold:country`

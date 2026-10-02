@@ -33,7 +33,7 @@ polaris-flood-sim = "simulation.python.run:main"
 polaris-replay = "harness.backtesting.replay:main"
 
 [tool.setuptools.packages.find]
-include = ["domains*", "hazards*", "adapters*", "simulation*", "harness*"]
+include = ["domains*", "hazards*", "adapters*", "simulation*", "harness*", "generators*", "firmware*"]
 
 [tool.setuptools.package-data]
 "adapters.storage" = ["alembic.ini", "alembic/**/*"]

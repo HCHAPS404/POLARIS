@@ -1,5 +1,5 @@
 # hardware/antenna
 
-**Evidence:** PLACEHOLDER
+**Evidence:** DESIGNED notes (link budget cross-check via simulation RF stub only)
 
-No fabrication claim in P0.
+See `n657x0-q-antenna-notes.md` and `pi5-gateway-antenna-notes.md`.

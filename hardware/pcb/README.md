@@ -1,5 +1,5 @@
 # hardware/pcb
 
-**Evidence:** PLACEHOLDER
+**Evidence:** NOT PRODUCTION (KiCad placeholder paths only)
 
-No fabrication claim in P0.
+Production spin would live under `kicad/` subfolders — see `kicad/n657x0-q-node/README.md`.

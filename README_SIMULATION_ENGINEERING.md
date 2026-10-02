@@ -9,8 +9,8 @@ The primary simulation environment is a **reproducible Digital Testbed** in this
 | Layer | Path | Role |
 |-------|------|------|
 | Python orchestration | `simulation/python` | Scenarios, seeds, reports, fixtures |
-| C++20 kernel | `simulation/cpp` | Numerical kernels (placeholder `add` in P0) |
-| Bindings | `simulation/bindings` | pybind11 (DESIGNED; not wired in P0) |
+| C++20 kernel | `simulation/cpp` | Placeholder `add` + minimal `EventScheduler` (P6) |
+| Bindings | `simulation/bindings` | Optional pybind11 module `polaris_event_scheduler` (`make test-cpp-bindings`) |
 | Scenarios | `simulation/scenarios` | YAML scene definitions |
 | Fixtures | `simulation/fixtures` | Golden inputs |
 | Experiments | `simulation/experiments` | Run manifests |
@@ -53,9 +53,9 @@ Gateway (Pi 5 logical sim) preserves `event_time`, adds `ingest_time`, and suppo
 
 ## Fault injection and backtesting
 
-Harnesses live under `harness/simulation`, `harness/fault-injection`, and `backtesting/`.
+Harnesses live under `harness/simulation`, `harness/fault-injection`, and `harness/backtesting/`.
 `python -m harness.backtesting.replay --seed 42` is IMPLEMENTED for Mocoa 2017
-(HISTORICAL_REPLAY, evidence EXPERIMENTAL). Fault injection remains PLACEHOLDER.
+(HISTORICAL_REPLAY, evidence EXPERIMENTAL). IoT fault runners: `make harness-faults`.
 
 ## Agent rules
 

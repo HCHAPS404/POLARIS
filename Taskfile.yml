@@ -23,6 +23,56 @@ tasks:
       - python3 generators/hazard/scaffold.py --name "{{.NAME}}"
     requires:
       vars: [NAME]
+  scaffold:country:
+    desc: Scaffold a country profile (ISO 3166-1 alpha-2)
+    cmds:
+      - python3 generators/country/scaffold.py --iso "{{.ISO}}"
+    requires:
+      vars: [ISO]
+  scaffold:site:
+    desc: Scaffold a site profile
+    cmds:
+      - python3 generators/site/scaffold.py --id "{{.ID}}" --country "{{.COUNTRY}}"
+    requires:
+      vars: [ID, COUNTRY]
+  scaffold:sensor:
+    desc: Scaffold a logical device profile
+    cmds:
+      - python3 generators/sensor/scaffold.py --name "{{.NAME}}"
+    requires:
+      vars: [NAME]
+  scaffold:communication:
+    desc: Scaffold a communications profile
+    cmds:
+      - python3 generators/communication/scaffold.py --name "{{.NAME}}"
+    requires:
+      vars: [NAME]
+  scaffold:scenario:
+    desc: Scaffold a scenario YAML
+    cmds:
+      - python3 generators/scenario/scaffold.py --name "{{.NAME}}" --hazard "{{default "flood" .HAZARD}}"
+    requires:
+      vars: [NAME]
+  harness:integration:
+    desc: Run integration harness (pytest)
+    cmds:
+      - python3 harness/integration/run_integration.py
+  harness:simulation:
+    desc: Run simulation harness (flood demo)
+    cmds:
+      - python3 harness/simulation/run_simulation.py
+  harness:faults:
+    desc: Run IoT fault-injection harness
+    cmds:
+      - python3 harness/fault-injection/run_faults.py
+  harness:e2e:
+    desc: Run e2e harness (pytest)
+    cmds:
+      - python3 harness/e2e/run_e2e.py
+  harness:benchmark:
+    desc: Micro-benchmark flood slice
+    cmds:
+      - python3 harness/benchmark/benchmark_flood.py
   test:cpp:
     desc: Configure, build, and test C++ placeholder
     cmds:

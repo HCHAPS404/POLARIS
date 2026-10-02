@@ -148,6 +148,17 @@
     geojson.features.forEach((feature) => {
       feature.properties.color = riskColor(feature.properties.operational_risk);
     });
+    if (layerId === "hazard-flood" && window.PolarisHorizonOffline) {
+      window.PolarisHorizonOffline.saveManifest({
+        schema_version: "horizon.offline.v0.1.0",
+        data_class: geojson.data_class,
+        fixture_id: fid,
+        seed: 42,
+        fetched_at: new Date().toISOString(),
+        disclaimer: "Decision-support only. Not an official warning.",
+        geojson,
+      });
+    }
     return geojson;
   }
 

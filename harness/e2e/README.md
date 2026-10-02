@@ -1,3 +1,10 @@
 # harness/e2e
 
-**Evidence:** IMPLEMENTED flood pipeline pytest (`tests/e2e/test_flood_pipeline.py`)
+**Evidence:** IMPLEMENTED
+
+Runs `tests/e2e` pytest package (fixture → domain → API JSON).
+
+```bash
+python harness/e2e/run_e2e.py
+make harness-e2e
+```
