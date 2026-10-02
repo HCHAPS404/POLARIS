@@ -1,0 +1,12 @@
+# Compound site — wildfire + landslide on shared center unit (SIMULATED)
+site_id: co-bogota-wildfire-landslide
+fixture_site_id: co-bogota-demo
+rule_id: wildfire-landslide-post-fire
+hazards:
+  - hazard_id: wildfire
+    fixture_id: wildfire-co-bogota-demo
+  - hazard_id: landslide
+    fixture_id: landslide-co-bogota-demo
+evidence: IMPLEMENTED
+notes: >
+  co-bogota-demo-center overlap for post-fire slope screening CHI (ADR-0013).

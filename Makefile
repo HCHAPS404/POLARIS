@@ -72,6 +72,15 @@ sim-replay:
 	$(PYTHON) -m simulation.python.run --scenario simulation/scenarios/flood-mocoa-2017-replay.yaml --seed 42
 	$(PYTHON) -m harness.backtesting.replay --scenario simulation/scenarios/flood-mocoa-2017-replay.yaml --seed 42
 
+sim-experiments:
+	$(PYTHON) -m backtesting.experiments.run_experiments --seed 42
+
+sim-monte-carlo:
+	$(PYTHON) -m harness.backtesting.monte_carlo --seed 42 --draws 200
+
+sim-fault-injection:
+	$(PYTHON) -m harness.fault_injection.runner
+
 sim-iot:
 	$(PYTHON) -m simulation.python.iot_run --scenario simulation/scenarios/iot-bogota-demo.yaml --seed 42
 

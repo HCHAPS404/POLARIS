@@ -296,8 +296,16 @@ def list_compound_sites() -> dict:
         "sites": [
             {
                 "site_id": s.site_id,
-                "flood_fixture_id": s.flood_fixture_id,
-                "landslide_fixture_id": s.landslide_fixture_id,
+                "rule_id": s.rule_id,
+                "hazard_fixtures": [
+                    {"hazard_id": h, "fixture_id": f} for h, f in s.hazard_fixtures
+                ],
+                "flood_fixture_id": s.flood_fixture_id
+                if any(h == "flood" for h, _ in s.hazard_fixtures)
+                else None,
+                "landslide_fixture_id": s.landslide_fixture_id
+                if any(h == "landslide" for h, _ in s.hazard_fixtures)
+                else None,
                 "evidence": s.evidence,
                 "notes": s.notes,
             }
@@ -321,6 +329,22 @@ def get_compound_chi(
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
+@app.get("/v1/backtesting/experiments")
+def list_backtesting_experiments() -> dict:
+    import yaml
+
+    catalog_path = ROOT / "backtesting" / "experiments" / "catalog.yaml"
+    if not catalog_path.is_file():
+        raise HTTPException(status_code=404, detail="experiments catalog not found")
+    raw = yaml.safe_load(catalog_path.read_text(encoding="utf-8"))
+    experiments = raw.get("experiments") or []
+    return {
+        "disclaimer": DISCLAIMER,
+        "evidence": "EXPERIMENTAL",
+        "experiments": experiments,
+    }
+
+
 @app.get("/v1/backtests/{scenario_id}")
 def get_backtest(
     scenario_id: str,
@@ -334,6 +358,23 @@ def get_backtest(
     try:
         return run_backtest(scenario, seed)
     except SystemExit as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/v1/backtests/{scenario_id}/monte-carlo")
+def get_backtest_monte_carlo(
+    scenario_id: str,
+    seed: int = Query(default=42),
+    draws: int = Query(default=200, ge=1, le=5000),
+) -> dict:
+    from harness.backtesting.monte_carlo import run_monte_carlo
+
+    scenario = ROOT / "simulation" / "scenarios" / f"{scenario_id}.yaml"
+    if not scenario.is_file():
+        raise HTTPException(status_code=404, detail="scenario not found")
+    try:
+        return run_monte_carlo(scenario, seed=seed, draws=draws)
+    except (SystemExit, ValueError) as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 

@@ -1,0 +1,41 @@
+{
+  "event_id": "flood-bogota-2018-april",
+  "hazard_id": "flood",
+  "country_iso": "CO",
+  "site_id": "co-bogota-2018-april",
+  "time_window": {
+    "start": "2018-04-19T06:00:00Z",
+    "end": "2018-04-19T24:00:00Z"
+  },
+  "ground_truth_type": "binary_urban_flooding_from_public_reports",
+  "ground_truth_scope": "Bogotá urban flooding and transport disruptions on 19 April 2018 heavy-rain day. Not a pixel inundation map.",
+  "units": [
+    {
+      "spatial_unit_id": "co-bogota-2018-april-north",
+      "ground_truth_flooded": true
+    },
+    {
+      "spatial_unit_id": "co-bogota-2018-april-center",
+      "ground_truth_flooded": true
+    },
+    {
+      "spatial_unit_id": "co-bogota-2018-april-south",
+      "ground_truth_flooded": false
+    }
+  ],
+  "citations": [
+    {
+      "title": "IDEAM — Informe de lluvias (public summary references, April 2018)",
+      "url": "https://www.ideam.gov.co/",
+      "date": "2018-04-19",
+      "license": "Colombian public institution open summaries"
+    }
+  ],
+  "limitations": [
+    "Binary GT follows municipal flooding reports, not surveyed outlines.",
+    "24h accumulations scored with 1-hour PHI T0/T1 constants (EXPERIMENTAL mismatch).",
+    "Southern unit included as a documented non-event control for FAR.",
+    "Exposure and vulnerability remain PLACEHOLDER stubs.",
+    "Not HISTORICALLY_VALIDATED — methodology and transparency demo only."
+  ]
+}

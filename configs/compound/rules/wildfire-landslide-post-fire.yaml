@@ -1,0 +1,13 @@
+# ADR-0013 — post-fire slope + fire-weather screening (center footprint demo)
+rule_id: wildfire-landslide-post-fire
+hazard_ids: [wildfire, landslide]
+phi_min:
+  wildfire: 0.30
+  landslide: 0.25
+formula: union
+formula_version: compound.chi.wildfire-landslide-post-fire.v0.2.0
+model_version: compound.chi.v0.2.0
+hazard_id: compound/wildfire-landslide
+notes: >
+  Vegetation loss and dry fuels can co-elevate wildfire PHI and antecedent slope
+  susceptibility on shared hillslope units. Screening only; not burn-severity calibrated.

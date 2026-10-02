@@ -1,0 +1,12 @@
+# ADR-0011 / ADR-0012 — rain-coupled flood + landslide screening CHI
+rule_id: flood-landslide-rain-coupling
+hazard_ids: [flood, landslide]
+phi_min:
+  flood: 0.25
+  landslide: 0.25
+formula: union
+formula_version: compound.chi.flood-landslide-rain-coupling.v0.2.0
+model_version: compound.chi.v0.2.0
+hazard_id: compound/flood-landslide
+notes: >
+  Co-occurring rain-driven exceedance; union formula 1-(1-a)(1-b). Not field-validated.
