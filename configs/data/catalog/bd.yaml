@@ -1,0 +1,17 @@
+# National source catalog — BD INTEGRATION CASE
+catalog_id: national/bd-integration-v1
+country_iso: BD
+evidence: IMPLEMENTED
+documented_sources:
+  - source_id: live/open-meteo/precipitation
+    role: hazard_nowcast_proxy
+    shared_catalog: configs/data/sources/open-meteo-precipitation.yaml
+    license_note: Open-Meteo API — verify https://open-meteo.com/en/license
+  - source_id: catalog/bd/country-profile
+    role: territorial_metadata
+    path: configs/countries/bd.yaml
+precipitation_binding:
+  adapter_id: open_meteo_precip
+  site_id: bd-dhaka-demo
+  data_class: LIVE_INTEGRATED
+live_metadata_sources: []

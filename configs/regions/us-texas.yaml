@@ -1,0 +1,18 @@
+# RegionProfile — United States INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: US
+region_id: us-texas
+name: Us Texas
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: America/Chicago
+priority_hazards:
+  - flood
+  - cyclone
+  - wildfire
+  - earthquake
+  - tornado
+notes: >
+  Representative region for United States config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

@@ -1,0 +1,17 @@
+# National source catalog — ET INTEGRATION CASE
+catalog_id: national/et-integration-v1
+country_iso: ET
+evidence: IMPLEMENTED
+documented_sources:
+  - source_id: live/open-meteo/precipitation
+    role: hazard_nowcast_proxy
+    shared_catalog: configs/data/sources/open-meteo-precipitation.yaml
+    license_note: Open-Meteo API — verify https://open-meteo.com/en/license
+  - source_id: catalog/et/country-profile
+    role: territorial_metadata
+    path: configs/countries/et.yaml
+precipitation_binding:
+  adapter_id: open_meteo_precip
+  site_id: et-addis-demo
+  data_class: LIVE_INTEGRATED
+live_metadata_sources: []

@@ -1,0 +1,17 @@
+# RegionProfile — Chile INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: CL
+region_id: cl-metropolitana
+name: Cl Metropolitana
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: America/Santiago
+priority_hazards:
+  - earthquake
+  - tsunami
+  - wildfire
+  - volcano
+notes: >
+  Representative region for Chile config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

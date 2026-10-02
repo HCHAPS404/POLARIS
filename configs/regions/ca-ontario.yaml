@@ -1,0 +1,16 @@
+# RegionProfile — Canada INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: CA
+region_id: ca-ontario
+name: Ca Ontario
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: America/Toronto
+priority_hazards:
+  - wildfire
+  - flood
+  - heat
+notes: >
+  Representative region for Canada config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

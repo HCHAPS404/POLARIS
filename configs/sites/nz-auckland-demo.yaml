@@ -1,0 +1,32 @@
+# SiteProfile — New Zealand INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: NZ
+region_id: nz-auckland
+site_id: nz-auckland-demo
+name: New Zealand integration demo catchment
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Pacific/Auckland
+priority_hazards:
+  - earthquake
+  - tsunami
+  - volcano
+  - flood
+coordinates:
+  lon: 174.7633
+  lat: -36.8485
+exposure_vulnerability:
+  version: site-ev.v0.1.0
+  evidence: EXPERIMENTAL
+  notes: Illustrative weights — not census or building inventories.
+  units:
+    nz-auckland-demo-north:
+      exposure: 0.40
+      vulnerability: 0.50
+    nz-auckland-demo-center:
+      exposure: 0.70
+      vulnerability: 0.55
+notes: >
+  INTEGRATION CASE site for Country → Region → Site YAML and Open-Meteo LIVE precip binding.
+  Not an installed sensor network.

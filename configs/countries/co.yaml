@@ -1,9 +1,9 @@
-# CountryProfile stub — P0
-# Evidence: DESIGNED. Not a live integration. Not a pilot.
+# CountryProfile — Colombia INTEGRATION CASE
+# Evidence: IMPLEMENTED (config + national catalog adapter). Not a field pilot.
 iso_code: CO
 name: Colombia
 status: INTEGRATION_CASE
-evidence: DESIGNED
+evidence: IMPLEMENTED
 timezone: America/Bogota
 priority_hazards:
   - flood
@@ -12,5 +12,13 @@ priority_hazards:
   - volcano
   - wildfire
 official_alert_authority: "UNGRD"
+integration:
+  label: INTEGRATION CASE
+  region_id: co-cundinamarca
+  site_id: co-bogota-demo
+national_catalog_path: configs/data/catalog/co.yaml
+adapters:
+  - adapters.data.national.catalog_ingest
+  - adapters.data.global_feeds.open_meteo_precip
 notes: >
-  Integration case for config shape (Region + Site examples). NOT a field pilot.
+  Primary INTEGRATION CASE reference (Region + Site + Open-Meteo LIVE precip).

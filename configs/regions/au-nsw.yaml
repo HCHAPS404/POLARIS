@@ -1,0 +1,17 @@
+# RegionProfile — Australia INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: AU
+region_id: au-nsw
+name: Au Nsw
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Australia/Sydney
+priority_hazards:
+  - wildfire
+  - flood
+  - cyclone
+  - heat
+notes: >
+  Representative region for Australia config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

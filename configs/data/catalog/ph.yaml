@@ -1,0 +1,17 @@
+# National source catalog — PH INTEGRATION CASE
+catalog_id: national/ph-integration-v1
+country_iso: PH
+evidence: IMPLEMENTED
+documented_sources:
+  - source_id: live/open-meteo/precipitation
+    role: hazard_nowcast_proxy
+    shared_catalog: configs/data/sources/open-meteo-precipitation.yaml
+    license_note: Open-Meteo API — verify https://open-meteo.com/en/license
+  - source_id: catalog/ph/country-profile
+    role: territorial_metadata
+    path: configs/countries/ph.yaml
+precipitation_binding:
+  adapter_id: open_meteo_precip
+  site_id: ph-manila-demo
+  data_class: LIVE_INTEGRATED
+live_metadata_sources: []

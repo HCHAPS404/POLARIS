@@ -1,0 +1,32 @@
+# SiteProfile — Australia INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: AU
+region_id: au-nsw
+site_id: au-sydney-demo
+name: Australia integration demo catchment
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Australia/Sydney
+priority_hazards:
+  - wildfire
+  - flood
+  - cyclone
+  - heat
+coordinates:
+  lon: 151.2093
+  lat: -33.8688
+exposure_vulnerability:
+  version: site-ev.v0.1.0
+  evidence: EXPERIMENTAL
+  notes: Illustrative weights — not census or building inventories.
+  units:
+    au-sydney-demo-north:
+      exposure: 0.40
+      vulnerability: 0.50
+    au-sydney-demo-center:
+      exposure: 0.70
+      vulnerability: 0.55
+notes: >
+  INTEGRATION CASE site for Country → Region → Site YAML and Open-Meteo LIVE precip binding.
+  Not an installed sensor network.

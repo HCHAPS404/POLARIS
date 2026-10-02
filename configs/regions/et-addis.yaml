@@ -1,0 +1,16 @@
+# RegionProfile — Ethiopia INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: ET
+region_id: et-addis
+name: Et Addis
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Africa/Addis_Ababa
+priority_hazards:
+  - drought
+  - flood
+  - heat
+notes: >
+  Representative region for Ethiopia config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

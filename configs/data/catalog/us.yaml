@@ -1,0 +1,22 @@
+# National source catalog — US INTEGRATION CASE
+catalog_id: national/us-integration-v1
+country_iso: US
+evidence: IMPLEMENTED
+documented_sources:
+  - source_id: live/open-meteo/precipitation
+    role: hazard_nowcast_proxy
+    shared_catalog: configs/data/sources/open-meteo-precipitation.yaml
+    license_note: Open-Meteo API — verify https://open-meteo.com/en/license
+  - source_id: catalog/us/country-profile
+    role: territorial_metadata
+    path: configs/countries/us.yaml
+precipitation_binding:
+  adapter_id: open_meteo_precip
+  site_id: us-houston-demo
+  data_class: LIVE_INTEGRATED
+live_metadata_sources:
+  - source_id: live/us/nws-active-alerts
+    endpoint: https://api.weather.gov/alerts/active?area=TX
+    data_class: LIVE_INTEGRATED
+    headers:
+      Accept: application/geo+json

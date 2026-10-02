@@ -1,0 +1,17 @@
+# RegionProfile — Spain INTEGRATION CASE (not a field pilot)
+# Evidence: IMPLEMENTED
+
+country_iso: ES
+region_id: es-madrid
+name: Es Madrid
+status: INTEGRATION_CASE
+evidence: IMPLEMENTED
+timezone: Europe/Madrid
+priority_hazards:
+  - flood
+  - wildfire
+  - heat
+  - drought
+notes: >
+  Representative region for Spain config hierarchy tests.
+  Not an operational national partnership and not a deployed pilot.

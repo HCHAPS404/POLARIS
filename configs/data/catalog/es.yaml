@@ -1,0 +1,17 @@
+# National source catalog — ES INTEGRATION CASE
+catalog_id: national/es-integration-v1
+country_iso: ES
+evidence: IMPLEMENTED
+documented_sources:
+  - source_id: live/open-meteo/precipitation
+    role: hazard_nowcast_proxy
+    shared_catalog: configs/data/sources/open-meteo-precipitation.yaml
+    license_note: Open-Meteo API — verify https://open-meteo.com/en/license
+  - source_id: catalog/es/country-profile
+    role: territorial_metadata
+    path: configs/countries/es.yaml
+precipitation_binding:
+  adapter_id: open_meteo_precip
+  site_id: es-madrid-demo
+  data_class: LIVE_INTEGRATED
+live_metadata_sources: []
