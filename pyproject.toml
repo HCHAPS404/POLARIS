@@ -31,9 +31,21 @@ dev = [
 [project.scripts]
 polaris-flood-sim = "simulation.python.run:main"
 polaris-replay = "harness.backtesting.replay:main"
+polaris-monte-carlo = "harness.backtesting.monte_carlo:main"
+polaris-experiments = "backtesting.experiments.run_experiments:main"
+polaris-fault-injection = "harness.fault_injection.runner:main"
 
 [tool.setuptools.packages.find]
-include = ["domains*", "hazards*", "adapters*", "simulation*", "harness*", "generators*", "firmware*"]
+include = [
+  "domains*",
+  "hazards*",
+  "adapters*",
+  "simulation*",
+  "harness*",
+  "generators*",
+  "firmware*",
+  "backtesting*",
+]
 
 [tool.setuptools.package-data]
 "adapters.storage" = ["alembic.ini", "alembic/**/*"]

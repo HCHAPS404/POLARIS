@@ -1,0 +1,19 @@
+scenario_id: flood-bogota-2018-april-replay
+version: "0.1.0"
+seed: 42
+hazard_id: flood
+data_class: HISTORICAL_REPLAY
+fixture: data/historical/flood-bogota-2018-april.replay.json
+evidence: EXPERIMENTAL
+formula_version: flood.phi.rainfall-threshold.v0.1.0
+phi_mode_policy: declared_on_observation
+country_iso: CO
+site_id: co-bogota-2018-april
+time_window:
+  start: "2018-04-19T06:00:00Z"
+  end: "2018-04-19T24:00:00Z"
+  timezone: America/Bogota
+ground_truth: backtesting/events/flood-bogota-2018-april.json
+notes: >
+  HISTORICAL_REPLAY of the 19 Apr 2018 Bogotá heavy-rain / urban flooding day.
+  Same V1 PHI formulas. Evidence EXPERIMENTAL — mixed accumulation vs 1h thresholds.

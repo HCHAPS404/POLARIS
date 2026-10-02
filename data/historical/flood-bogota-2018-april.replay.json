@@ -1,0 +1,116 @@
+{
+  "fixture_id": "flood-bogota-2018-april-replay",
+  "data_class": "HISTORICAL_REPLAY",
+  "hazard_id": "flood",
+  "site_id": "co-bogota-2018-april",
+  "country_iso": "CO",
+  "as_of": "2018-04-19T18:00:00Z",
+  "disclaimer": "HISTORICAL_REPLAY of publicly reported April 2018 Bogotá heavy-rain day. Not live gauges. EXPERIMENTAL scoring with V1 1h PHI thresholds.",
+  "notes": "IDEAM / media-cited daily totals transcribed into three catchment units. Not a surveyed inundation outline.",
+  "time_window": {
+    "start": "2018-04-19T06:00:00Z",
+    "end": "2018-04-19T24:00:00Z",
+    "timezone": "America/Bogota"
+  },
+  "provenance": {
+    "data_class": "HISTORICAL_REPLAY",
+    "reconstruction": "cited-public-media + IDEAM daily summary references",
+    "license_notes": "Public news reporting and IDEAM open summaries; not a copyrighted hydrograph dump."
+  },
+  "observations": [
+    {
+      "observation_id": "b2018-north-001",
+      "observed_at": "2018-04-19T18:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 58.0,
+      "unit": "mm",
+      "quality_flag": "raw",
+      "source_id": "ideam-bogota-april2018-north-cited",
+      "source": "public-media-via-ideam-daily",
+      "data_class": "HISTORICAL_REPLAY",
+      "spatial_unit_id": "co-bogota-2018-april-north",
+      "site_id": "co-bogota-2018-april",
+      "country_iso": "CO",
+      "phi_mode": "DETECTION",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.73], [-74.04, 4.73], [-74.04, 4.78], [-74.10, 4.78], [-74.10, 4.73]]]
+      },
+      "provenance": {
+        "event_time": "2018-04-19T18:00:00Z",
+        "accumulation": "24h",
+        "transcribed_from": "Public reporting of heavy April 2018 rains affecting northern Bogotá corridors.",
+        "citations": [
+          {
+            "title": "IDEAM — public rainfall summaries (April 2018)",
+            "url": "https://www.ideam.gov.co/",
+            "date": "2018-04-19",
+            "license": "Colombian public institution open summaries"
+          }
+        ]
+      }
+    },
+    {
+      "observation_id": "b2018-center-001",
+      "observed_at": "2018-04-19T18:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 52.0,
+      "unit": "mm",
+      "quality_flag": "raw",
+      "source_id": "ideam-bogota-april2018-center-cited",
+      "source": "public-media-via-ideam-daily",
+      "data_class": "HISTORICAL_REPLAY",
+      "spatial_unit_id": "co-bogota-2018-april-center",
+      "site_id": "co-bogota-2018-april",
+      "country_iso": "CO",
+      "phi_mode": "NOWCAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.68], [-74.04, 4.68], [-74.04, 4.73], [-74.10, 4.73], [-74.10, 4.68]]]
+      },
+      "provenance": {
+        "event_time": "2018-04-19T18:00:00Z",
+        "accumulation": "24h",
+        "citations": [
+          {
+            "title": "IDEAM — public rainfall summaries (April 2018)",
+            "url": "https://www.ideam.gov.co/",
+            "date": "2018-04-19",
+            "license": "Colombian public institution open summaries"
+          }
+        ]
+      }
+    },
+    {
+      "observation_id": "b2018-south-001",
+      "observed_at": "2018-04-19T18:00:00Z",
+      "observed_property": "rainfall_mm",
+      "value": 18.0,
+      "unit": "mm",
+      "quality_flag": "raw",
+      "source_id": "ideam-bogota-april2018-south-cited",
+      "source": "public-media-via-ideam-daily",
+      "data_class": "HISTORICAL_REPLAY",
+      "spatial_unit_id": "co-bogota-2018-april-south",
+      "site_id": "co-bogota-2018-april",
+      "country_iso": "CO",
+      "phi_mode": "FORECAST",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.10, 4.63], [-74.04, 4.63], [-74.04, 4.68], [-74.10, 4.68], [-74.10, 4.63]]]
+      },
+      "provenance": {
+        "event_time": "2018-04-19T18:00:00Z",
+        "accumulation": "24h",
+        "citations": [
+          {
+            "title": "IDEAM — public rainfall summaries (April 2018)",
+            "url": "https://www.ideam.gov.co/",
+            "date": "2018-04-19",
+            "license": "Colombian public institution open summaries"
+          }
+        ]
+      }
+    }
+  ]
+}

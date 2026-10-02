@@ -14,6 +14,10 @@ DEFAULT_FIXTURE = ROOT / "data" / "synthetic" / "flood-bogota-demo.simulated.jso
 FIXTURES: dict[str, Path] = {
     "flood-bogota-demo": DEFAULT_FIXTURE,
     "flood-mocoa-2017-replay": ROOT / "data" / "historical" / "flood-mocoa-2017.replay.json",
+    "flood-bogota-2018-april-replay": ROOT
+    / "data"
+    / "historical"
+    / "flood-bogota-2018-april.replay.json",
     "landslide-co-slope-demo": ROOT
     / "data"
     / "synthetic"

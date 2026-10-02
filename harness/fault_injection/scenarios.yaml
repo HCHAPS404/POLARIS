@@ -1,0 +1,23 @@
+# Fault-injection catalog (SIMULATED / harness-only)
+scenarios:
+  - id: missing_ground_truth_unit
+    description: Ground truth JSON missing a spatial unit present in the fixture
+    expect: SystemExit
+  - id: live_data_class_refused
+    description: Scenario declares LIVE data_class
+    expect: SystemExit
+  - id: wrong_replay_data_class
+    description: Backtest on SIMULATED-only scenario
+    expect: SystemExit
+  - id: unknown_fixture
+    description: Scenario references an unregistered fixture_id
+    expect: FixtureNotFoundError
+  - id: compound_hazard_mismatch
+    description: Compound CHI hazard_ids do not match rule
+    expect: ValueError
+  - id: rf_invalid_frequency
+    description: FSPL with non-positive frequency
+    expect: ValueError
+  - id: energy_zero_cycles
+    description: Energy model with cycles < 1
+    expect: ValueError

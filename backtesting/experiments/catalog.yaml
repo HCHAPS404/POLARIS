@@ -1,0 +1,16 @@
+# EXPERIMENTAL backtesting experiments exposed to Forge (download via API)
+experiments:
+  - id: flood-mocoa-2017-replay
+    title: Mocoa 2017 HISTORICAL_REPLAY
+    evidence: EXPERIMENTAL
+    scenario: simulation/scenarios/flood-mocoa-2017-replay.yaml
+    downloads:
+      backtest_json: /v1/backtests/flood-mocoa-2017-replay
+      monte_carlo_json: /v1/backtests/flood-mocoa-2017-replay/monte-carlo
+  - id: flood-bogota-2018-april-replay
+    title: Bogotá April 2018 heavy rain
+    evidence: EXPERIMENTAL
+    scenario: simulation/scenarios/flood-bogota-2018-april-replay.yaml
+    downloads:
+      backtest_json: /v1/backtests/flood-bogota-2018-april-replay
+      monte_carlo_json: /v1/backtests/flood-bogota-2018-april-replay/monte-carlo
