@@ -100,7 +100,7 @@ def health() -> dict[str, str]:
         "status": "ok",
         "service": "polaris",
         "evidence": "IMPLEMENTED",
-        "maturity": "P5-release-candidate-prep-2026-10-08",
+        "maturity": "v1.0.0-response-quest",
         "storage_backend": storage,
         "utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
