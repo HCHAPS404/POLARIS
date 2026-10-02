@@ -1,8 +1,12 @@
 # Changelog
 
-All notable changes to POLARIS are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning will follow SemVer once a tagged release exists.
+All notable changes to POLARIS are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+
+## [v1.0.0-response-quest] — 2026-10-02
+
+IEEE Response Quest 2026 release artifact (decision-support / SIMULATED + HISTORICAL_REPLAY evidence). **Not** a competition submission marker; **not** OFFICIAL alerting.
 
 ### Added
 
@@ -10,10 +14,7 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 - **Horizon polish:** header with data_class badge, GCI legend, Vector link, optional OSM tiles via `POLARIS_MAP_TILE_ENABLED` / `POLARIS_MAP_TILE_URL` and `GET /v1/config/map`, optional landslide/wildfire overlay layers
 - **Vector / Forge polish:** source-health stub, `fixture_id` URL sync with Horizon, scenario cards, `GET /v1/meta/demo-latest`, `harness/dev/smoke_compose.sh`
 - **Horizon mobile:** WebView to configurable `/horizon/` URL; README for `flutter run` against local API
-
-### Added
-
-- **P5 release candidate prep:** `docs/manuals/technical-overview.md`, RF link budget `simulation/python/rf/` (FSPL **SIMULATED**), heat hazard registry stub, `make demo` / README reproducibility for `harness/demo/run_demo.sh`, draft workflow `release-response-quest.yml` for tag `v1.0.0-response-quest` (no tag until checklist + Helmut approval)
+- **P5 release candidate prep:** `docs/manuals/technical-overview.md`, RF link budget `simulation/python/rf/` (FSPL **SIMULATED**), heat hazard registry stub, `make demo` / README reproducibility for `harness/demo/run_demo.sh`, draft workflow `release-response-quest.yml` for tag `v1.0.0-response-quest`
 
 ### Added (P0–P4 summary on main)
 
@@ -54,7 +55,7 @@ All notable changes to POLARIS are documented here. Format follows [Keep a Chang
 
 ### Changed
 
-- `GET /health` maturity is now `P5-release-candidate-prep-2026-10-08`
+- `GET /health` maturity is now `v1.0.0-response-quest` (tag `v1.0.0-response-quest` on `main`)
 
 ### Changed (historical)
 

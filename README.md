@@ -62,7 +62,7 @@ pip install -e ".[dev]"
 ./harness/demo/run_demo.sh    # logs to harness/demo/output/demo-*.log
 ```
 
-Release freeze **2026-10-08:** [demo script](docs/manuals/demo-script.md), [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md), [technical overview](docs/manuals/technical-overview.md). Tag **`v1.0.0-response-quest`** is draft-only until checklist + Helmut approval (workflow `.github/workflows/release-response-quest.yml`). `GET /health` maturity: `P5-release-candidate-prep-2026-10-08`.
+Release freeze **2026-10-08:** [demo script](docs/manuals/demo-script.md), [reproducibility checklist](docs/manuals/reproducibility-checklist-2026-10-08.md), [technical overview](docs/manuals/technical-overview.md). Tag **`v1.0.0-response-quest`** marks the IEEE Response Quest 2026 release artifact (draft GitHub Release; not competition submission). `GET /health` maturity: `v1.0.0-response-quest`.
 
 V1 map: `GET /v1/map/geojson` (SIMULATED FeatureCollection) rendered by `apps/horizon-web` (static MapLibre, no `package.json`).
 
