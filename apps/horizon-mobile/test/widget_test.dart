@@ -32,6 +32,9 @@ class _FakeWebViewController extends PlatformWebViewController {
 
   @override
   Future<void> loadRequest(LoadRequestParams params) async {}
+
+  @override
+  Future<void> setJavaScriptMode(JavaScriptMode javaScriptMode) async {}
 }
 
 class _FakeWebViewWidget extends PlatformWebViewWidget {
